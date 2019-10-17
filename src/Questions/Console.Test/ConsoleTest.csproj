@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AssemblyName>ConsoleTest</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Command.Tools\Command.csproj" />
+    <ProjectReference Include="..\Questions.Middle\Questions.Middle.csproj" />
+  </ItemGroup>
+
+</Project>
