@@ -36,14 +36,52 @@ lenArr:{
 
         public int Solution(string tiles)
         {
-
             // 排列数量》 len = 1 = 不同字符数 
             // 排列数量》len = max = 多重集合的排列数   参考： https://blog.csdn.net/kennyrose/article/details/7469528
             // 排列数量》len = max - 1 = (len = max)
 
+            var len = tiles.Length;
+
+            if (len == 1) return 1;
+
             var res = 0;
 
-            return res;
+            Dictionary<char, int> dictionary = new Dictionary<char, int>();
+
+            foreach (var c in tiles)
+            {
+                if (dictionary.ContainsKey(c)) dictionary[c]++;
+                else dictionary.Add(c, 1);
+            }
+
+            // 一位数量
+            int sum = dictionary.Keys.Count;
+
+            // 求最后一个的数量
+            int member = 1;
+            for (int i = 2; i <= len; i++)
+            {
+                member *= i;
+            }
+
+            foreach (var item in dictionary)
+            {
+                for (int i = 2; i <= item.Value; i++)
+                {
+                    member /= i;
+                }
+            }
+
+            if (len > 2) sum += 2 * member;// len>2 则添加最后一个和倒数第二个的数量 ps: count(最后一个) = count(倒数第二个)
+            else return sum + member;
+
+            for (int i = 2; i < len - 1; i++)
+            {
+                // 拆分计算此数量的值
+                // 参考: 3a2b4c 的8排列 = 2a2b4c+3a1b4c+3a2b3c
+            }
+
+            return sum;
         }
 
         /*

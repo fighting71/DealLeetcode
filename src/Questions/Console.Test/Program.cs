@@ -18,7 +18,8 @@ namespace ConsoleTest
 
             var testArr = new []
             {
-                "aa","aab","aabb","aaabb","aabbc","aaabbb"
+                "aa","aab","aabb","aaabb","aabbc","aaabbb",
+                "a","ab","abc","abcd","abcde","abcdef"
                 //"a",
                 //"aa","ab",
                 //"aaa","aab","abc",
