@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Command", "Command.Tools\Command.csproj", "{4FE50F2D-6C81-4589-9340-27A82E2854C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Command", "Command.Tools\Command.csproj", "{4FE50F2D-6C81-4589-9340-27A82E2854C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questions.Middle", "Questions.Middle\Questions.Middle.csproj", "{998EC8B2-295C-4F64-B651-A9241B5DB2B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Questions.Middle", "Questions.Middle\Questions.Middle.csproj", "{998EC8B2-295C-4F64-B651-A9241B5DB2B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "Console.Test\ConsoleTest.csproj", "{54DB67BA-1D3D-413E-B288-4748516EE3EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleTest", "Console.Test\ConsoleTest.csproj", "{54DB67BA-1D3D-413E-B288-4748516EE3EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

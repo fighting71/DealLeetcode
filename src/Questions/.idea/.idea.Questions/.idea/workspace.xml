@@ -14,6 +14,8 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Console.Test/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Questions.Middle/Deal/NumTilePossibilities.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Questions.Middle/Deal/TotalNQueens.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Command.Tools/Tools/ListTools.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Command.Tools/Tools/CodeTimer.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -21,8 +23,10 @@
       <list>
         <option value="$PROJECT_DIR$/Command.Tools/CodeTimerResult.cs" />
         <option value="$PROJECT_DIR$/Command.Tools/CodeTimer.cs" />
-        <option value="$PROJECT_DIR$/Console.Test/Program.cs" />
         <option value="$PROJECT_DIR$/Questions.Middle/Deal/NumTilePossibilities.cs" />
+        <option value="$PROJECT_DIR$/Command.Tools/Tools/ListTools.cs" />
+        <option value="$PROJECT_DIR$/Console.Test/Program.cs" />
+        <option value="$PROJECT_DIR$/Questions.Middle/Deal/TotalNQueens.cs" />
       </list>
     </option>
   </component>
@@ -82,7 +86,8 @@
       <option name="presentableId" value="Default" />
       <updated>1571298896143</updated>
       <workItem from="1571298897569" duration="4388000" />
-      <workItem from="1571651709592" duration="596000" />
+      <workItem from="1571651709592" duration="909000" />
+      <workItem from="1571711529582" duration="13533000" />
     </task>
     <servers />
   </component>
@@ -96,7 +101,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
