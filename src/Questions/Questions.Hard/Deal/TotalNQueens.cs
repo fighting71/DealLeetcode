@@ -1,11 +1,8 @@
-﻿using Command.Attr;
+﻿using Command.Tools;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using Command.Tools;
-using Newtonsoft.Json;
 
-namespace Questions.Middle.Deal
+namespace Questions.Hard.Deal
 {
     /// <summary>
     /// @auth : monster
@@ -14,13 +11,12 @@ namespace Questions.Middle.Deal
     ///     https://leetcode.com/problems/n-queens/ 内容差不多... 结果输出要求不一样
     /// @des : 
     /// </summary>
-    [Level(Command.Menu.LevelTypes.Hard)]
     public class TotalNQueens
     {
         #region 测试参数
 
-        private int[][] martix;
-        private int index;
+        //private int[][] martix;
+        //private int index;
 
         #endregion
 
@@ -42,11 +38,11 @@ namespace Questions.Middle.Deal
             res = 0;
 
             // 测试
-//            martix = new int[n][];
-//            for (int i = 0; i < n; i++)
-//            {
-//                martix[i] = new int[n];
-//            }
+            //            martix = new int[n][];
+            //            for (int i = 0; i < n; i++)
+            //            {
+            //                martix[i] = new int[n];
+            //            }
 
             // error 理解错误
             // Helper(-2, n, new bool[n], n);
@@ -89,7 +85,7 @@ namespace Questions.Middle.Deal
                     // 同列占用 同行无意义
                     if (!exists[i][j])
                     {
-                        list.Add(new[] {i, j});
+                        list.Add(new[] { i, j });
                         exists[i][j] = true;
                     }
 
@@ -97,7 +93,7 @@ namespace Questions.Middle.Deal
                     var empty = j + i - (n - num);
                     if (empty >= 0 && empty < n && !(exists[i][empty]))
                     {
-                        list.Add(new[] {i, empty});
+                        list.Add(new[] { i, empty });
                         exists[i][empty] = true;
                     }
 
@@ -105,7 +101,7 @@ namespace Questions.Middle.Deal
                     empty = j - i + (n - num);
                     if (empty >= 0 && empty < n && !(exists[i][empty]))
                     {
-                        list.Add(new[] {i, empty});
+                        list.Add(new[] { i, empty });
                         exists[i][empty] = true;
                     }
                 }
@@ -137,8 +133,8 @@ namespace Questions.Middle.Deal
             if (num == 0)
             {
                 res++;
-                ListTools.ShowMartix(martix);
-                Console.WriteLine("--------------------------------------");
+                //ListTools.ShowMartix(martix);
+                //Console.WriteLine("--------------------------------------");
                 return;
             }
 
@@ -146,9 +142,9 @@ namespace Questions.Middle.Deal
             {
                 if (exists[j] || j == i + 1 || j == i - 1) continue;
                 exists[j] = true;
-                martix[n - num][j] = 1;
+                //martix[n - num][j] = 1;
                 Helper(j, n, exists, num - 1);
-                martix[n - num][j] = 0;
+                //martix[n - num][j] = 0;
                 exists[j] = false;
             }
         }

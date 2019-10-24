@@ -12,7 +12,7 @@ namespace Questions.Middle.Deal
     /// @source : https://leetcode.com/problems/letter-tile-possibilities/
     /// @des : 多重排列相关
     /// </summary>
-    [Level(Command.Menu.LevelTypes.Middle)]
+    [Level(Command.Menu.LevelTypes.Hard)]
     public class NumTilePossibilities
     {
         #region 优化解答

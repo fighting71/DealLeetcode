@@ -10,6 +10,9 @@
         </e>
         <e p="bin" t="ExcludeRecursive" />
         <e p="Command.csproj" t="IncludeRecursive" />
+        <e p="Helper" t="Include">
+          <e p="CollectionHelper.cs" t="Include" />
+        </e>
         <e p="Menu" t="Include">
           <e p="LevelTypes.cs" t="Include" />
         </e>
@@ -24,6 +27,8 @@
           <e p="CodeTimer.cs" t="Include" />
           <e p="CodeTimerResult.cs" t="Include" />
           <e p="ListTools.cs" t="Include" />
+          <e p="ShowList.cs" t="Include" />
+          <e p="ShowResult.cs" t="Include" />
         </e>
       </e>
       <e p="Console.Test" t="IncludeRecursive">
@@ -31,7 +36,7 @@
         <e p="ConsoleTest.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
-            <e p="netcoreapp2.2" t="Include">
+            <e p="netcoreapp3.1" t="Include">
               <e p="ConsoleTest.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
@@ -39,15 +44,53 @@
         <e p="Program.cs" t="Include" />
       </e>
       <e p="packages" t="ExcludeRecursive" />
-      <e p="Questions.Middle" t="IncludeRecursive">
+      <e p="Questions.Easy" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Concurrency" t="Include">
+          <e p="PrintInOrder.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="Questions.Easy.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Questions.Easy.csproj" t="IncludeRecursive" />
+      </e>
+      <e p="Questions.Hard" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="Deal" t="Include">
-          <e p="NumTilePossibilities.cs" t="Include" />
+          <e p="BraceExpansionII.cs" t="Include" />
+          <e p="CountTriplets.cs" t="Include" />
+          <e p="LongestDecomposition.cs" t="Include" />
+          <e p="MinDeletionSize.cs" t="Include" />
+          <e p="MyCalendarThree.cs" t="Include" />
+          <e p="ParseBoolExpr.cs" t="Include" />
+          <e p="SmallestRange.cs" t="Include" />
+          <e p="SwimInWater.cs" t="Include" />
           <e p="TotalNQueens.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
-            <e p="netcoreapp2.2" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="Questions.Hard.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Questions.Hard.csproj" t="IncludeRecursive" />
+      </e>
+      <e p="Questions.Middle" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Deal" t="Include">
+          <e p="ContainsNearbyAlmostDuplicate.cs" t="Include" />
+          <e p="MaxIncreaseKeepingSkyline.cs" t="Include" />
+          <e p="NthUglyNumber.cs" t="Include" />
+          <e p="NumTilePossibilities.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
               <e p="Questions.Middle.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
