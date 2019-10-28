@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using Command.Tools;
 using Newtonsoft.Json;
 using Questions.Hard.Deal;
@@ -19,6 +20,72 @@ namespace ConsoleTest
 
             Random random = new Random();
 
+            IsMatch instance = new IsMatch();
+
+            //Console.WriteLine(instance.Solution("a", "aa")); // false
+            //Console.WriteLine(instance.Solution("a", "a*")); // true
+            //Console.WriteLine(instance.Solution("aab", "c*a*b")); // true
+            //Console.WriteLine(instance.Solution("mississippi", "mis*is*p*.")); // false
+            //Console.WriteLine(instance.Solution("gvuju", ".p*.*")); // false
+            //Console.WriteLine(instance.Solution("a", "q*.f*"));//true
+
+            Console.WriteLine(instance.Solution("tucc", "..*."));
+
+            Console.ReadKey(true);
+
+            for (int i = 0; i < 100; i++)
+            {
+                int strLen = random.Next(5) + 1, modeLen = random.Next(5) + 1;
+
+                StringBuilder builder = new StringBuilder(), modeBuilder = new StringBuilder();
+
+                for (int j = 0; j < strLen; j++)
+                {
+                    builder.Append((char) ('a' + random.Next(26)));
+                }
+
+                for (int j = 0; j < modeLen; j++)
+                {
+                    var randNum = 0;
+
+                    if (modeBuilder.Length == 0 || modeBuilder[modeBuilder.Length - 1] == '*')
+                    {
+                        randNum = random.Next(2);
+                    }
+                    else randNum = random.Next(3);
+
+
+                    switch (randNum)
+                    {
+                        case 0:
+                            modeBuilder.Append((char) ('a' + random.Next(26)));
+                            break;
+                        case 1:
+                            modeBuilder.Append('.');
+                            break;
+                        case 2:
+                            modeBuilder.Append('*');
+                            break;
+                    }
+                }
+
+                bool real = false, res = false;
+
+                var codeTimerResult = codeTimer.Time(1,
+                    (() => { real = Regex.IsMatch(builder.ToString(), $"^{modeBuilder.ToString()}$"); }));
+                var codeTimerResult2 = codeTimer.Time(1,
+                    (() => { res = instance.Solution(builder.ToString(), modeBuilder.ToString()); }));
+
+                if (real != res) throw new Exception($" bug:\"{builder.ToString()}\" , \"{modeBuilder.ToString()}\" ");
+
+                Console.WriteLine($@" time-speed>>>>>>>> 
+match:{codeTimerResult.ToString()}
+owner:{codeTimerResult2.ToString()}
+");
+                
+            }
+
+            Console.WriteLine("success");
 
             Console.ReadKey(true);
 

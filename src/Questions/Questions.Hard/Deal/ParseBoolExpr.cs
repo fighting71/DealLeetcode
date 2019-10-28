@@ -85,7 +85,7 @@ namespace Questions.Hard.Deal
             return true;
         }
 
-        public bool HelperAnd(ref int start, string expression)
+        private bool HelperAnd(ref int start, string expression)
         {
             var res = true;
             var left = 0;

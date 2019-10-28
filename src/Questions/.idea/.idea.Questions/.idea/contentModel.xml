@@ -6,6 +6,7 @@
     <e p="G:\dick\git\DealLeetcode\src\Questions" t="IncludeFlat">
       <e p="Command.Tools" t="IncludeRecursive">
         <e p="Attr" t="Include">
+          <e p="FavoriteAttr.cs" t="Include" />
           <e p="LevelAttribute.cs" t="Include" />
         </e>
         <e p="bin" t="ExcludeRecursive" />
@@ -63,6 +64,7 @@
         <e p="Deal" t="Include">
           <e p="BraceExpansionII.cs" t="Include" />
           <e p="CountTriplets.cs" t="Include" />
+          <e p="IsMatch.cs" t="Include" />
           <e p="LongestDecomposition.cs" t="Include" />
           <e p="MinDeletionSize.cs" t="Include" />
           <e p="MyCalendarThree.cs" t="Include" />
@@ -87,6 +89,7 @@
           <e p="MaxIncreaseKeepingSkyline.cs" t="Include" />
           <e p="NthUglyNumber.cs" t="Include" />
           <e p="NumTilePossibilities.cs" t="Include" />
+          <e p="ThreeSum.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">

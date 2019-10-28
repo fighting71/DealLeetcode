@@ -30,6 +30,9 @@
     <setting file="file://$PROJECT_DIR$/Questions.Middle/Deal/MaxIncreaseKeepingSkyline.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Questions.Easy/Concurrency/PrintInOrder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Questions.Middle/Deal/NumTilePossibilities.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Questions.Hard/Deal/IsMatch.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Command.Tools/Attr/FavoriteAttr.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Questions.Middle/Deal/ThreeSum.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -47,9 +50,13 @@
         <option value="$PROJECT_DIR$/Questions.Hard/Deal/CountTriplets.cs" />
         <option value="$PROJECT_DIR$/Questions.Hard/Deal/MyCalendarThree.cs" />
         <option value="$PROJECT_DIR$/Questions.Easy/Concurrency/PrintInOrder.cs" />
-        <option value="$PROJECT_DIR$/Console.Test/Program.cs" />
         <option value="$PROJECT_DIR$/Questions.Hard/Deal/SmallestRange.cs" />
         <option value="$PROJECT_DIR$/Questions.Hard/Deal/MinDeletionSize.cs" />
+        <option value="$PROJECT_DIR$/Questions.Hard/Deal/ParseBoolExpr.cs" />
+        <option value="$PROJECT_DIR$/Command.Tools/Attr/FavoriteAttr.cs" />
+        <option value="$PROJECT_DIR$/Questions.Middle/Deal/ThreeSum.cs" />
+        <option value="$PROJECT_DIR$/Console.Test/Program.cs" />
+        <option value="$PROJECT_DIR$/Questions.Hard/Deal/IsMatch.cs" />
       </list>
     </option>
   </component>
@@ -114,7 +121,8 @@
       <workItem from="1571711529582" duration="13975000" />
       <workItem from="1571803255593" duration="654000" />
       <workItem from="1571810015787" duration="9288000" />
-      <workItem from="1571883011942" duration="4880000" />
+      <workItem from="1571883011942" duration="6502000" />
+      <workItem from="1572232804790" duration="19143000" />
     </task>
     <servers />
   </component>
