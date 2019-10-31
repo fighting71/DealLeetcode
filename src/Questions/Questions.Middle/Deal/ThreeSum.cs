@@ -11,7 +11,7 @@ namespace Questions.Middle.Deal
     /// @source : https://leetcode.com/problems/3sum/
     /// @des : 
     /// </summary>
-    [FavoriteAttr("引发思考，注意细节.")]
+    [FavoriteAttribute("引发思考，注意细节.")]
     public class ThreeSum
     {
         /**

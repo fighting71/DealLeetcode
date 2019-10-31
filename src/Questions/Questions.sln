@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleTest", "Console.Test
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Questions.Hard", "Questions.Hard\Questions.Hard.csproj", "{98FB725E-F03D-4738-89F2-B02B38F50AC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questions.Easy", "Questions.Easy\Questions.Easy.csproj", "{45D1F8C0-84B0-4002-81F2-3A973F4FA214}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Questions.Easy", "Questions.Easy\Questions.Easy.csproj", "{45D1F8C0-84B0-4002-81F2-3A973F4FA214}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

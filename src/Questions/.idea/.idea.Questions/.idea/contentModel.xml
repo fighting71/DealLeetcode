@@ -6,7 +6,7 @@
     <e p="G:\dick\git\DealLeetcode\src\Questions" t="IncludeFlat">
       <e p="Command.Tools" t="IncludeRecursive">
         <e p="Attr" t="Include">
-          <e p="FavoriteAttr.cs" t="Include" />
+          <e p="FavoriteAttribute.cs" t="Include" />
           <e p="LevelAttribute.cs" t="Include" />
         </e>
         <e p="bin" t="ExcludeRecursive" />
@@ -66,6 +66,7 @@
           <e p="CountTriplets.cs" t="Include" />
           <e p="IsMatch.cs" t="Include" />
           <e p="LongestDecomposition.cs" t="Include" />
+          <e p="LongestValidParentheses.cs" t="Include" />
           <e p="MinDeletionSize.cs" t="Include" />
           <e p="MyCalendarThree.cs" t="Include" />
           <e p="ParseBoolExpr.cs" t="Include" />

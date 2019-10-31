@@ -10,6 +10,7 @@ using Questions.Middle.Deal;
 
 namespace ConsoleTest
 {
+
     class Program
     {
         static void Main(string[] args)
@@ -20,22 +21,84 @@ namespace ConsoleTest
 
             Random random = new Random();
 
-            IsMatch instance = new IsMatch();
+            Console.WriteLine("success");
 
-            //Console.WriteLine(instance.Solution("a", "aa")); // false
-            //Console.WriteLine(instance.Solution("a", "a*")); // true
-            //Console.WriteLine(instance.Solution("aab", "c*a*b")); // true
-            //Console.WriteLine(instance.Solution("mississippi", "mis*is*p*.")); // false
-            //Console.WriteLine(instance.Solution("gvuju", ".p*.*")); // false
-            //Console.WriteLine(instance.Solution("a", "q*.f*"));//true
+            Console.ReadKey(true);
 
-            Console.WriteLine(instance.Solution("tucc", "..*."));
+            Console.WriteLine("Hello World!");
+        }
+
+        #region test method
+
+        private static void TestLongestValidParentheses(CodeTimer codeTimer, Random random)
+        {
+            LongestValidParentheses instance = new LongestValidParentheses();
+
+            #region first test
+
+            //Console.WriteLine(instance.Solution(")()())")); //4
+            //Console.WriteLine(instance.Solution("(()")); //2
+            //Console.WriteLine(instance.Solution("(())")); //4
+            //Console.WriteLine(instance.Solution("())(()")); //2
+            Console.WriteLine(instance.Solution2("()(())")); //6
+            //Console.WriteLine(instance.Solution(")()())()()(")); //4
+            //Console.WriteLine(instance.Solution(")(((((()())()()))()(()))(")); //22
+
+            #endregion
 
             Console.ReadKey(true);
 
             for (int i = 0; i < 100; i++)
             {
-                int strLen = random.Next(5) + 1, modeLen = random.Next(5) + 1;
+                var len = random.Next(10) + 3;
+                StringBuilder builder = new StringBuilder();
+
+                for (int j = 0; j < len; j++)
+                {
+                    builder.Append(random.Next(2) == 0 ? '(' : ')');
+                }
+
+                var res = 0;
+
+                var codeTimerResult = codeTimer.Time(1, (() => { res = instance.Solution(builder.ToString()); }));
+
+                ShowResult.ShowMulti(new Dictionary<string, object>()
+                {
+                    {nameof(builder), builder.ToString()},
+                    {nameof(res), res},
+                    {nameof(codeTimerResult), codeTimerResult}
+                });
+            }
+        }
+
+        private static void TestIsMatch(Random random, CodeTimer codeTimer)
+        {
+            IsMatch instance = new IsMatch();
+
+            #region firstTest
+
+            Console.WriteLine(instance.OtherSolution2("a", "aa")); // false
+            Console.WriteLine(instance.OtherSolution2("a", "a*")); // true
+            Console.WriteLine(instance.Solution("aab", "c*a*b")); // true
+            Console.WriteLine(instance.Solution("mississippi", "mis*is*p*.")); // false
+            Console.WriteLine(instance.Solution("gvuju", ".p*.*")); // true
+            Console.WriteLine(instance.Solution("a", "q*.f*")); //true
+            Console.WriteLine(instance.Solution("tucc", "..*.")); // true
+            Console.WriteLine(instance.Solution("sm", "..e.")); // false
+            Console.WriteLine(instance.Solution("aaa", "a.a")); // true
+            Console.WriteLine(instance.Solution("fugg", ".*m*..")); // true
+            Console.WriteLine(instance.Solution("swmvdaxkzaphiqdzwxfd", "ss.*.p*")); // false
+            Console.WriteLine(instance.Solution("hybaah", "...a*..")); // true
+
+            //Console.WriteLine(instance.Solution("ignnlmzyprxx", "..*..m..p*...*.."));// true
+
+            #endregion
+
+            Console.ReadKey(true);
+
+            for (int i = 0; i < 40000; i++)
+            {
+                int strLen = random.Next(20) + 1, modeLen = random.Next(20) + 1;
 
                 StringBuilder builder = new StringBuilder(), modeBuilder = new StringBuilder();
 
@@ -76,23 +139,15 @@ namespace ConsoleTest
                 var codeTimerResult2 = codeTimer.Time(1,
                     (() => { res = instance.Solution(builder.ToString(), modeBuilder.ToString()); }));
 
-                if (real != res) throw new Exception($" bug:\"{builder.ToString()}\" , \"{modeBuilder.ToString()}\" ");
+                if (real != res)
+                    throw new Exception($" bug:  \"{builder.ToString()}\" , \"{modeBuilder.ToString()}\" ");
 
                 Console.WriteLine($@" time-speed>>>>>>>> 
 match:{codeTimerResult.ToString()}
 owner:{codeTimerResult2.ToString()}
 ");
-                
             }
-
-            Console.WriteLine("success");
-
-            Console.ReadKey(true);
-
-            Console.WriteLine("Hello World!");
         }
-
-        #region test method
 
         //private static void TestNthUglyNumber()
         //{

@@ -10,14 +10,14 @@ namespace Command.Attr
     /// @source : 
     /// @des : 
     /// </summary>
-    public class FavoriteAttr : Attribute
+    public class FavoriteAttribute : Attribute
     {
         /// <summary>
         /// 描述
         /// </summary>
         public string Desc { get; set; }
 
-        public FavoriteAttr(string desc)
+        public FavoriteAttribute(string desc)
         {
             Desc = desc;
         }
