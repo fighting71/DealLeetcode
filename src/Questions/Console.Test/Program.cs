@@ -10,7 +10,6 @@ using Questions.Middle.Deal;
 
 namespace ConsoleTest
 {
-
     class Program
     {
         static void Main(string[] args)
@@ -26,6 +25,75 @@ namespace ConsoleTest
             Console.ReadKey(true);
 
             Console.WriteLine("Hello World!");
+        }
+
+        private static void TestMaxPathSum()
+        {
+            MaxPathSum instance = new MaxPathSum();
+
+            Console.WriteLine(instance.Solution(new MaxPathSum.TreeNode(-10, 9, new MaxPathSum.TreeNode(20, 15, 7))));//42
+
+            Console.WriteLine(instance.Solution(
+                new MaxPathSum.TreeNode(5,
+                    new MaxPathSum.TreeNode(4,
+                        new MaxPathSum.TreeNode(11, 7, 2), null),
+                    new MaxPathSum.TreeNode(8, 13,
+                    new MaxPathSum.TreeNode(4, null, 1)
+               )
+                )
+            )); //48
+        }
+
+        private static void TestFindMedianSortedArrays(CodeTimer codeTimer, Random random)
+        {
+            FindMedianSortedArrays instance = new FindMedianSortedArrays();
+
+            //Console.WriteLine(instance.Solution(new[] { 1, 3 }, new[] { 2 }));
+            //Console.WriteLine(instance.Solution(new[] {1, 2}, new[] {3, 4}));
+            Console.WriteLine(instance.Solution(new[] {0, 4, 8, 10, 13, 17}, new[] {5, 8, 11, 12}));
+            Console.WriteLine(
+                instance.Solution(new[] {6, 7, 10, 12, 12, 13, 15, 18, 22, 25, 29}, new[] {0, 0, 2, 5, 5}));
+            Console.WriteLine(instance.Solution(new[] {2, 4, 5, 5}, new[] {5, 6, 10, 14, 16, 16, 20, 20, 21, 25, 26}));
+
+            Console.ReadKey(true);
+
+            for (int i = 0; i < 1000; i++)
+            {
+                var len = random.Next(20) + 2;
+                var len2 = random.Next(20) + 2;
+
+                var list1 = new List<int>() {random.Next(10)};
+                var list2 = new List<int>() {random.Next(10)};
+
+                for (int j = 0; j < len; j++)
+                {
+                    list1.Add(list1[list1.Count - 1] + random.Next(5));
+                }
+
+                for (int j = 0; j < len2; j++)
+                {
+                    list2.Add(list2[list2.Count - 1] + random.Next(5));
+                }
+
+                double real = 0, res = 0;
+
+                real = instance.Check(list1.ToArray(), list2.ToArray());
+
+                var codeTimerResult = codeTimer.Time(1,
+                    (() => { res = instance.Solution(list1.ToArray(), list2.ToArray()); }));
+
+                ShowResult.ShowMulti(new Dictionary<string, object>()
+                {
+                    {nameof(list1), list1},
+                    {nameof(list2), list2},
+                    {nameof(res), res},
+                    {nameof(real), real},
+                    {nameof(codeTimerResult), codeTimerResult}
+                });
+
+                if (real != res)
+                    throw new Exception("bug");
+            }
         }
 
         #region test method

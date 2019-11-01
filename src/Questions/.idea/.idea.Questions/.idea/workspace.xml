@@ -12,14 +12,12 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Questions.Hard/Deal/LongestValidParentheses.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Questions.Hard/Deal/TotalNQueens.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/C693B3F1-CA49-4699-88E0-95FAB07352AE/71/44164ec0/Stack`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Command.Tools/Tools/ShowList.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Command.Tools/Tools/ListTools.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Questions.Hard/Deal/BraceExpansionII.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Questions.Middle/Deal/NthUglyNumber.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Questions.Middle/Deal/ContainsNearbyAlmostDuplicate.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Command.Tools/Tools/CodeTimer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Questions.Hard/Deal/LongestDecomposition.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Questions.Hard/Deal/CountTriplets.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Questions.Hard/Deal/SmallestRange.cs" root0="FORCE_HIGHLIGHTING" />
@@ -29,10 +27,18 @@
     <setting file="file://$PROJECT_DIR$/Questions.Hard/Deal/MyCalendarThree.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Questions.Hard/Deal/SwimInWater.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Questions.Middle/Deal/MaxIncreaseKeepingSkyline.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Questions.Easy/Concurrency/PrintInOrder.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Questions.Hard/Deal/MaxPathSum.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Questions.Hard/Deal/FirstMissingPositive.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Questions.Middle/Deal/NumTilePossibilities.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Questions.Hard/Deal/IsMatch.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Questions.Middle/Deal/ThreeSum.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Questions.Hard/Deal/FindMedianSortedArrays.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Questions.Hard/Deal/LongestValidParentheses.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Questions.Hard/Deal/TotalNQueens.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Questions.Middle/Deal/CopyRandomList.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Questions.Middle/Deal/LRUCache.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Command.Tools/Tools/CodeTimer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Questions.Easy/Concurrency/PrintInOrder.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -56,8 +62,13 @@
         <option value="$PROJECT_DIR$/Command.Tools/Attr/FavoriteAttr.cs" />
         <option value="$PROJECT_DIR$/Questions.Middle/Deal/ThreeSum.cs" />
         <option value="$PROJECT_DIR$/Questions.Hard/Deal/IsMatch.cs" />
-        <option value="$PROJECT_DIR$/Console.Test/Program.cs" />
         <option value="$PROJECT_DIR$/Questions.Hard/Deal/LongestValidParentheses.cs" />
+        <option value="$PROJECT_DIR$/Questions.Hard/Deal/FindMedianSortedArrays.cs" />
+        <option value="$PROJECT_DIR$/Questions.Middle/Deal/LRUCache.cs" />
+        <option value="$PROJECT_DIR$/Questions.Middle/Deal/CopyRandomList.cs" />
+        <option value="$PROJECT_DIR$/Questions.Hard/Deal/FirstMissingPositive.cs" />
+        <option value="$PROJECT_DIR$/Console.Test/Program.cs" />
+        <option value="$PROJECT_DIR$/Questions.Hard/Deal/MaxPathSum.cs" />
       </list>
     </option>
   </component>
@@ -126,7 +137,8 @@
       <workItem from="1572232804790" duration="19237000" />
       <workItem from="1572419516264" duration="5228000" />
       <workItem from="1572431661447" duration="2531000" />
-      <workItem from="1572488595839" duration="6129000" />
+      <workItem from="1572488595839" duration="6776000" />
+      <workItem from="1572574542118" duration="17435000" />
     </task>
     <servers />
   </component>

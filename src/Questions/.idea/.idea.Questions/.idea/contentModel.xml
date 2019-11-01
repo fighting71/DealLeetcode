@@ -64,9 +64,12 @@
         <e p="Deal" t="Include">
           <e p="BraceExpansionII.cs" t="Include" />
           <e p="CountTriplets.cs" t="Include" />
+          <e p="FindMedianSortedArrays.cs" t="Include" />
+          <e p="FirstMissingPositive.cs" t="Include" />
           <e p="IsMatch.cs" t="Include" />
           <e p="LongestDecomposition.cs" t="Include" />
           <e p="LongestValidParentheses.cs" t="Include" />
+          <e p="MaxPathSum.cs" t="Include" />
           <e p="MinDeletionSize.cs" t="Include" />
           <e p="MyCalendarThree.cs" t="Include" />
           <e p="ParseBoolExpr.cs" t="Include" />
@@ -87,6 +90,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Deal" t="Include">
           <e p="ContainsNearbyAlmostDuplicate.cs" t="Include" />
+          <e p="CopyRandomList.cs" t="Include" />
           <e p="MaxIncreaseKeepingSkyline.cs" t="Include" />
           <e p="NthUglyNumber.cs" t="Include" />
           <e p="NumTilePossibilities.cs" t="Include" />
