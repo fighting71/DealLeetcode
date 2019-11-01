@@ -31,7 +31,7 @@ namespace Questions.Hard.Deal
          * Runtime: 96 ms, faster than 98.99% of C# online submissions for Binary Tree Maximum Path Sum.
          * Memory Usage: 30 MB, less than 14.29% of C# online submissions for Binary Tree Maximum Path Sum.
          *
-         * perfact~
+         * perfect~
          * 
          */
         private int Helper2(TreeNode node)
