@@ -37,8 +37,11 @@
     <setting file="file://$PROJECT_DIR$/Questions.Hard/Deal/TotalNQueens.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Questions.Middle/Deal/CopyRandomList.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Questions.Middle/Deal/LRUCache.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8ED277D3-4260-4F4F-85AE-23975EBE15BE/56/0d3f9f1a/Int32.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Command.Tools/Tools/CodeTimer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Questions.Middle/Deal/CoinChange.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Questions.Easy/Concurrency/PrintInOrder.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Questions.Hard/Deal/MinWindow.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -67,8 +70,10 @@
         <option value="$PROJECT_DIR$/Questions.Middle/Deal/LRUCache.cs" />
         <option value="$PROJECT_DIR$/Questions.Middle/Deal/CopyRandomList.cs" />
         <option value="$PROJECT_DIR$/Questions.Hard/Deal/FirstMissingPositive.cs" />
-        <option value="$PROJECT_DIR$/Console.Test/Program.cs" />
         <option value="$PROJECT_DIR$/Questions.Hard/Deal/MaxPathSum.cs" />
+        <option value="$PROJECT_DIR$/Console.Test/Program.cs" />
+        <option value="$PROJECT_DIR$/Questions.Middle/Deal/CoinChange.cs" />
+        <option value="$PROJECT_DIR$/Questions.Hard/Deal/MinWindow.cs" />
       </list>
     </option>
   </component>
@@ -138,7 +143,10 @@
       <workItem from="1572419516264" duration="5228000" />
       <workItem from="1572431661447" duration="2531000" />
       <workItem from="1572488595839" duration="6776000" />
-      <workItem from="1572574542118" duration="17676000" />
+      <workItem from="1572574542118" duration="17811000" />
+      <workItem from="1572919643446" duration="1208000" />
+      <workItem from="1572939193964" duration="4084000" />
+      <workItem from="1573007202035" duration="7207000" />
     </task>
     <servers />
   </component>

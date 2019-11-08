@@ -71,6 +71,7 @@
           <e p="LongestValidParentheses.cs" t="Include" />
           <e p="MaxPathSum.cs" t="Include" />
           <e p="MinDeletionSize.cs" t="Include" />
+          <e p="MinWindow.cs" t="Include" />
           <e p="MyCalendarThree.cs" t="Include" />
           <e p="ParseBoolExpr.cs" t="Include" />
           <e p="SmallestRange.cs" t="Include" />
@@ -89,6 +90,7 @@
       <e p="Questions.Middle" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="Deal" t="Include">
+          <e p="CoinChange.cs" t="Include" />
           <e p="ContainsNearbyAlmostDuplicate.cs" t="Include" />
           <e p="CopyRandomList.cs" t="Include" />
           <e p="MaxIncreaseKeepingSkyline.cs" t="Include" />

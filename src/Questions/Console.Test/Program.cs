@@ -20,6 +20,8 @@ namespace ConsoleTest
 
             Random random = new Random();
 
+
+
             Console.WriteLine("success");
 
             Console.ReadKey(true);
@@ -27,19 +29,52 @@ namespace ConsoleTest
             Console.WriteLine("Hello World!");
         }
 
+        private static void TestCoinChange(Random random)
+        {
+            CoinChange instance = new CoinChange();
+
+            Console.WriteLine(instance.Solution(new[] { 186, 416, 83, 408 }, 6249));//20
+            Console.WriteLine(instance.Solution(new[] { 1, 2, 5 }, 11));//3
+            Console.WriteLine(instance.Solution(new[] { 2 }, 3));//-1
+
+            Console.ReadKey(true);
+
+            for (int i = 0; i < 1000; i++)
+            {
+                var randNum = random.Next(20) + 10;
+
+                var arr = new int[random.Next(5) + 1];
+
+                for (int j = 0; j < arr.Length; j++)
+                {
+                    arr[j] = random.Next(randNum) + 1;
+                }
+
+                var res = instance.Solution(arr, randNum);
+
+                ShowResult.ShowMulti(new Dictionary<string, object>()
+                {
+                    {nameof(randNum), randNum},
+                    {nameof(arr), arr},
+                    {nameof(res), res}
+                });
+            }
+        }
+
         private static void TestMaxPathSum()
         {
             MaxPathSum instance = new MaxPathSum();
 
-            Console.WriteLine(instance.Solution(new MaxPathSum.TreeNode(-10, 9, new MaxPathSum.TreeNode(20, 15, 7))));//42
+            Console.WriteLine(
+                instance.Solution(new MaxPathSum.TreeNode(-10, 9, new MaxPathSum.TreeNode(20, 15, 7)))); //42
 
             Console.WriteLine(instance.Solution(
                 new MaxPathSum.TreeNode(5,
                     new MaxPathSum.TreeNode(4,
                         new MaxPathSum.TreeNode(11, 7, 2), null),
                     new MaxPathSum.TreeNode(8, 13,
-                    new MaxPathSum.TreeNode(4, null, 1)
-               )
+                        new MaxPathSum.TreeNode(4, null, 1)
+                    )
                 )
             )); //48
         }
