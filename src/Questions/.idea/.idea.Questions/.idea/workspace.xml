@@ -23,6 +23,7 @@
     <setting file="file://$PROJECT_DIR$/Questions.Hard/Deal/SmallestRange.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Questions.Hard/Deal/MinDeletionSize.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Questions.Hard/Deal/ParseBoolExpr.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/C693B3F1-CA49-4699-88E0-95FAB07352AE/3f/999970a2/HashSet`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Console.Test/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Questions.Hard/Deal/MyCalendarThree.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Questions.Hard/Deal/SwimInWater.cs" root0="FORCE_HIGHLIGHTING" />
@@ -71,9 +72,10 @@
         <option value="$PROJECT_DIR$/Questions.Middle/Deal/CopyRandomList.cs" />
         <option value="$PROJECT_DIR$/Questions.Hard/Deal/FirstMissingPositive.cs" />
         <option value="$PROJECT_DIR$/Questions.Hard/Deal/MaxPathSum.cs" />
-        <option value="$PROJECT_DIR$/Console.Test/Program.cs" />
         <option value="$PROJECT_DIR$/Questions.Middle/Deal/CoinChange.cs" />
         <option value="$PROJECT_DIR$/Questions.Hard/Deal/MinWindow.cs" />
+        <option value="$PROJECT_DIR$/Console.Test/Program.cs" />
+        <option value="$PROJECT_DIR$/Console.Test/EmptyTest.cs" />
       </list>
     </option>
   </component>
@@ -147,6 +149,8 @@
       <workItem from="1572919643446" duration="1208000" />
       <workItem from="1572939193964" duration="4084000" />
       <workItem from="1573007202035" duration="7207000" />
+      <workItem from="1574751174195" duration="4427000" />
+      <workItem from="1574821214962" duration="141000" />
     </task>
     <servers />
   </component>

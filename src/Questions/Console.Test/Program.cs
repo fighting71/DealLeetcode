@@ -1,17 +1,18 @@
-﻿using System;
+﻿using Command.Tools;
+using Newtonsoft.Json;
+using Questions.Hard.Deal;
+using Questions.Middle.Deal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using Command.Tools;
-using Newtonsoft.Json;
-using Questions.Hard.Deal;
-using Questions.Middle.Deal;
 
 namespace ConsoleTest
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
             CodeTimer codeTimer = new CodeTimer();
@@ -20,7 +21,35 @@ namespace ConsoleTest
 
             Random random = new Random();
 
+            MinTaps minTaps = new MinTaps();
 
+            Console.WriteLine(minTaps.Try(5, new[] { 3, 4, 1, 1, 0, 0 }) == 1);
+            Console.WriteLine(minTaps.Try(3, new[] { 0, 0, 0, 0 }) == -1);
+            Console.WriteLine(minTaps.Try(7, new[] { 1, 2, 1, 0, 2, 1, 0, 1 }) == 3);
+            Console.WriteLine(minTaps.Try(8, new[] { 4, 0, 0, 0, 0, 0, 0, 0, 4 }) == 2);
+            Console.WriteLine(minTaps.Try(8, new[] { 4, 0, 0, 0, 4, 0, 0, 0, 4 }) == 1);
+
+            for (int i = 0; i < 1; i++)
+            {
+                var len = random.Next(8) + 9900;
+
+                var arr = new int[len+1];
+
+                for (int j = 0; j < len; j++)
+                {
+                    arr[j] = random.Next(10);
+                }
+
+                var res = minTaps.Try(len, arr);
+
+                ShowResult.ShowMulti(new Dictionary<string, object>()
+                {
+                    {"res",res },
+                    { "arr",arr},
+                    {"len",len }
+                });
+
+            }
 
             Console.WriteLine("success");
 
@@ -33,9 +62,9 @@ namespace ConsoleTest
         {
             CoinChange instance = new CoinChange();
 
-            Console.WriteLine(instance.Solution(new[] { 186, 416, 83, 408 }, 6249));//20
-            Console.WriteLine(instance.Solution(new[] { 1, 2, 5 }, 11));//3
-            Console.WriteLine(instance.Solution(new[] { 2 }, 3));//-1
+            Console.WriteLine(instance.Solution(new[] {186, 416, 83, 408}, 6249)); //20
+            Console.WriteLine(instance.Solution(new[] {1, 2, 5}, 11)); //3
+            Console.WriteLine(instance.Solution(new[] {2}, 3)); //-1
 
             Console.ReadKey(true);
 
@@ -321,24 +350,24 @@ owner:{codeTimerResult2.ToString()}
                 if (realRes != res) throw new Exception("find bug...");
             }
 
-//            var testArr = new []
-//            {
-//                "a","ab","aab","aaab","aabb","aabbb",
-//                "abc","aabc","aabbc","aabbcc"
-//                //"a",
-//                //"aa","ab",
-//                //"aaa","aab","abc",
-//                //"aaaa","aaab","aabb","aabc","abcd",
-//                //"aaaaa","aaaab","aaabb","aaabc","aabbc","aabcd","abcde",
-//                //"ab","aab","aabb","aaabb","aaabbb","aaaabbb",
-//                //"abcdefg"
-//            };
-//
-//            foreach (var item in testArr)
-//            {
-//                instance.SimpleTest(item);
-//                instance.Solution(item);
-//            }
+            //            var testArr = new []
+            //            {
+            //                "a","ab","aab","aaab","aabb","aabbb",
+            //                "abc","aabc","aabbc","aabbcc"
+            //                //"a",
+            //                //"aa","ab",
+            //                //"aaa","aab","abc",
+            //                //"aaaa","aaab","aabb","aabc","abcd",
+            //                //"aaaaa","aaaab","aaabb","aaabc","aabbc","aabcd","abcde",
+            //                //"ab","aab","aabb","aaabb","aaabbb","aaaabbb",
+            //                //"abcdefg"
+            //            };
+            //
+            //            foreach (var item in testArr)
+            //            {
+            //                instance.SimpleTest(item);
+            //                instance.Solution(item);
+            //            }
         }
 
 
