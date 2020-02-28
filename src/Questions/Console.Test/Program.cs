@@ -22,16 +22,50 @@ namespace ConsoleTest
 
             Random random = new Random();
 
-            FindSubstring instance = new FindSubstring();
+            SolveSudoku instance = new SolveSudoku();
 
-            //Console.WriteLine(JsonConvert.SerializeObject(instance.Simple("barfoothefoobarman", new[] { "foo", "bar" })));
-            Console.WriteLine(JsonConvert.SerializeObject(instance.Simple2("barfoothefoobarman", new[] { "foo", "bar" })));
+            //var boards = new[]
+            //{
+            //    new []{'5','3','.','.','7','.','.','.','.'},
+            //    new []{'6','.','.','1','9','5','.','.','.'},
+            //    new []{'.','9','8','.','.','.','.','6','.'},
+            //    new []{'8','.','.','.','6','.','.','.','3'},
+            //    new []{'4','.','.','8','.','3','.','.','1'},
+            //    new []{'7','.','.','.','2','.','.','.','6'},
+            //    new []{'.','6','.','.','.','.','2','8','.'},
+            //    new []{'.','.','.','4','1','9','.','.','5'},
+            //    new []{'.','.','.','.','8','.','.','7','9'}
+            //};
+
+            //instance.Try2(boards);
+
+            // TODO: fix bug
+
+            var boards = JsonConvert.DeserializeObject<char[][]>(@"[['.','.','9','7','4','8','.','.','.'],
+['7', '.', '.', '.', '.', '.', '.', '.', '.'],
+['.', '2', '.', '1', '.', '9', '.', '.', '.'],
+['.', '.', '7', '.', '.', '.', '2', '4', '.'],
+['.', '6', '4', '.', '1', '.', '5', '9', '.'],
+['.', '9', '8', '.', '.', '.', '3', '.', '.'],
+['.', '.', '.', '8', '.', '3', '.', '2', '.'],
+['.', '.', '.', '.', '.', '.', '.', '.', '6'],
+['.', '.', '.', '2', '7', '5', '9', '.', '.']]");
+
+            instance.Try2(boards);
 
             Console.WriteLine("success");
 
             Console.ReadKey(true);
 
             Console.WriteLine("Hello World!");
+        }
+
+        private static void TestFindSubstring()
+        {
+            FindSubstring instance = new FindSubstring();
+
+            //Console.WriteLine(JsonConvert.SerializeObject(instance.Simple("barfoothefoobarman", new[] { "foo", "bar" })));
+            Console.WriteLine(JsonConvert.SerializeObject(instance.Simple2("barfoothefoobarman", new[] { "foo", "bar" })));
         }
 
         private static void TestReverseKGroup()
