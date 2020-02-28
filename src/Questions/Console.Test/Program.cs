@@ -1,4 +1,5 @@
-﻿using Command.Tools;
+﻿using Command.CommonStruct;
+using Command.Tools;
 using Newtonsoft.Json;
 using Questions.Hard.Deal;
 using Questions.Middle.Deal;
@@ -21,41 +22,108 @@ namespace ConsoleTest
 
             Random random = new Random();
 
-            MinTaps minTaps = new MinTaps();
+            FindSubstring instance = new FindSubstring();
 
-            Console.WriteLine(minTaps.Try(5, new[] { 3, 4, 1, 1, 0, 0 }) == 1);
-            Console.WriteLine(minTaps.Try(3, new[] { 0, 0, 0, 0 }) == -1);
-            Console.WriteLine(minTaps.Try(7, new[] { 1, 2, 1, 0, 2, 1, 0, 1 }) == 3);
-            Console.WriteLine(minTaps.Try(8, new[] { 4, 0, 0, 0, 0, 0, 0, 0, 4 }) == 2);
-            Console.WriteLine(minTaps.Try(8, new[] { 4, 0, 0, 0, 4, 0, 0, 0, 4 }) == 1);
-
-            for (int i = 0; i < 1; i++)
-            {
-                var len = random.Next(8) + 9900;
-
-                var arr = new int[len+1];
-
-                for (int j = 0; j < len; j++)
-                {
-                    arr[j] = random.Next(10);
-                }
-
-                var res = minTaps.Try(len, arr);
-
-                ShowResult.ShowMulti(new Dictionary<string, object>()
-                {
-                    {"res",res },
-                    { "arr",arr},
-                    {"len",len }
-                });
-
-            }
+            //Console.WriteLine(JsonConvert.SerializeObject(instance.Simple("barfoothefoobarman", new[] { "foo", "bar" })));
+            Console.WriteLine(JsonConvert.SerializeObject(instance.Simple2("barfoothefoobarman", new[] { "foo", "bar" })));
 
             Console.WriteLine("success");
 
             Console.ReadKey(true);
 
             Console.WriteLine("Hello World!");
+        }
+
+        private static void TestReverseKGroup()
+        {
+            ReverseKGroup instance = new ReverseKGroup();
+
+            Console.WriteLine(instance.Clear(new[] { 1, 2, 3, 4, 5 }, 2));
+        }
+
+        private static void TestMergeKLists(CodeTimer codeTimer, Random random)
+        {
+            MergeKLists instance = new MergeKLists();
+
+            //instance.Simple(new ListNode[] { new[] { 1, 4, 5 }, new[] { 1, 3, 4 }, new[] { 2, 6 } });
+            //instance.Try3(new ListNode[] { new[] { 1, 4, 5 }, new[] { 1, 3, 4 }, new[] { 2, 6 } });
+            instance.Solution(new ListNode[] { new[] { 1, 4, 5 }, new[] { 1, 3, 4 }, new[] { 2, 6 } });
+
+            for (int i = 0; i < 10; i++)
+            {
+
+                var arr = new ListNode[random.Next(5) + 1000];
+
+                for (int j = 0; j < arr.Length; j++)
+                {
+                    List<int> list = new List<int>();
+                    for (int k = 0; k < random.Next(5); k++)
+                    {
+                        list.Add(random.Next(10));
+                    }
+                    arr[j] = list.OrderBy(u => u).ToArray();
+                }
+
+                ListNode res = null, res2 = null;
+
+                CodeTimerResult codeTimerResult
+                    = codeTimer.Time(1, () => { res = instance.Solution(arr); });
+
+
+                CodeTimerResult codeTimerResult2
+                    = codeTimer.Time(1, () => { res2 = instance.Try4(arr); });
+
+                if (res == null && res2 != null) throw new Exception("result inconformity !");
+                if (!res.ToString().Equals(res2.ToString())) throw new Exception("result inconformity !");
+
+                ShowResult.ShowMulti(new Dictionary<string, object>() {
+                    //{nameof(res),res },
+                    {nameof(codeTimerResult),codeTimerResult },
+                    { string.Empty,"vs>>>>>"},
+                    //{nameof(res2),res2 },
+                    {nameof(codeTimerResult2),codeTimerResult2 },
+                });
+
+
+            }
+        }
+
+        private static void TestMinTaps(CodeTimer codeTimer, Random random)
+        {
+            MinTaps minTaps = new MinTaps();
+
+            Console.WriteLine(minTaps.OtherSolution(5, new[] { 3, 4, 1, 1, 0, 0 }) == 1);
+            Console.WriteLine(minTaps.Try(3, new[] { 0, 0, 0, 0 }) == -1);
+            Console.WriteLine(minTaps.Try(7, new[] { 1, 2, 1, 0, 2, 1, 0, 1 }) == 3);
+            Console.WriteLine(minTaps.Try(8, new[] { 4, 0, 0, 0, 0, 0, 0, 0, 4 }) == 2);
+            Console.WriteLine(minTaps.Try(8, new[] { 4, 0, 0, 0, 4, 0, 0, 0, 4 }) == 1);
+
+            for (int i = 0; i < 10; i++)
+            {
+                var len = random.Next(8) + 9993;
+
+                var arr = new int[len + 1];
+
+                for (int j = 0; j < len; j++)
+                {
+                    arr[j] = random.Next(10);
+                }
+
+                int res = 0;
+                CodeTimerResult timerResult;
+
+                timerResult = codeTimer.Time(1, () => { res = minTaps.Clear(len, arr); });
+                //timerResult2 = codeTimer.Time(1, () => { res2 = minTaps.Try2(len, arr); });
+
+                ShowResult.ShowMulti(new Dictionary<string, object>()
+                {
+                    {"res",res },
+                    {nameof(timerResult),timerResult },
+                    {"len",len }
+                });
+
+
+            }
         }
 
         private static void TestCoinChange(Random random)

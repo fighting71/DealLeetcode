@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Command.Attr;
+using Command.Const;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Questions.Hard.Deal
@@ -16,6 +19,7 @@ namespace Questions.Hard.Deal
     ///     求能浇灌整个花园的最少花洒数(没有返回-1)
     ///     
     /// </summary>
+    [Favorite(FlagConst.DP)]
     public class MinTaps
     {
 
@@ -70,6 +74,9 @@ namespace Questions.Hard.Deal
                 if (ranges[i] == 0) continue;
 
                 l = i - ranges[i];
+
+                if (l > n) continue;
+
                 r = i + ranges[i];
 
                 if (l <= 0)
@@ -94,6 +101,46 @@ namespace Questions.Hard.Deal
             }
 
             return res == n + 2 ? -1 : res;
+        }
+
+        [Obsolete]
+        public int Try2(int n, int[] ranges)
+        {
+            return Helper(-1, -1, n, ranges, 0, 0);
+        }
+
+        // bug
+        public int Helper(int l,int r,int n,int[] arr,int index,int joinCount)
+        {
+
+            if (index == arr.Length) return -1;
+
+            if (l == 0 && r >= n) return joinCount;
+
+            var res = -1;
+
+            for (int i = index; i < arr.Length; i++)
+            {
+
+                if (arr[i] == 0) continue;
+
+                int newL = Math.Max(i - arr[i], 0), newR = Math.Min(i + arr[i], n);
+                if (newL >= l && newR <= r) continue;// 区间重复
+                if (newR < l) continue;// 无法连接
+
+                // 进行连接
+                var emp = Helper(Math.Min(l, newL), Math.Max(r, newR), n, arr, index + 1, joinCount + 1);
+
+                if (emp != -1)
+                {
+                    if (res == -1) res = emp;
+                    else res = Math.Min(res, emp);
+                }
+
+            }
+
+            // 返回连接数
+            return res;
         }
 
         /// <summary>
@@ -190,6 +237,54 @@ namespace Questions.Hard.Deal
             return -1;
 
         }
+
+        #region Other Solution
+
+        /// <summary>
+        /// 
+        /// source:https://leetcode.com/problems/minimum-number-of-taps-to-open-to-water-a-garden/discuss/484235/JavaC%2B%2BPython-Similar-to-LC1024
+        /// 
+        /// Runtime: 112 ms, faster than 84.00% of C# online submissions for Minimum Number of Taps to Open to Water a Garden.
+        /// Memory Usage: 27.7 MB, less than 100.00% of C# online submissions for Minimum Number of Taps to Open to Water a Garden.
+        /// 
+        /// amazing .... 
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public int OtherSolution(int n, int[] A)
+        {
+
+            // 想到了dp ... 但还是初级
+            // 数组中的值表示需要的花洒数
+            int[] dp = new int[n + 1];
+
+            // 每个值赋值为一个达不到的值
+            Array.Fill(dp, n + 2);
+
+            // dp[0] = 0 表示如果花洒能够到第一个(可以连接) 表示left通过
+            dp[0] = 0;
+
+            // 遍历每个花洒
+            for (int i = 0; i <= n; ++i)
+
+                // 遍历花洒i能洒到的最左节点 到 最右节点
+                // +1说明: 
+                //      当A[i]为0时 直接跳过遍历
+                //      当A[i]为1时 跳过i-1 why? 因为下方基准为 dp[Math.Max(0, i - A[i])]  dp[i-1] + 1 与 dp[i-1] 无需比较
+                // Math.Max(i - A[i] + 1, 1)中的 第二个1 ： 因为dp[0]为0 没必要处理...
+                for (int j = Math.Max(i - A[i] + 1, 1); j <= Math.Min(i + A[i], n); ++j)
+
+                    // 节点j需要的最小花洒数=Math.Min(当前节点j需要的最小花洒数,dp[i能连接到的最左边的节点] + 1)
+                    // 为什么最左的永远是最小的/为什么比较固定下标 (i - A[i]) ? 
+                    //      初始dp中的值为:[0,n+2,n+2,n+2...] 故初始时dp[Math.Max(0, i - A[i])] 要不是0要不就是n+2
+                    //      为0时 节点j需要的最小花洒数=1 无需多说....
+                    // 遍历每个花洒 然后遍历 从 能洒到的最左节点到最右节点  =》 从左到右 固定比较 (i - A[i]) 赋值 所以比较过后 区域恒定dp[左]>=dp[右]
+                    // 然后遍历是左=>右 所以 所有区域都是 dp[左]>=dp[右]
+                    dp[j] = Math.Min(dp[j], dp[Math.Max(0, i - A[i])] + 1);
+            return dp[n] < n + 2 ? dp[n] : -1;
+        }
+
+        #endregion
 
     }
 }
