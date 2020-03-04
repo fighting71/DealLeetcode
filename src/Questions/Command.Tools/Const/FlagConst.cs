@@ -14,5 +14,7 @@ namespace Command.Const
     {
         public const string DP = nameof(DP);
         public const string Sort = nameof(Sort);
+        public const string Complex = nameof(Complex);
+        public const string RegexMatch = nameof(RegexMatch);
     }
 }

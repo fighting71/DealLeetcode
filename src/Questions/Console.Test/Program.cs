@@ -16,12 +16,77 @@ namespace ConsoleTest
         
         static void Main(string[] args)
         {
+
             CodeTimer codeTimer = new CodeTimer();
 
             codeTimer.Initialize();
 
             Random random = new Random();
 
+            Console.WriteLine("success");
+
+            Console.ReadKey(true);
+
+            Console.WriteLine("Hello World!");
+        }
+
+        private static void TestWildcardMatching(CodeTimer codeTimer, Random random)
+        {
+            WildcardMatching instance = new WildcardMatching();
+
+            // bug test
+            //Console.WriteLine(instance.Solution("juemcmbvexuetrgut", "**d***i*?") == false);
+
+            //Console.ReadKey(true);
+
+            for (int i = 0; i < 1000; i++)
+            {
+                int strLen = random.Next(200), modeLen = random.Next(200);
+
+                StringBuilder builder = new StringBuilder(), modeBuilder = new StringBuilder();
+
+                for (int j = 0; j < strLen; j++)
+                {
+                    builder.Append((char)('a' + random.Next(26)));
+                }
+
+                for (int j = 0; j < modeLen; j++)
+                {
+                    switch (random.Next(3))
+                    {
+                        case 0:
+                            modeBuilder.Append((char)('a' + random.Next(26)));
+                            break;
+                        case 1:
+                            modeBuilder.Append('?');
+                            break;
+                        case 2:
+                            modeBuilder.Append('*');
+                            break;
+                    }
+                }
+
+                bool real = false, res = false;
+
+                Console.WriteLine($"{nameof(strLen)}:{strLen},{nameof(modeLen)}:{modeLen}");
+
+                var codeTimerResult = codeTimer.Time(1,
+                    (() => { real = Regex.IsMatch(builder.ToString(), $"^{modeBuilder.ToString().Replace("*", ".*").Replace("?", "[a-z]")}$"); }));
+                var codeTimerResult2 = codeTimer.Time(1,
+                    (() => { res = instance.Solution(builder.ToString(), modeBuilder.ToString()); }));
+
+                if (real != res)
+                    throw new Exception($" bug:  \"{builder.ToString()}\" , \"{modeBuilder.ToString()}\" ");
+
+                Console.WriteLine($@" time-speed>>>>>>>> 
+match:{codeTimerResult.ToString()}
+owner:{codeTimerResult2.ToString()}
+");
+            }
+        }
+
+        private static void TestSolveSudoku()
+        {
             SolveSudoku instance = new SolveSudoku();
 
             //var boards = new[]
@@ -51,13 +116,9 @@ namespace ConsoleTest
 ['.', '.', '.', '.', '.', '.', '.', '.', '6'],
 ['.', '.', '.', '2', '7', '5', '9', '.', '.']]");
 
-            instance.Try2(boards);
+            instance.Solution(boards);
 
-            Console.WriteLine("success");
-
-            Console.ReadKey(true);
-
-            Console.WriteLine("Hello World!");
+            //instance.Clear(boards);
         }
 
         private static void TestFindSubstring()

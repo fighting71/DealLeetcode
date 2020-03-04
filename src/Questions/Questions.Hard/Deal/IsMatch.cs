@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Command.Attr;
+using Command.Const;
 
 namespace Questions.Hard.Deal
 {
@@ -11,7 +11,7 @@ namespace Questions.Hard.Deal
     /// @source : https://leetcode.com/problems/regular-expression-matching/
     /// @des : 实现正则中的.和*的匹配
     /// </summary>
-    [Favorite("正则&dp 相关")]
+    [Favorite(FlagConst.DP, FlagConst.RegexMatch)]
     public class IsMatch
     {
 

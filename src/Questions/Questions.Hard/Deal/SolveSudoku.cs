@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Command.Const;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,220 @@ namespace Questions.Hard.Deal
     /// @source : https://leetcode.com/problems/sudoku-solver/
     /// @des : 数独
     /// </summary>
+    [Obsolete(FlagConst.Complex)]
     public class SolveSudoku
     {
+
+        #region test method
+
+        // 测试输出
+        public void ShowDic(ISet<char>[] dic)
+        {
+            Console.WriteLine("-------------------S-------------------");
+            for (int i = 0; i < dic.Length; i++)
+            {
+                if (i % 9 == 0) Console.WriteLine();
+
+                StringBuilder builder = new StringBuilder();
+
+                builder.Append('[');
+
+                if (dic[i] != null)
+                {
+                    builder.Append(string.Join(",", dic[i]));
+
+                    for (int j = 0; j < 9 - dic[i].Count; j++)
+                    {
+                        builder.Append("  ");
+                    }
+
+                }
+                else
+                {
+                    builder.Append("                 ");
+                }
+
+                builder.Append(']');
+
+                Console.Write(builder.ToString());
+
+            }
+            Console.WriteLine();
+            Console.WriteLine("-------------------E-------------------");
+
+
+        }
+
+        public void ShowBoard(char[][] board)
+        {
+            Console.WriteLine();
+            for (int i = 0; i < board.Length; i++)
+            {
+                for (int j = 0; j < board[i].Length; j++)
+                {
+                    Console.Write($"[ {(board[i][j] == '.' ? ' ' : board[i][j])} ]");
+                }
+
+                Console.WriteLine();
+            }
+        }
+        #endregion
+
+        public void Solution(char[][] board)
+        {
+            ISet<char>[] dic = new HashSet<char>[9 * 9];
+
+            ISet<char> set;
+
+            for (int i = 0; i < 9; i++)
+            {
+                set = new HashSet<char>() { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+                for (int j = 0; j < 9; j++)
+                    set.Remove(board[i][j]);
+
+                for (int j = 0; j < 9; j++)
+                    if (board[i][j] == '.')
+                        PushDic(dic, set, i, j);
+
+
+                set = new HashSet<char>() { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+
+                for (int j = 0; j < 9; j++)
+                    set.Remove(board[j][i]);
+
+                for (int j = 0; j < 9; j++)
+                    if (board[j][i] == '.')
+                        PushDic(dic, set, j, i);
+
+
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                for (int h = 0; h < 3; h++)
+                {
+                    set = new HashSet<char>() { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+                    for (int j = 0; j < 3; j++)
+                        for (int k = 0; k < 3; k++)
+                            set.Remove(board[i * 3 + j][h * 3 + k]);
+
+                    for (int j = 0; j < 3; j++)
+                        for (int k = 0; k < 3; k++)
+                            if (board[i * 3 + j][h * 3 + k] == '.')
+                                PushDic(dic, set, i * 3 + j, h * 3 + k);
+                }
+            }
+
+            for (int i = 0; i < 9 * 9; i++)
+                NewRoundRemove(dic, board, i);
+
+            ShowDic(dic);
+            ShowBoard(board);
+
+        }
+
+        private void NewRoundRemove(ISet<char>[] dic, char[][] board, int index)
+        {
+
+            if (dic[index] == null) return;
+
+            char c = default;
+
+            if(dic[index].Count == 1)
+            {
+                c = dic[index].First();
+            }
+            else
+            {
+                foreach (var item in dic[index])
+                {
+                    if (IsSingle(dic, board, index, item))
+                    {
+                        c = item;
+                        break;
+                    }
+                }
+            }
+
+            if (c == default) return;
+
+            int i = index / 9, j = index % 9;
+
+            board[i][j] = c;
+            dic[index] = null;
+
+
+            for (int k = 0; k < 9; k++)
+            {
+                dic[(index = k * 9 + j)]?.Remove(c);
+                NewRoundRemove(dic, board, index);
+
+                dic[(index = i * 9 + k)]?.Remove(c);
+                NewRoundRemove(dic, board, index);
+
+            }
+
+            for (int k = 0; k < 3; k++)
+                for (int h = 0; h < 3; h++)
+                {
+                    dic[(index = (i / 3 * 3 + k) * 9 + j / 3 * 3 + h)]?.Remove(c);
+                    NewRoundRemove(dic, board, index);
+                }
+        }
+
+        private bool IsSingle(ISet<char>[] dic,char[][] board, int index, char c)
+        {
+            int i = index / 9, j = index % 9;
+
+            bool flag = true;
+            for (int k = 0; k < 9; k++)
+            {
+                if (k == j) continue;
+                if (board[i][k] == c || (dic[i * 9 + k]?.Contains(c) ?? false))
+                {
+                    flag = false;
+                    break;
+                }
+            }
+
+            if (flag) return true;
+
+            flag = true;
+            for (int k = 0; k < 9; k++)
+            {
+                if (k == i) continue;
+                if (board[k][j] == c || (dic[k * 9 + j]?.Contains(c) ?? false))
+                {
+                    flag = false;
+                    break;
+                }
+            }
+
+            if (flag) return true;
+
+            flag = true;
+
+            for (int k = 0; k < 3; k++)
+            {
+                for (int h = 0; h < 3; h++)
+                {
+                    if (board[(i / 3) * 3 + k][(j / 3) * 3 + h] == c || (dic[(i / 3 * 3 + k) * 9 + j / 3 * 3 + h]?.Contains(c) ?? false))
+                    {
+                        flag = false;
+                        break;
+                    }
+                }
+            }
+
+            return flag;
+        }
+
+        // todo:三链数删减法...
+        private void HelpRemove()
+        {
+            //三链数删减法类似于矩形删减法，是矩形删减法的推广。
+            //三链数删减法指的是如果某个数字在某三列中只出现在相同的三行中，则这个数字将从这三行上其他的候选数中删除；
+        }
 
         #region try ==> clear
 
@@ -65,7 +278,8 @@ namespace Questions.Hard.Deal
             for (int i = 0; i < 9 * 9; i++)
                 if (dic[i] != null && dic[i].Count == 1)
                     RoundRemove(dic, board, i);
-
+            ShowDic(dic);
+            ShowBoard(board);
 
         }
 
@@ -77,6 +291,7 @@ namespace Questions.Hard.Deal
             var c = dic[index].First();
             board[i][j] = c;
             dic[index] = null;
+
 
             for (int k = 0; k < 9; k++)
             {
@@ -116,10 +331,10 @@ namespace Questions.Hard.Deal
                     if (!set.Contains(item)) dic[i * 9 + j].Remove(item);
         }
 
-
         #endregion
 
         #region try
+        [Obsolete("bug")]
         public void Try2(char[][] board)
         {
 
@@ -166,9 +381,6 @@ namespace Questions.Hard.Deal
                     }
                 }
 
-                // test
-                //ShowDic(dic);
-
                 // 竖向遍历 处理同上
                 set = new HashSet<char>() { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
@@ -184,8 +396,6 @@ namespace Questions.Hard.Deal
                         DicHelp(dic, set, j, i);
                     }
                 }
-
-                //ShowDic(dic);
 
             }
 
@@ -218,75 +428,35 @@ namespace Questions.Hard.Deal
 
             ShowDic(dic);
 
-            Console.WriteLine("-------------");
-            Console.WriteLine("-------------");
-            Console.WriteLine("-------------");
-
             // 遍历所有(i,j)
             for (int i = 0; i < 9 * 9; i++)
             {
                 // 如果 dic(i,j).count = 1 表示可以赋值
-                if (dic[i] != null && dic[i].Count == 1)
+                if (dic[i] == null) continue;
+
+                if (dic[i].Count == 1)
                 {
                     // 递归影响其他相关值
-                    WorkHelp(dic, board, i / 9, i % 9);
+                    WorkHelp(dic, board, i / 9, i % 9, dic[i].First());
                 }
+
             }
 
+            Console.WriteLine(">>>>>>>>>>>>>>>>finally<<<<<<<<<<<<<<<<");
             ShowDic(dic);
+            ShowBoard(board);
 
-            Console.WriteLine("-------------");
-            Console.WriteLine("-------------");
-            Console.WriteLine("-------------");
-
-            Console.WriteLine(JsonConvert.SerializeObject(board));
+            Console.WriteLine($"[{string.Join(',', board.Select(u => $"[{string.Join(',', u)}]"))}]");
 
         }
 
-        // 测试输出
-        public void ShowDic(ISet<char>[] dic)
-        {
-            Console.WriteLine("-------------------S-------------------");
-            for (int i = 0; i < dic.Length; i++)
-            {
-                if (i % 9 == 0) Console.WriteLine();
-
-                StringBuilder builder = new StringBuilder();
-
-                builder.Append('[');
-
-                if (dic[i] != null)
-                {
-                    builder.Append(string.Join(",", dic[i]));
-
-                    for (int j = 0; j < 9 - dic[i].Count; j++)
-                    {
-                        builder.Append("  ");
-                    }
-
-                }
-                else
-                {
-                    builder.Append("                 ");
-                }
-
-                builder.Append(']');
-
-                Console.Write(builder.ToString());
-
-            }
-            Console.WriteLine();
-            Console.WriteLine("-------------------E-------------------");
-
-            Console.ReadKey(true);
-
-        }
-
-        public void WorkHelp(ISet<char>[] dic, char[][] board, int i, int j)
+        public void WorkHelp(ISet<char>[] dic, char[][] board, int index,char c)
         {
 
-            // 取出唯一值
-            var c = dic[i * 9 + j].First();
+            if (dic[index] == null) return;
+
+            int i = index / 9, j = index % 9;
+
             // 给表格赋值
             board[i][j] = c;
             // 清空dic 避免重复验证
@@ -302,7 +472,7 @@ namespace Questions.Hard.Deal
                     // 移除后出现确定值 则继续影响相关值
                     if (dic[k * 9 + j].Count == 1)
                     {
-                        WorkHelp(dic, board, k, j);
+                        WorkHelp(dic, board, k, j, dic[k * 9 + j].First());
                     }
                 }
 
@@ -312,7 +482,7 @@ namespace Questions.Hard.Deal
                     dic[i * 9 + k].Remove(c);
                     if (dic[i * 9 + k].Count == 1)
                     {
-                        WorkHelp(dic, board, i, k);
+                        WorkHelp(dic, board, i, k, dic[i * 9 + k].First());
                     }
                 }
             }
@@ -327,7 +497,64 @@ namespace Questions.Hard.Deal
                         dic[(i / 3 * 3 + k) * 9 + j / 3 * 3 + h].Remove(c);
                         if (dic[(i / 3 * 3 + k) * 9 + j / 3 * 3 + h].Count == 1)
                         {
-                            WorkHelp(dic, board, i / 3 * 3 + k, j / 3 * 3 + h);
+                            WorkHelp(dic, board, i / 3 * 3 + k, j / 3 * 3 + h, dic[(i / 3 * 3 + k) * 9 + j / 3 * 3 + h].First());
+                        }
+                    }
+                }
+            }
+
+        }
+
+        public void WorkHelp(ISet<char>[] dic, char[][] board, int i, int j,char c)
+        {
+
+            //Console.WriteLine($"i:{i},j:{j},c:{c}");
+            //ShowBoard(board);
+            //ShowDic(dic);
+
+            //Console.ReadKey(true);
+
+            // 给表格赋值
+            board[i][j] = c;
+            // 清空dic 避免重复验证
+            dic[i * 9 + j] = null;
+
+            for (int k = 0; k < 9; k++)
+            {
+                // 在同一竖
+                if (dic[k * 9 + j] != null)
+                {
+                    dic[k * 9 + j].Remove(c);
+
+                    // 移除后出现确定值 则继续影响相关值
+                    if (dic[k * 9 + j].Count == 1)
+                    {
+                        WorkHelp(dic, board, k, j, dic[k * 9 + j].First());
+                    }
+                }
+
+                // 在同一行 处理同上
+                if (dic[i * 9 + k] != null)
+                {
+                    dic[i * 9 + k].Remove(c);
+                    if (dic[i * 9 + k].Count == 1)
+                    {
+                        WorkHelp(dic, board, i, k, dic[i * 9 + k].First());
+                    }
+                }
+            }
+
+            // 查看同一网格 处理同上
+            for (int k = 0; k < 3; k++)
+            {
+                for (int h = 0; h < 3; h++)
+                {
+                    if (dic[(i / 3 * 3 + k) * 9 + j / 3 * 3 + h] != null)
+                    {
+                        dic[(i / 3 * 3 + k) * 9 + j / 3 * 3 + h].Remove(c);
+                        if (dic[(i / 3 * 3 + k) * 9 + j / 3 * 3 + h].Count == 1)
+                        {
+                            WorkHelp(dic, board, i / 3 * 3 + k, j / 3 * 3 + h, dic[(i / 3 * 3 + k) * 9 + j / 3 * 3 + h].First());
                         }
                     }
                 }
@@ -389,6 +616,7 @@ namespace Questions.Hard.Deal
 
         #region simple
 
+        [Obsolete("bug")]
         public void Simple(char[][] board)
         {
 

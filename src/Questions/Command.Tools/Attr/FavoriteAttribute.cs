@@ -15,9 +15,9 @@ namespace Command.Attr
         /// <summary>
         /// 描述
         /// </summary>
-        public string Desc { get; set; }
+        public string[] Desc { get; set; }
 
-        public FavoriteAttribute(string desc)
+        public FavoriteAttribute(params string[] desc)
         {
             Desc = desc;
         }
