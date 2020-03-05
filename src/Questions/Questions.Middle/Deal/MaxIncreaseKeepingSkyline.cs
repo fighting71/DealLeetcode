@@ -56,7 +56,7 @@ namespace Questions.Middle.Deal
                 }
             }
 
-            Console.WriteLine(ShowList.GetStr(grid));
+            Console.WriteLine(ShowTools.GetStr(grid));
 
             return sum;
         }
@@ -74,7 +74,7 @@ namespace Questions.Middle.Deal
                 }
             }
 
-            Console.WriteLine(ShowList.GetStr(grid));
+            Console.WriteLine(ShowTools.GetStr(grid));
 
             return sum;
         }

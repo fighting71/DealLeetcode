@@ -23,11 +23,53 @@ namespace ConsoleTest
 
             Random random = new Random();
 
+            Console.WriteLine("test over~");
+
             Console.WriteLine("success");
 
             Console.ReadKey(true);
 
             Console.WriteLine("Hello World!");
+        }
+
+        private static void TestInsertInterval()
+        {
+            InsertInterval instance = new InsertInterval();
+
+            var res = instance.Solution(new[]
+            {
+                new []{ 1, 3 },
+                new []{ 6,9 },
+            },
+            new[] { 2, 5 });
+
+            ShowTools.ShowMatrix(res);
+
+            ShowTools.ShowMatrix(instance.Solution(new[]
+            {
+                new []{1,2},
+                new []{3,5},
+                new []{6,7},
+                new []{8,10},
+                new []{12,16}
+            },
+            new[] { 4, 8 }));
+
+            ShowTools.ShowMatrix(instance.Solution(new int[0][],
+            new[] { 5, 7 }));
+        }
+
+        private static void TestSolveNQueens()
+        {
+            SolveNQueens instance = new SolveNQueens();
+            TotalNQueens instance2 = new TotalNQueens();
+
+            for (int i = 4; i < 11; i++)
+            {
+                var realRes = instance2.Solution(i);
+                var res = instance.Solution(i);
+                if (res.Count != realRes) throw new Exception("bug");
+            }
         }
 
         private static void TestWildcardMatching(CodeTimer codeTimer, Random random)
@@ -171,7 +213,7 @@ owner:{codeTimerResult2.ToString()}
                 if (res == null && res2 != null) throw new Exception("result inconformity !");
                 if (!res.ToString().Equals(res2.ToString())) throw new Exception("result inconformity !");
 
-                ShowResult.ShowMulti(new Dictionary<string, object>() {
+                ShowTools.ShowMulti(new Dictionary<string, object>() {
                     //{nameof(res),res },
                     {nameof(codeTimerResult),codeTimerResult },
                     { string.Empty,"vs>>>>>"},
@@ -210,7 +252,7 @@ owner:{codeTimerResult2.ToString()}
                 timerResult = codeTimer.Time(1, () => { res = minTaps.Clear(len, arr); });
                 //timerResult2 = codeTimer.Time(1, () => { res2 = minTaps.Try2(len, arr); });
 
-                ShowResult.ShowMulti(new Dictionary<string, object>()
+                ShowTools.ShowMulti(new Dictionary<string, object>()
                 {
                     {"res",res },
                     {nameof(timerResult),timerResult },
@@ -244,7 +286,7 @@ owner:{codeTimerResult2.ToString()}
 
                 var res = instance.Solution(arr, randNum);
 
-                ShowResult.ShowMulti(new Dictionary<string, object>()
+                ShowTools.ShowMulti(new Dictionary<string, object>()
                 {
                     {nameof(randNum), randNum},
                     {nameof(arr), arr},
@@ -309,7 +351,7 @@ owner:{codeTimerResult2.ToString()}
                 var codeTimerResult = codeTimer.Time(1,
                     (() => { res = instance.Solution(list1.ToArray(), list2.ToArray()); }));
 
-                ShowResult.ShowMulti(new Dictionary<string, object>()
+                ShowTools.ShowMulti(new Dictionary<string, object>()
                 {
                     {nameof(list1), list1},
                     {nameof(list2), list2},
@@ -357,7 +399,7 @@ owner:{codeTimerResult2.ToString()}
 
                 var codeTimerResult = codeTimer.Time(1, (() => { res = instance.Solution(builder.ToString()); }));
 
-                ShowResult.ShowMulti(new Dictionary<string, object>()
+                ShowTools.ShowMulti(new Dictionary<string, object>()
                 {
                     {nameof(builder), builder.ToString()},
                     {nameof(res), res},
@@ -595,7 +637,7 @@ owner:{codeTimerResult2.ToString()}
 
                 var codeTimerResult = codeTimer.Time(1, (() => { res = instance.Solution(arr); }));
 
-                ShowResult.ShowMulti(new Dictionary<string, object>()
+                ShowTools.ShowMulti(new Dictionary<string, object>()
                 {
                     {nameof(res), res},
                     {nameof(codeTimerResult), codeTimerResult},
@@ -617,9 +659,9 @@ owner:{codeTimerResult2.ToString()}
 
             instance.HelperShow(list, new StringBuilder(), 0);
 
-            ShowResult.Show(instance.Simple(list));
+            ShowTools.Show(instance.Simple(list));
 
-            ShowResult.Show(instance.Simple(new List<IList<int>>()
+            ShowTools.Show(instance.Simple(new List<IList<int>>()
             {
                 new List<int>() {4, 10, 15, 24, 26},
                 new List<int>() {0, 9, 12, 20},
@@ -633,7 +675,7 @@ owner:{codeTimerResult2.ToString()}
 
             var codeTimerResult = codeTimer.Time(1, (() => { res = instance.Simple(data); }));
 
-            ShowResult.ShowMulti(new Dictionary<string, object>()
+            ShowTools.ShowMulti(new Dictionary<string, object>()
             {
                 {nameof(codeTimerResult), codeTimerResult},
                 {nameof(res), res}
@@ -641,7 +683,7 @@ owner:{codeTimerResult2.ToString()}
 
             codeTimerResult = codeTimer.Time(1, (() => { res = instance.Simple(data); }));
 
-            ShowResult.ShowMulti(new Dictionary<string, object>()
+            ShowTools.ShowMulti(new Dictionary<string, object>()
             {
                 {nameof(codeTimerResult), codeTimerResult},
                 {nameof(res), res}
@@ -649,7 +691,7 @@ owner:{codeTimerResult2.ToString()}
 
             codeTimerResult = codeTimer.Time(1, (() => { res = instance.Solution(data); }));
 
-            ShowResult.ShowMulti(new Dictionary<string, object>()
+            ShowTools.ShowMulti(new Dictionary<string, object>()
             {
                 {nameof(codeTimerResult), codeTimerResult},
                 {nameof(res), res}
@@ -657,7 +699,7 @@ owner:{codeTimerResult2.ToString()}
 
             codeTimerResult = codeTimer.Time(1, (() => { res = instance.Solution(data); }));
 
-            ShowResult.ShowMulti(new Dictionary<string, object>()
+            ShowTools.ShowMulti(new Dictionary<string, object>()
             {
                 {nameof(codeTimerResult), codeTimerResult},
                 {nameof(res), res}
@@ -709,7 +751,7 @@ owner:{codeTimerResult2.ToString()}
 
                 var codeTimerResult = codeTimer.Time(1, () => { res = instance.Solution2(arr); });
 
-                ShowResult.ShowMulti(new Dictionary<string, object>()
+                ShowTools.ShowMulti(new Dictionary<string, object>()
                 {
                     //{nameof(arr),ShowList.GetStr(arr)},
                     {nameof(arr), arr},
@@ -728,38 +770,38 @@ owner:{codeTimerResult2.ToString()}
             res = instance.Solution("n{{c,g},{h,j},l}a{{a,{x,ia,o},w},er,a{x,ia,o}w}n");
 
             //["ncaaiawn","ncaan","ncaaown","ncaaxwn","ncaern","ncaian","ncaon","ncawn","ncaxn","ngaaiawn","ngaan","ngaaown","ngaaxwn","ngaern","ngaian","ngaon","ngawn","ngaxn","nhaaiawn","nhaan","nhaaown","nhaaxwn","nhaern","nhaian","nhaon","nhawn","nhaxn","njaaiawn","njaan","njaaown","njaaxwn","njaern","njaian","njaon","njawn","njaxn","nlaaiawn","nlaan","nlaaown","nlaaxwn","nlaern","nlaian","nlaon","nlawn","nlaxn"]
-            ShowResult.Show(res);
+            ShowTools.Show(res);
 
             res = instance.Solution("a,n{{c,g},{h,j},l}a{{a,{x,ia,o},w},er,a{x,ia,o}w}n");
 
             //["a,ncaaiawn","a,ncaan","a,ncaaown","a,ncaaxwn","a,ncaern","a,ncaian","a,ncaon","a,ncawn","a,ncaxn","a,ngaaiawn","a,ngaan","a,ngaaown","a,ngaaxwn","a,ngaern","a,ngaian","a,ngaon","a,ngawn","a,ngaxn","a,nhaaiawn","a,nhaan","a,nhaaown","a,nhaaxwn","a,nhaern","a,nhaian","a,nhaon","a,nhawn","a,nhaxn","a,njaaiawn","a,njaan","a,njaaown","a,njaaxwn","a,njaern","a,njaian","a,njaon","a,njawn","a,njaxn","a,nlaaiawn","a,nlaan","a,nlaaown","a,nlaaxwn","a,nlaern","a,nlaian","a,nlaon","a,nlawn","a,nlaxn"]
-            ShowResult.Show(res);
+            ShowTools.Show(res);
 
             res = instance.Solution("{{a,{x,ia,o},w},er,a{x,ia,o}w}");
 
-            ShowResult.Show(res); //["a","aiaw","aow","axw","er","ia","o","w","x"]
+            ShowTools.Show(res); //["a","aiaw","aow","axw","er","ia","o","w","x"]
 
             // next
             res = instance.Solution("{a,{a,{x,ia,o},w}er{n,{g,{u,o}},{a,{x,ia,o},w}},er}");
 
             //["a","aera","aerg","aeria","aern","aero","aeru","aerw","aerx","er","iaera","iaerg","iaeria","iaern","iaero","iaeru","iaerw","iaerx","oera","oerg","oeria","oern","oero","oeru","oerw","oerx","wera","werg","weria","wern","wero","weru","werw","werx","xera","xerg","xeria","xern","xero","xeru","xerw","xerx"]
-            ShowResult.Show(res);
+            ShowTools.Show(res);
 
             res = instance.Solution("{a{x,ia,o}w,{n,{g,{u,o}},{a,{x,ia,o},w}},er}");
 
-            ShowResult.Show(res); //["a","aiaw","aow","axw","er","g","ia","n","o","u","w","x"]
+            ShowTools.Show(res); //["a","aiaw","aow","axw","er","g","ia","n","o","u","w","x"]
 
             res = instance.Solution("{a,b}c{d,e}f");
 
-            ShowResult.Show(res); //["acdf","acef","bcdf","bcef"]
+            ShowTools.Show(res); //["acdf","acef","bcdf","bcef"]
 
             res = instance.Solution("{a,b}{c,{d,e}}");
 
-            ShowResult.Show(res); //["ac","ad","ae","bc","bd","be"]
+            ShowTools.Show(res); //["ac","ad","ae","bc","bd","be"]
 
             res = instance.Solution("{{a,z},a{b,c},{ab,z}}");
 
-            ShowResult.Show(res); //["a","ab","ac","z"]
+            ShowTools.Show(res); //["a","ab","ac","z"]
         }
 
         private static void TestLongestDecomposition()

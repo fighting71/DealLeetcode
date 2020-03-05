@@ -15,11 +15,16 @@ namespace Questions.Hard.Deal
     {
 
 
-        // 感觉要用二分法查找...
+        // TODO: 贪心算法
         public int Try2(int[] nums)
         {
 
+            if (nums.Length == 1) return 0;
 
+            for (int i = 0; i < nums.Length; i++)
+            {
+
+            }
 
             return 0;
         }
@@ -33,6 +38,8 @@ namespace Questions.Hard.Deal
             if (nums[0] >= n - 1) return 1;
             int[] dp = new int[n];
 
+            dp[0] = 1;
+
             for (int i = 1; i < n; i++)
             {
                 dp[i] = int.MaxValue;
@@ -45,7 +52,6 @@ namespace Questions.Hard.Deal
                     }
                 }
                 if (nums[i] + i >= n - 1) return dp[i];
-
             }
 
             return dp[n - 1];

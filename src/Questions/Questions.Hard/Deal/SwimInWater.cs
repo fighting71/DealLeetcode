@@ -58,7 +58,7 @@ namespace Questions.Hard.Deal
             }
 
             if (showDp)
-                Console.WriteLine(ShowList.GetStr(dp));
+                Console.WriteLine(ShowTools.GetStr(dp));
 
             return dp[0][0];
         }
@@ -109,9 +109,9 @@ namespace Questions.Hard.Deal
 
             if (showTest)
             {
-                Console.WriteLine(ShowList.GetStr(grid));
+                Console.WriteLine(ShowTools.GetStr(grid));
                 Console.WriteLine("------------------------ dp:");
-                Console.WriteLine(ShowList.GetStr(dp));
+                Console.WriteLine(ShowTools.GetStr(dp));
             }
 
             return dp[0][0];
