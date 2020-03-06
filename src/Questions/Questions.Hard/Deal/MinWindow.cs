@@ -10,6 +10,7 @@ namespace Questions.Hard.Deal
     /// @source : https://leetcode.com/problems/minimum-window-substring/
     /// @des : 
     /// </summary>
+    [Obsolete]
     public class MinWindow
     {
         

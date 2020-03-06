@@ -23,13 +23,24 @@ namespace ConsoleTest
 
             Random random = new Random();
 
-            Console.WriteLine("test over~");
-
             Console.WriteLine("success");
 
             Console.ReadKey(true);
 
             Console.WriteLine("Hello World!");
+        }
+
+        private static void TestEditDistance()
+        {
+            EditDistance instance = new EditDistance();
+
+            Console.WriteLine(instance.Recursion("horse", "ros"));// 3
+            Console.WriteLine(instance.Recursion("intention", "execution"));// 5
+
+            Console.WriteLine(instance.DpSolution("horse", "ros"));// 3
+            Console.WriteLine(instance.DpSolution("intention", "execution"));// 5
+
+            Console.WriteLine(instance.DpSolution("dinitrophenylhydrazine", "acetylphenylhydrazine"));// 6
         }
 
         private static void TestInsertInterval()
