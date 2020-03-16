@@ -16,6 +16,12 @@ namespace Questions.Hard.Deal
 
         /**
          * https://leetcode.com/problems/largest-rectangle-in-histogram/discuss/28902/5ms-O(n)-Java-solution-explained-(beats-96)
+         * 
+         * 对于任何条形图i，最大矩形的宽度均r - l - 1在其中，其中r-是条形图右边h[r] >= h[i]的最后一个坐标的高度，l-是条形图左边的最后一个坐标的高度h[l] >= h[i]
+         * 因此，如果对于任何i坐标我们都知道他在左右两侧的最高高度（或相同高度），则可以轻松找到最大的矩形：
+         * 
+         * amazing~
+         * 
          */
         public static int OtherSolution(int[] height)
         {
@@ -70,8 +76,6 @@ namespace Questions.Hard.Deal
             {
                 dic[heights[i]]++;
             }
-
-
 
             return res;
 

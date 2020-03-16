@@ -1,21 +1,47 @@
 ﻿using Command.CommonStruct;
+using Command.Const;
 using Command.Tools;
 using Newtonsoft.Json;
 using Questions.Hard.Deal;
 using Questions.Middle.Deal;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Channels;
+using System.Web;
 
 namespace ConsoleTest
 {
     class Program
     {
-        
+
+        static Regex reUnicode = new Regex(@"\\u([0-9a-fA-F]{4})", RegexOptions.Compiled);
+        public static string Decode(string s)
+        {
+            return reUnicode.Replace(s, m =>
+            {
+                short c;
+                if (short.TryParse(m.Groups[1].Value, System.Globalization.NumberStyles.HexNumber, CultureInfo.InvariantCulture, out c))
+                {
+                    return "" + (char)c;
+                }
+                return m.Value;
+            });
+        }
+
+
         static void Main(string[] args)
         {
+
+            var set = new HashSet<int>() { 1, 2, 3, 4 };
+
+            Console.WriteLine(JsonConvert.SerializeObject(set));
+
+            Console.ReadKey();
 
             CodeTimer codeTimer = new CodeTimer();
 
@@ -23,11 +49,96 @@ namespace ConsoleTest
 
             Random random = new Random();
 
+            RecoverBinarySearchTree instance = new RecoverBinarySearchTree();
+
+            TreeNode root;
+
+            // [146,71,-13,55,null,231,399,321,null,null,null,null,null,-33]
+           
+            // [321,71,231,55,null,-13,399,146,null,null,null,null,null,-33]
+            root = new int?[] { 146, 71, -13, 55, null, 231, 399, 321, null, null, null, null, null, -33 };
+
+            instance.Solution(root);
+
+            Console.WriteLine(root); // [146,71,321,55,null,231,399,-13,null,null,null,null,null,-33]
+
+            root = new TreeNode(3, null, new TreeNode(2, null, 1));
+
+            instance.Solution(root);
+
+            Console.WriteLine(root);// [1,null,2,null,3]
+
+            root = new TreeNode(2, 3, 1);
+
+            instance.Solution(root);
+
+            Console.WriteLine(root);// [2,1,3]
+
+            root = new TreeNode(1, new TreeNode(3, null, 2), null);
+
+            instance.Solution(root);
+
+            Console.WriteLine(root);// [3,1,null,null,2]
+
+            root = new TreeNode(3, 1, new TreeNode(4, 2, null));
+
+            instance.Solution(root);
+
+            Console.WriteLine(root);// [2,1,4,null,null,3]
+
             Console.WriteLine("success");
 
             Console.ReadKey(true);
 
             Console.WriteLine("Hello World!");
+        }
+
+        private static void TestInterleavingString(Random random)
+        {
+            InterleavingString instance = new InterleavingString();
+
+            //Console.WriteLine(instance.Simple("aabcc", "dbbca", "aadbbcbcac"));
+            //Console.WriteLine(instance.Simple("aabcc",  "dbbca", "aadbbbaccc"));
+
+            Console.WriteLine(instance.DpSolution("aabcc", "dbbca", "aadbbcbcac"));
+            Console.WriteLine(instance.DpSolution("aabcc", "dbbca", "aadbbbaccc"));
+
+            for (int i = 0; i < 1000; i++)
+            {
+                int len = random.Next(5) + 2, len2 = random.Next(len - 1) + 1, len3 = len - len2;
+
+                StringBuilder builder = new StringBuilder(), builder2 = new StringBuilder(), builder3 = new StringBuilder();
+
+                for (int j = 0; j < len; j++)
+                {
+                    builder.Append((char)('a' + random.Next(5)));
+                    if (j < len2) builder2.Append((char)('a' + random.Next(4)));
+                    if (j < len3) builder3.Append((char)('a' + random.Next(4)));
+                }
+
+                string s = builder.ToString(), s2 = builder2.ToString(), s3 = builder3.ToString();
+
+                var real = instance.Simple(s2, s3, s);
+                var dp = instance.DpSolution(s2, s3, s);
+
+                if (real != dp) throw new Exception($"\"{s2}\"，\"{s3}\"，\"{s}\"");
+
+                if (real)
+                    Console.WriteLine(real);
+
+            }
+        }
+
+        private static void TestMaximalRectangle()
+        {
+            MaximalRectangle instance = new MaximalRectangle();
+
+            Console.WriteLine(instance.Solution(new[] {
+              new []{'1','0','1','0','0'},
+              new []{'1','0','1','1','1'},
+              new []{'1','1','1','1','1'},
+              new []{'1','0','0','1','0'}
+            }));
         }
 
         private static void TestEditDistance()
@@ -311,14 +422,14 @@ owner:{codeTimerResult2.ToString()}
             MaxPathSum instance = new MaxPathSum();
 
             Console.WriteLine(
-                instance.Solution(new MaxPathSum.TreeNode(-10, 9, new MaxPathSum.TreeNode(20, 15, 7)))); //42
+                instance.Solution(new TreeNode(-10, 9, new TreeNode(20, 15, 7)))); //42
 
             Console.WriteLine(instance.Solution(
-                new MaxPathSum.TreeNode(5,
-                    new MaxPathSum.TreeNode(4,
-                        new MaxPathSum.TreeNode(11, 7, 2), null),
-                    new MaxPathSum.TreeNode(8, 13,
-                        new MaxPathSum.TreeNode(4, null, 1)
+                new TreeNode(5,
+                    new TreeNode(4,
+                        new TreeNode(11, 7, 2), null),
+                    new TreeNode(8, 13,
+                        new TreeNode(4, null, 1)
                     )
                 )
             )); //48

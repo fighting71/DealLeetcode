@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Command.Const;
+using System;
 
 namespace Questions.Hard.Deal
 {
@@ -87,30 +86,6 @@ namespace Questions.Hard.Deal
             max = Math.Max(val, max);
             
             return val;
-        }
-
-        public class TreeNode
-        {
-            public int val;
-            public TreeNode left;
-            public TreeNode right;
-
-            public TreeNode(int val, TreeNode left, TreeNode right)
-            {
-                this.val = val;
-                this.left = left;
-                this.right = right;
-            }
-
-            public TreeNode(int x)
-            {
-                val = x;
-            }
-
-            public static implicit operator TreeNode(int num)
-            {
-                return new TreeNode(num);
-            }
         }
     }
 }
