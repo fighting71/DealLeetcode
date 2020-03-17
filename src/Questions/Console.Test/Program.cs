@@ -19,29 +19,9 @@ namespace ConsoleTest
     class Program
     {
 
-        static Regex reUnicode = new Regex(@"\\u([0-9a-fA-F]{4})", RegexOptions.Compiled);
-        public static string Decode(string s)
-        {
-            return reUnicode.Replace(s, m =>
-            {
-                short c;
-                if (short.TryParse(m.Groups[1].Value, System.Globalization.NumberStyles.HexNumber, CultureInfo.InvariantCulture, out c))
-                {
-                    return "" + (char)c;
-                }
-                return m.Value;
-            });
-        }
-
 
         static void Main(string[] args)
         {
-
-            var set = new HashSet<int>() { 1, 2, 3, 4 };
-
-            Console.WriteLine(JsonConvert.SerializeObject(set));
-
-            Console.ReadKey();
 
             CodeTimer codeTimer = new CodeTimer();
 
@@ -49,13 +29,65 @@ namespace ConsoleTest
 
             Random random = new Random();
 
+            DistinctSubsequences instance = new DistinctSubsequences();
+
+            Console.WriteLine(instance.DPSolution("aabb", "abb"));// 2
+            Console.WriteLine(instance.DPSolution3("aabb", "abb"));// 2
+            Console.WriteLine(instance.RecursionSolution("aabb", "abb"));// 2
+
+            Console.WriteLine(instance.DPSolution("babgbag", "bag"));// 5
+            Console.WriteLine(instance.DPSolution3("babgbag", "bag"));// 5
+            Console.WriteLine(instance.RecursionSolution("babgbag", "bag"));// 5
+
+            Console.WriteLine(instance.DPSolution("rabbbit", "rabbit"));// 3
+            Console.WriteLine(instance.DPSolution3("rabbbit", "rabbit"));// 3
+            Console.WriteLine(instance.RecursionSolution("rabbbit", "rabbit"));// 3
+
+            Console.ReadKey();
+
+            for (int i = 0; i < 10000; i++)
+            {
+                int len = random.Next(4) + 2, len2 = random.Next(len) + 12;
+
+                StringBuilder builder = new StringBuilder(), builder2 = new StringBuilder();
+
+                for (int j = 0; j < len2; j++)
+                {
+                    builder.Append((char)('a' + random.Next(3)));
+                    if (j < len) builder2.Append((char)('a' + random.Next(3)));
+                }
+
+                string s = builder.ToString(), s2 = builder2.ToString();
+
+                int dp = instance.DPSolution2(s, s2), real = instance.RecursionSolution(s, s2);
+
+                if (real != dp) throw new Exception($"\"{s2}\"，\"{s}\"");
+                if (real > 0)
+                {
+                    Console.WriteLine($"s:{s2},t:{s},res:{real}");
+                }
+
+            }
+
+            Console.WriteLine("success");
+
+            Console.ReadKey(true);
+
+            Console.WriteLine("Hello World!");
+        }
+
+        private static void TestRecoverBinarySearchTree()
+        {
             RecoverBinarySearchTree instance = new RecoverBinarySearchTree();
 
             TreeNode root;
 
-            // [146,71,-13,55,null,231,399,321,null,null,null,null,null,-33]
-           
-            // [321,71,231,55,null,-13,399,146,null,null,null,null,null,-33]
+            root = new int?[] { 1, 2, null, 4, 3 };
+
+            instance.Solution(root);
+
+            Console.WriteLine(root); // [4,2,null,1,3]
+
             root = new int?[] { 146, 71, -13, 55, null, 231, 399, 321, null, null, null, null, null, -33 };
 
             instance.Solution(root);
@@ -85,12 +117,6 @@ namespace ConsoleTest
             instance.Solution(root);
 
             Console.WriteLine(root);// [2,1,4,null,null,3]
-
-            Console.WriteLine("success");
-
-            Console.ReadKey(true);
-
-            Console.WriteLine("Hello World!");
         }
 
         private static void TestInterleavingString(Random random)

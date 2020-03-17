@@ -12,9 +12,25 @@ namespace Command.Const
     /// </summary>
     public class FlagConst
     {
+        /// <summary>
+        /// 贪心算法
+        /// </summary>
+        public const string Greedy = nameof(Greedy);
+        /// <summary>
+        /// 深度优化
+        /// </summary>
         public const string DP = nameof(DP);
+        /// <summary>
+        /// 排序
+        /// </summary>
         public const string Sort = nameof(Sort);
+        /// <summary>
+        /// 复杂逻辑
+        /// </summary>
         public const string Complex = nameof(Complex);
+        /// <summary>
+        /// 正则匹配
+        /// </summary>
         public const string RegexMatch = nameof(RegexMatch);
     }
 }

@@ -84,10 +84,9 @@ namespace Command.Const
                     builder.Append(node.val);
                 }
 
-                if(queue.Count == 0 && node.right == null)
+                if (queue.Count == 0 && node.right == null && node.left == null)
                 {
-                    if(node.left!= null)
-                        builder.Append($",{node.left.val}");
+
                 }
                 else
                 {
