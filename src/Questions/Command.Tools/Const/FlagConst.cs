@@ -10,16 +10,20 @@ namespace Command.Const
     /// @source : 
     /// @des : 
     /// </summary>
-    public class FlagConst
+    public static class FlagConst
     {
         /// <summary>
         /// 贪心算法
         /// </summary>
         public const string Greedy = nameof(Greedy);
         /// <summary>
-        /// 深度优化
+        /// 动态规划
         /// </summary>
         public const string DP = nameof(DP);
+        /// <summary>
+        /// 深度优先搜索
+        /// </summary>
+        public const string DFS = nameof(DFS);
         /// <summary>
         /// 排序
         /// </summary>

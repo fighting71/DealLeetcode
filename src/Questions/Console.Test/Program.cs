@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -19,7 +21,6 @@ namespace ConsoleTest
     class Program
     {
 
-
         static void Main(string[] args)
         {
 
@@ -29,6 +30,117 @@ namespace ConsoleTest
 
             Random random = new Random();
 
+            WordBreakII instance = new WordBreakII();
+
+            ShowTools.ShowLine(instance.Simple("catsanddog", new List<string>()
+            {
+                "cat", "cats", "and", "sand", "dog"
+            }));
+
+            ShowTools.ShowLine(instance.Simple("pineapplepenapple", new List<string>()
+            {
+                "apple", "pen", "applepen", "pine", "pineapple"
+            }));
+
+            ShowTools.ShowLine(instance.Simple("catsandog", new List<string>()
+            {
+                "cats", "dog", "sand", "and", "cat"
+            }));
+
+            Console.WriteLine("success");
+
+            Console.ReadKey(true);
+
+            Console.WriteLine("Hello World!");
+        }
+
+        private static void TestCandy(CodeTimer codeTimer, Random random)
+        {
+            Candy instance = new Candy();
+
+            Console.WriteLine(instance.Solution(new[] { 3, 4, 3, 4, 4, 2, 3, 2, 4, 0, 1, 2, 4, 3, 1, 0, 4, 0, 3, 1, 1, 1, 4, 0, 0, 2, 3, 2, 3, 3, 0, 3, 4, 2, 2, 0, 0, 2, 2, 0, 0, 3, 4, 1, 0, 3, 2, 1, 4, 1, 3, 0, 3, 0, 2, 2, 4, 2, 3, 1, 3, 1, 3, 1, 0, 3, 2, 2, 0, 1, 4, 1, 2 }));// 124
+            Console.WriteLine(instance.Fast(new[] { 3, 4, 3, 4, 4, 2, 3, 2, 4, 0, 1, 2, 4, 3, 1, 0, 4, 0, 3, 1, 1, 1, 4, 0, 0, 2, 3, 2, 3, 3, 0, 3, 4, 2, 2, 0, 0, 2, 2, 0, 0, 3, 4, 1, 0, 3, 2, 1, 4, 1, 3, 0, 3, 0, 2, 2, 4, 2, 3, 1, 3, 1, 3, 1, 0, 3, 2, 2, 0, 1, 4, 1, 2 }));// 124
+
+            Console.WriteLine(instance.Solution(new[] { 1, 2, 3 }));// 6
+            Console.WriteLine(instance.Fast(new[] { 1, 2, 3 }));// 6
+
+            Console.WriteLine(instance.Solution(new[] { 1, 6, 10, 8, 7, 3, 2 }));// 18
+            Console.WriteLine(instance.Fast(new[] { 1, 6, 10, 8, 7, 3, 2 }));// 18
+
+            Console.WriteLine(instance.Solution(new[] { 0, 3, 2, 4, 4, 4, 4, 2, 1, 2, 1, 1, 4, 0 }));// 21
+            Console.WriteLine(instance.Fast(new[] { 0, 3, 2, 4, 4, 4, 4, 2, 1, 2, 1, 1, 4, 0 }));// 21
+
+            Console.WriteLine(instance.Fast(new[] { 1, 0, 2 }));// 5
+            Console.WriteLine(instance.Fast(new[] { 1, 2, 2 }));// 4
+            Console.ReadKey();
+
+            for (int i = 0; i < 1000; i++)
+            {
+                var len = random.Next(60) + 20;
+                var arr = new int[len];
+                for (int j = 0; j < len; j++)
+                {
+                    arr[j] = random.Next(5);
+                }
+                int real = 0, res = 0;
+                CodeTimerResult codeTimerResult = codeTimer.Time(1, () => { real = instance.Simple(arr); });
+                CodeTimerResult codeTimerResult2 = codeTimer.Time(1, () => { res = instance.Fast(arr); });
+
+                Console.WriteLine($@"res:{res}
+arr:[{string.Join(',', arr)}]
+codeTimerResult:{codeTimerResult}
+codeTimerResult2:{codeTimerResult2}
+");
+
+                if (res != real) throw new Exception();
+
+            }
+        }
+
+        private static void TestBestTimeToBuyAndSellStockIII(CodeTimer codeTimer, Random random)
+        {
+            BestTimeToBuyAndSellStockIII instance = new BestTimeToBuyAndSellStockIII();
+
+            Console.WriteLine(instance.Simple(new[] { 2, 1, 4 }));// 3
+            Console.WriteLine(instance.Simple(new[] { 3, 3, 5, 0, 0, 3, 1, 4 }));// 6
+            Console.WriteLine(instance.Simple(new[] { 1, 2, 3, 4, 5 }));// 4
+
+
+            Console.WriteLine(instance.Solution(new[] { 2, 1, 4 }));// 3
+            Console.WriteLine(instance.Solution(new[] { 3, 3, 5, 0, 0, 3, 1, 4 }));// 6
+            Console.WriteLine(instance.Solution(new[] { 1, 2, 3, 4, 5 }));// 4
+
+            for (int i = 0; i < 10000; i++)
+            {
+                var len = random.Next(10) + 2;
+                var arr = new int[len];
+
+                for (int j = 0; j < len; j++)
+                {
+                    arr[j] = random.Next(10);
+                }
+
+                int real = 0, res = 0;
+
+                CodeTimerResult codeTimerResult = codeTimer.Time(1, () => { real = instance.Simple(arr); });
+
+                CodeTimerResult codeTimerResult2 = codeTimer.Time(1, () => { res = instance.Solution(arr); });
+
+                ShowTools.ShowMulti(new Dictionary<string, object>() {
+                    { nameof(res),res},
+                    { nameof(arr),arr},
+                    { nameof(codeTimerResult),codeTimerResult},
+                    { nameof(codeTimerResult2),codeTimerResult2}
+                });
+
+                if (real != res)
+                    throw new Exception("test error");
+
+            }
+        }
+
+        private static void TestDistinctSubsequences(Random random)
+        {
             DistinctSubsequences instance = new DistinctSubsequences();
 
             Console.WriteLine(instance.DPSolution("aabb", "abb"));// 2
@@ -68,12 +180,6 @@ namespace ConsoleTest
                 }
 
             }
-
-            Console.WriteLine("success");
-
-            Console.ReadKey(true);
-
-            Console.WriteLine("Hello World!");
         }
 
         private static void TestRecoverBinarySearchTree()

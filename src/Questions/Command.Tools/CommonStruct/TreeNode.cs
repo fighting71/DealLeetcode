@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 
-namespace Command.Const
+namespace Command.CommonStruct
 {
     /// <summary>
     /// @auth : monster

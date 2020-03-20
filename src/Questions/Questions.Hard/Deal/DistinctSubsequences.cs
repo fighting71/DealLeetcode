@@ -125,10 +125,10 @@ namespace Questions.Hard.Deal
             if (n < m) return 0;
             if (n == m) return s == t ? 1 : 0;
 
-            int[][] dp = new int[n+1][];
+            int[][] dp = new int[n + 1][];
 
-            for (int i = 0; i < n+1; i++)
-                dp[i] = new int[m+1];
+            for (int i = 0; i < n + 1; i++)
+                dp[i] = new int[m + 1];
 
             for (int i = 0; i < n; i++)
                 for (int j = 0; j < m && j <= i; j++)
@@ -151,7 +151,7 @@ namespace Questions.Hard.Deal
             return res;
         }
 
-        private void RecursionHelp(string s,string t,int i,int j)
+        private void RecursionHelp(string s, string t, int i, int j)
         {
             if (j == t.Length)
             {

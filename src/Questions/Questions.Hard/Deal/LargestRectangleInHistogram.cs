@@ -68,7 +68,7 @@ namespace Questions.Hard.Deal
         public int Solution(int[] heights)
         {
 
-            int res = 0, n = heights.Length, h;
+            int res = 0, n = heights.Length;
 
             SortedDictionary<int, int> dic = new SortedDictionary<int, int>();
 

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
@@ -19,6 +20,7 @@ namespace Command.Tools
             Console.WriteLine();
             for (int i = 0; i < martix.Length; i++)
             {
+                ShowLine(martix[i]);
                 for (int j = 0; j < martix[i].Length; j++)
                 {
                     Console.Write($"[ {martix[i][j]} ]");
@@ -26,6 +28,16 @@ namespace Command.Tools
 
                 Console.WriteLine();
             }
+        }
+
+        public static void ShowLine<T>(IEnumerable<T> line)
+        {
+            foreach (var item in line)
+            {
+                Console.Write($"[ {item} ]");
+            }
+
+            Console.WriteLine();
         }
 
         public static string GetStr<T>(T[][] arr)
