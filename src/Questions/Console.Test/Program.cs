@@ -1,20 +1,14 @@
 ﻿using Command.CommonStruct;
-using Command.Const;
 using Command.Tools;
 using Newtonsoft.Json;
 using Questions.Hard.Deal;
 using Questions.Middle.Deal;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
-using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Channels;
-using System.Web;
 
 namespace ConsoleTest
 {
@@ -30,9 +24,105 @@ namespace ConsoleTest
 
             Random random = new Random();
 
+            Console.WriteLine("success");
+
+            Console.ReadKey(true);
+
+            Console.WriteLine("Hello World!");
+        }
+
+        private static void TestFindMinimumInRotatedSortedArrayII(CodeTimer codeTimer, Random random)
+        {
+            FindMinimumInRotatedSortedArrayII instance = new FindMinimumInRotatedSortedArrayII();
+
+            for (int i = 0; i < 1024; i++)
+            {
+                var len = random.Next(10000) + 10;
+                //var arr = Enumerable.Range(0, len).ToArray();
+
+                var rotatedArr = new int[len];
+
+                var rotated = random.Next(len);
+
+                rotatedArr[rotated] = random.Next(10) + rotated;
+
+                for (int j = rotated + 1; j < len; j++)
+                {
+                    rotatedArr[j] = rotatedArr[j - 1] + random.Next(3);
+                }
+
+                rotatedArr[0] = rotatedArr[len - 1] + random.Next(3);
+
+                for (int j = 1; j < rotated; j++)
+                {
+                    rotatedArr[j] = rotatedArr[j - 1] + random.Next(3);
+                }
+
+                //Array.Copy(arr, rotated, rotatedArr, 0, len - rotated);
+                //Array.Copy(arr, 0, rotatedArr, len - rotated, rotated);
+
+                CodeTimerResult timerResult, timerResult2;
+                int real = 0, res = 0;
+
+                timerResult = codeTimer.Time(1, () => { real = instance.Simple(rotatedArr); });
+                timerResult2 = codeTimer.Time(1, () => { res = instance.Solution(rotatedArr); });
+
+                ShowTools.ShowMulti(new Dictionary<string, object>() {
+
+                    {nameof(rotatedArr),rotatedArr },
+                    {nameof(real),real },
+                    {nameof(timerResult),timerResult },
+                    {nameof(res),res },
+                    {nameof(timerResult2),timerResult2 }
+                });
+
+                if (res != real) throw new Exception();
+
+            }
+        }
+
+        private static void TestMaxPointsOnALine(Random random)
+        {
+            MaxPointsOnALine instance = new MaxPointsOnALine();
+
+            Console.WriteLine(instance.Simple(new[]{
+                new []{1, 1},
+                new []{2, 2},
+                new []{3, 3}
+            }));
+
+
+            Console.WriteLine(instance.Simple(JsonConvert.DeserializeObject<int[][]>("[[1,1],[3,2],[5,3],[4,1],[2,3],[1,4]]")));
+
+            Console.WriteLine(instance.Simple(JsonConvert.DeserializeObject<int[][]>("[[1,1],[3,2],[5,3],[4,1],[2,3],[1,4]]")));
+
+            for (int i = 0; i < 10; i++)
+            {
+
+                var len = random.Next(1000);
+
+                var arr = new int[len][];
+
+                for (int j = 0; j < len; j++)
+                {
+                    arr[j] = new[] { random.Next(100), random.Next(100) };
+                }
+
+                var res = instance.Simple(arr);
+
+                ShowTools.ShowMulti(new Dictionary<string, object>() {
+                    {nameof(res),res },
+                    {nameof(arr),arr }
+                });
+
+            }
+        }
+
+        private static void TestWordBreakII()
+        {
             WordBreakII instance = new WordBreakII();
 
-            ShowTools.ShowLine(instance.Simple("catsanddog", new List<string>()
+            ShowTools.ShowLine(instance.OtherSolution("catsanddog", new List<string>()
             {
                 "cat", "cats", "and", "sand", "dog"
             }));
@@ -46,12 +136,6 @@ namespace ConsoleTest
             {
                 "cats", "dog", "sand", "and", "cat"
             }));
-
-            Console.WriteLine("success");
-
-            Console.ReadKey(true);
-
-            Console.WriteLine("Hello World!");
         }
 
         private static void TestCandy(CodeTimer codeTimer, Random random)

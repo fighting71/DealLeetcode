@@ -1,4 +1,4 @@
-﻿using Command.Const;
+﻿using Command.CommonStruct;
 using System;
 
 namespace Questions.Hard.Deal
