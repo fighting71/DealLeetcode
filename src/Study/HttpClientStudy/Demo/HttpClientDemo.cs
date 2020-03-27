@@ -16,7 +16,7 @@ namespace HttpClientStudy.Demo
     public class HttpClientDemo
     {
 
-        public static void Study()
+        public static void Start()
         {
 
             // 经常使用httpClient 可曾想过HttpClient具体如何发出请求的？
@@ -235,6 +235,38 @@ namespace HttpClientStudy.Demo
             #endregion
 
         }
+
+        public static void Second()
+        {
+
+            var request = new HttpRequestMessage(HttpMethod.Get, "https://www.baidu.com/Order/Index?test=1");
+
+            // false
+            bool hasExpectContinueHeader = request.Headers != null && request.Headers.ExpectContinue == true;
+
+            // 写入请求地址的后部分：除去协议和域名
+            // 获取请求地址的部分： 请求地址 Query参数 转义参数 
+
+            // Fragment 属性获取 URI 中任何段标记（#）后面的文本，包括片段标记本身
+
+            // Path 此属性返回的值未转义。 如果路径被识别为 Windows 文件路径，则所有正斜杠（/）都将替换为反斜杠（\）。
+            //  对于 URI file://computer/file.ext，将 /file.ext 绝对路径，并 \\computer\file.ext本地路径。
+
+            // Query 属性包含 URI 中包括的任何查询信息。 查询信息由问号（？）与路径信息分隔开来，并继续到 URI 的结尾。 返回的查询信息包括前导问号。
+
+            // UriFormat 控制 URI 信息的转义方式。 
+            // UriEscaped 根据 RFC 2396 中的规则执行转义。
+            var res = request.RequestUri.GetComponents(UriComponents.Path | UriComponents.Query | UriComponents.Fragment, UriFormat.UriEscaped);
+
+            var baseUri = request.RequestUri.GetComponents(UriComponents.SchemeAndServer, UriFormat.UriEscaped);
+
+            bool flag = request.Version.Minor == 0 && request.Version.Major == 1;
+
+        }
+
+
+        
+
 
     }
 }

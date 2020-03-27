@@ -2,7 +2,15 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="SourceCode\HttpConnectionSourceCode.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="SourceCode\" />
+  </ItemGroup>
 
 </Project>

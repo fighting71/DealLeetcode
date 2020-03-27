@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Command.Tools\Command.csproj" />
+    <ProjectReference Include="..\Questions.Easy\Questions.Easy.csproj" />
     <ProjectReference Include="..\Questions.Hard\Questions.Hard.csproj" />
     <ProjectReference Include="..\Questions.Middle\Questions.Middle.csproj" />
   </ItemGroup>

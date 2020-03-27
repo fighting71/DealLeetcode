@@ -1,10 +1,5 @@
 ﻿using HttpClientStudy.Demo;
 using System;
-using System.Net;
-using System.Net.Http;
-using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace HttpClientStudy
 {
@@ -13,16 +8,7 @@ namespace HttpClientStudy
         static void Main(string[] args)
         {
 
-            HttpClientDemo.Study().ContinueWith(u =>
-            {
-
-                if (u.IsFaulted)
-                {
-                    throw u.Exception;
-                }
-                Console.WriteLine("over");
-
-            });
+            HttpClientDemo.Second();
 
             Console.ReadKey(true);
 
