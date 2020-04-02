@@ -17,17 +17,12 @@ namespace Command.Tools
 
         public static void ShowMatrix<T>(T[][] martix)
         {
-            Console.WriteLine();
+            Console.WriteLine("----------------------Matrix-------S----------------");
             for (int i = 0; i < martix.Length; i++)
             {
                 ShowLine(martix[i]);
-                for (int j = 0; j < martix[i].Length; j++)
-                {
-                    Console.Write($"[ {martix[i][j]} ]");
-                }
-
-                Console.WriteLine();
             }
+            Console.WriteLine("----------------------Matrix-------E----------------");
         }
 
         public static void ShowLine<T>(IEnumerable<T> line)
