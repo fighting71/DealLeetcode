@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Command.Attr;
+using Command.Const;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Questions.Hard.Deal
@@ -9,13 +11,51 @@ namespace Questions.Hard.Deal
     /// @source : https://leetcode.com/problems/word-search-ii/
     /// @des : 
     /// </summary>
+    [Favorite(FlagConst.DFS, FlagConst.Complex)]
     public class WordSearchII
     {
 
         char[][] board;
         bool[][] flag;
 
-        // todo:Optimize speed
+        /// <summary>
+        /// Runtime: 812 ms, faster than 22.51% of C# online submissions for Word Search II.
+        /// Memory Usage: 33 MB, less than 100.00% of C# online submissions for Word Search II.
+        /// </summary>
+        /// <param name="board"></param>
+        /// <param name="words"></param>
+        /// <returns></returns>
+        public IList<string> Solution2(char[][] board, string[] words)
+        {
+            if (board.Length == 0) return null;
+
+            this.board = board;
+
+            IList<string> res = new List<string>();
+
+            m = board.Length; n = board[0].Length;
+
+            flag = new bool[m][];
+            bool succes;
+
+            for (int i = 0; i < m; i++)
+                flag[i] = new bool[n];
+
+            foreach (var item in words)
+            {
+                succes = false;
+                for (int i = 0; i < m && !succes; i++)
+                    for (int j = 0; j < n && !succes; j++)
+                        if (Help(item, i, j, 0))
+                        {
+                            res.Add(item);
+                            succes = true;
+                        }
+            }
+
+            return res;
+        }
+
         public IList<string> Solution(char[][] board, string[] words)
         {
             if (board.Length == 0) return null;
@@ -46,6 +86,7 @@ namespace Questions.Hard.Deal
             return false;
         }
 
+        // todo:Optimize speed
         private bool Help(string str, int i, int j, int k)
         {
             if (i == m || i == -1 || j == n || j == -1 || flag[i][j] || str[k] != board[i][j]) return false;
@@ -112,9 +153,9 @@ namespace Questions.Hard.Deal
             return res;
         }
 
-        private bool Help(char[][] board, bool[][] flag, string str,int i,int j,int k,IList<string> res)
+        private bool Help(char[][] board, bool[][] flag, string str, int i, int j, int k, IList<string> res)
         {
-            if(i == m || i == -1 || j == n || j == -1 || flag[i][j]) return false;
+            if (i == m || i == -1 || j == n || j == -1 || flag[i][j]) return false;
 
             if (str[k] != board[i][j]) return false;
 
@@ -122,7 +163,7 @@ namespace Questions.Hard.Deal
 
             flag[i][j] = true;
 
-            var result = Help(board, flag, str, i + 1, j, k + 1, res) || 
+            var result = Help(board, flag, str, i + 1, j, k + 1, res) ||
             Help(board, flag, str, i, j + 1, k + 1, res) ||
             Help(board, flag, str, i - 1, j, k + 1, res) ||
             Help(board, flag, str, i, j - 1, k + 1, res);
@@ -137,8 +178,8 @@ namespace Questions.Hard.Deal
         {
             if (board.Length == 0) return null;
 
-            ISet<string> res = new HashSet<string>(),set = new HashSet<string>(words);
-            int m = board.Length , n = board[0].Length;
+            ISet<string> res = new HashSet<string>(), set = new HashSet<string>(words);
+            int m = board.Length, n = board[0].Length;
             ISet<string>[][] dp = new ISet<string>[m][];
 
             bool[][] flag = new bool[m][];
@@ -162,7 +203,8 @@ namespace Questions.Hard.Deal
                         {
                             res.Add(item + c);
                             arr.Add(item + c);
-                        }else if(set.Any(u=>u.StartsWith(item + c)))
+                        }
+                        else if (set.Any(u => u.StartsWith(item + c)))
                         {
                             arr.Add(item + c);
                         }
@@ -227,13 +269,11 @@ namespace Questions.Hard.Deal
 
         }
 
-        private void Help(char[][] board, bool[][] flag, int i, int j, string build,string[] words,bool[] flag2,int index)
+        private void Help(char[][] board, bool[][] flag, int i, int j, string build, string[] words, bool[] flag2, int index)
         {
             if (i == m || i == -1 || j == n || j == -1 || flag[i][j]) return;
 
             flag[i][j] = true;
-
-            bool success = false;
 
             for (int k = 0; k < words.Length; k++)
             {

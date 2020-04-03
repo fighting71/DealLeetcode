@@ -25,6 +25,17 @@ namespace Command.Tools
             Console.WriteLine("----------------------Matrix-------E----------------");
         }
 
+        public static void ShowIndex<T>(IEnumerable<T> line)
+        {
+            int i = 0;
+            foreach (var item in line)
+            {
+                Console.WriteLine($"{i++} - {item}");
+            }
+
+            Console.WriteLine();
+        }
+
         public static void ShowLine<T>(IEnumerable<T> line)
         {
             foreach (var item in line)
@@ -101,7 +112,7 @@ namespace Command.Tools
         {
             if (data is string)
                 return (string)data;
-            if (data.GetType().IsValueType)
+            if (data.GetType().IsValueType || data.GetType() == typeof(StringBuilder))
                 return data.ToString();
             return JsonConvert.SerializeObject(data);
         }

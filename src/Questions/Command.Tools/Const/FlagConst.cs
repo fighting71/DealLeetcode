@@ -36,5 +36,9 @@ namespace Command.Const
         /// 正则匹配
         /// </summary>
         public const string RegexMatch = nameof(RegexMatch);
+        /// <summary>
+        /// 效率优化
+        /// </summary>
+        public const string Efficient = nameof(Efficient);
     }
 }
