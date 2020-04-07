@@ -166,7 +166,7 @@ namespace Questions.Hard.Deal
         public string Clear(string s)
         {
 
-            int l = 0, r = s.Length - 1,k = s.Length - 1;
+            int l = 0, r = s.Length - 1, i, j, k = s.Length - 1;
             StringBuilder builder = new StringBuilder();
 
             while (l < r)
@@ -175,7 +175,7 @@ namespace Questions.Hard.Deal
                 else
                 {
                     builder.Append(s[k--]);
-                    for (int i = r, j = l - 1; j >= 0; j--)
+                    for (i = r, j = l - 1; j >= 0; j--)
                     {
                         if (s[i] != s[j])
                         {

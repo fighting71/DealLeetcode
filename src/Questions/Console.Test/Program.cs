@@ -18,18 +18,26 @@ namespace ConsoleTest
 
             Random random = new Random();
 
+            Console.ReadKey(true);
+
+            Console.WriteLine("Hello World!");
+        }
+
+        private static void TestBasic_Calculator()
+        {
+            Basic_Calculator instance = new Basic_Calculator();
+
+            //Console.WriteLine(instance.Solution("1 + 1")); // 2
+            //Console.WriteLine(instance.Solution(" 2-1 + 2 "));// 3
+            //Console.WriteLine(instance.Solution("(1+(4+5+2)-3)+(6+8)"));// 23
+            //Console.WriteLine(instance.Solution("1 - (2 + 3 + (1 + 2))"));// -7
+        }
+
+        private static void TestShortestPalindrome(Random random)
+        {
             ShortestPalindrome instance = new ShortestPalindrome();
 
             //instance.IsDebug = true;
-
-            /**
-             builder :
-cabcbacbacaccaaaacacaabcba
-real :
-abcbaacacaaaaccacabcabcbacbacaccaaaacacaabcba
-res :
-abcbaacacaaaaccacabcabcbacabcbacbacaccaaaacacaabcba
-             */
 
             ShowTools.ShowIndex("bbacabbacabbabbcacabcabcccccaaaabccba");
 
@@ -80,10 +88,6 @@ abcbaacacaaaaccacabcabcbacabcbacbacaccaaaacacaabcba
                 if (real != res) throw new Exception();
 
             }
-
-            Console.ReadKey(true);
-
-            Console.WriteLine("Hello World!");
         }
 
         private static void TestWordSearchII()
