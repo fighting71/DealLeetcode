@@ -1,14 +1,15 @@
-﻿using Command.Tools;
+﻿using Command.CommonStruct;
+using Command.Tools;
 using Newtonsoft.Json;
 using Questions.Hard.Deal;
 using System;
+using System.Linq;
 using System.Text;
 
 namespace ConsoleTest
 {
     class Program
     {
-
         static void Main(string[] args)
         {
 
@@ -18,9 +19,61 @@ namespace ConsoleTest
 
             Random random = new Random();
 
+            Remove_Invalid_Parentheses instnace = new Remove_Invalid_Parentheses();
+
+            //ShowTools.Show(instnace.Solution("a()())()()())())())()()())()"));
+            ShowTools.ShowIndex(instnace.Solution("a()())()()())())())()()())()").Select(u=>u.Length));
+            //ShowTools.Show(instnace.Solution("()())()"));
+            //ShowTools.Show(instnace.Solution("(a)())()"));
+            //ShowTools.Show(instnace.Solution(")("));
+
             Console.ReadKey(true);
 
             Console.WriteLine("Hello World!");
+        }
+
+        private static void TestFind_Median_from_Data_Stream()
+        {
+            //[[],[6],[],[10],[],[2],[],[6],[],[5],[],[0],[],[6],[],[3],[],[1],[],[0],[],[0],[]]
+            Find_Median_from_Data_Stream instance = new Find_Median_from_Data_Stream();
+
+            instance.AddNum(12);
+            instance.AddNum(10);
+            instance.AddNum(13);
+            instance.AddNum(11);
+            instance.AddNum(5);
+            instance.AddNum(15);
+            instance.AddNum(1);
+            instance.AddNum(11);
+            instance.AddNum(6);
+            instance.AddNum(17);
+            instance.AddNum(14);
+            instance.AddNum(8);
+            instance.AddNum(17);
+            instance.AddNum(6);
+            instance.AddNum(4);
+            instance.AddNum(16);
+            instance.AddNum(8);
+            instance.AddNum(10);
+            instance.AddNum(2);
+            instance.AddNum(12);
+            //instance.AddNum(0);
+            Console.WriteLine(instance.FindMedian());
+        }
+
+        private static void TestExpression_Add_Operators()
+        {
+            Expression_Add_Operators instance = new Expression_Add_Operators();
+
+            ShowTools.Show(instance.Simple("232", 8));
+        }
+
+        private static void TestSliding_Window_Maximum()
+        {
+            Sliding_Window_Maximum instance = new Sliding_Window_Maximum();
+
+            ShowTools.Show(instance.Simple(new[] { 1 }, 1));
+            ShowTools.Show(instance.Simple(new[] { 1, 3, -1, -3, 5, 3, 6, 7 }, 3));
         }
 
         private static void TestBasic_Calculator()

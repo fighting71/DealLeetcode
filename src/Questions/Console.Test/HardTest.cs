@@ -446,6 +446,7 @@ owner:{codeTimerResult2.ToString()}
         }
 
 
+        [Obsolete]
         private static void TestFindMinimumInRotatedSortedArrayII(CodeTimer codeTimer, Random random)
         {
             FindMinimumInRotatedSortedArrayII instance = new FindMinimumInRotatedSortedArrayII();
