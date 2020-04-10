@@ -19,17 +19,21 @@ namespace ConsoleTest
 
             Random random = new Random();
 
-            Remove_Invalid_Parentheses instnace = new Remove_Invalid_Parentheses();
-
-            //ShowTools.Show(instnace.Solution("a()())()()())())())()()())()"));
-            ShowTools.ShowIndex(instnace.Solution("a()())()()())())())()()())()").Select(u=>u.Length));
-            //ShowTools.Show(instnace.Solution("()())()"));
-            //ShowTools.Show(instnace.Solution("(a)())()"));
-            //ShowTools.Show(instnace.Solution(")("));
-
             Console.ReadKey(true);
 
             Console.WriteLine("Hello World!");
+        }
+
+        private static void TestRemove_Invalid_Parentheses()
+        {
+            Remove_Invalid_Parentheses instnace = new Remove_Invalid_Parentheses();
+
+            ShowTools.Show(instnace.Optimize("(r(()()("));// ["r()()","r(())","(r)()","(r())"]
+            ShowTools.Show(instnace.Optimize("()((k()(("));// ["()k()","()(k)"]
+            //ShowTools.Show(instnace.Optimize("a()())()()())())())()()())()"));
+            ShowTools.Show(instnace.Optimize("()())()"));// ["()()()", "(())()"]
+            ShowTools.Show(instnace.Optimize("(a)())()"));// ["(a)()()", "(a())()"]
+            ShowTools.Show(instnace.Optimize(")("));// [""]
         }
 
         private static void TestFind_Median_from_Data_Stream()
