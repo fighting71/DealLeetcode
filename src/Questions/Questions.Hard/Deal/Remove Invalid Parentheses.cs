@@ -15,11 +15,11 @@ namespace Questions.Hard.Deal
     /// @source : https://leetcode.com/problems/remove-invalid-parentheses/
     /// @des : 
     /// </summary>
-    [Favorite(FlagConst.Complex),Optimize]
+    [Favorite(FlagConst.Complex,FlagConst.DFS),Optimize]
     public class Remove_Invalid_Parentheses
     {
 
-        // same efficient
+        // same 
         public IList<string> Optimize(string s)
         {
 

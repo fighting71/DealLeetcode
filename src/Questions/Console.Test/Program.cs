@@ -19,6 +19,10 @@ namespace ConsoleTest
 
             Random random = new Random();
 
+            string str = "11111111111111111";
+
+            Console.WriteLine(str.Replace("1","#"));
+
             Console.ReadKey(true);
 
             Console.WriteLine("Hello World!");
