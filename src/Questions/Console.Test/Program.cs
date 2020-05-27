@@ -19,10 +19,9 @@ namespace ConsoleTest
 
             Random random = new Random();
 
-            string str = "11111111111111111";
+            Burst_Balloons instance = new Burst_Balloons();
 
-            Console.WriteLine(str.Replace("1","#"));
-
+            Console.WriteLine(instance.MaxCoins(new[] { 3, 1, 5, 8 }));
             Console.ReadKey(true);
 
             Console.WriteLine("Hello World!");
