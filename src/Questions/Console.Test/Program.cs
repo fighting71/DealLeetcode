@@ -19,12 +19,35 @@ namespace ConsoleTest
 
             Random random = new Random();
 
-            Burst_Balloons instance = new Burst_Balloons();
+            {
 
-            Console.WriteLine(instance.MaxCoins(new[] { 3, 1, 5, 8 }));
+                Permutation_Sequence instance = new Permutation_Sequence();
+
+                int n = 5;
+
+                int num = instance.GetMultiply(n);
+
+                for (int i = 1; i <= num; i++)
+                {
+                    Console.WriteLine($"{i} : {instance.Simple(n, i)}");
+                }
+
+            }
+
             Console.ReadKey(true);
 
             Console.WriteLine("Hello World!");
+        }
+
+        private static void TestBurst_Balloons()
+        {
+            Burst_Balloons instance = new Burst_Balloons();
+
+            //[3,1,5,8,1,5] 350
+
+            //Console.WriteLine(instance.Try(new[] { 3, 1, 5, 8 }));// 167 
+            Console.WriteLine(instance.Try(new[] { 3, 1, 5, 8, 1, 5 }));// out 315 expected 350 
+            Console.WriteLine(instance.Try(new[] { 3, 1, 8, 5, 1, 5 }));// out 315 expected 350 
         }
 
         private static void TestRemove_Invalid_Parentheses()
