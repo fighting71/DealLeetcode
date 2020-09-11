@@ -36,6 +36,27 @@ namespace Questions.Hard.Deal
             return s.Length == 0 ? "" : s[pos] + OtherSolution(s.Substring(pos + 1).Replace("" + s[pos], ""));
         }
 
+        public string ExplainOtherSolution(string s)
+        {
+            // 给每个字母记数
+            int[] cnt = new int[26];
+            // 指定pos为最小的那个字母
+            int pos = 0; // the position for the smallest s[i]
+            for (int i = 0; i < s.Length; i++) cnt[s[i] - 'a']++;
+            for (int i = 0; i < s.Length; i++)
+            {
+                // 重新寻找最小的字母
+                if (s[i] < s[pos]) pos = i;
+                // 如果某个字母数为0，即是最后一个字母，此时只能将最小的字母追加上去，不可继续跳过  
+                // 示例: abacba -> acba -> acb
+                if (--cnt[s[i] - 'a'] == 0) break;
+            }
+            // 返回 "" + 最小的字母 + 递归（下一个最小的字母） 
+            // 传递时 s 跳过已循环的部分，且清空后面的最小字母 acba... -> acb
+            // 真强.
+            return s.Length == 0 ? "" : s[pos] + OtherSolution(s.Substring(pos + 1).Replace("" + s[pos], ""));
+        }
+
         #endregion
 
         public string Simple(string s)

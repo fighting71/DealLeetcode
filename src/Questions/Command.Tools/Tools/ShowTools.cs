@@ -40,7 +40,7 @@ namespace Command.Tools
         {
             foreach (var item in line)
             {
-                Console.Write($"[ {item} ]");
+                Console.WriteLine($"[ {GetStr(item)} ]");
             }
 
             Console.WriteLine();

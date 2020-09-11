@@ -20,6 +20,20 @@ namespace ConsoleTest
     {
 
 
+        private static void TestPermutation_Sequence()
+        {
+            Permutation_Sequence instance = new Permutation_Sequence();
+
+            int n = 5;
+
+            int num = instance.GetMultiply(n);
+
+            for (int i = 1; i <= num; i++)
+            {
+                Console.WriteLine($"{i} : {instance.Simple(n, i)}");
+            }
+
+        }
         private static void TestLongestValidParentheses(CodeTimer codeTimer, Random random)
         {
             LongestValidParentheses instance = new LongestValidParentheses();
@@ -879,42 +893,6 @@ match:{codeTimerResult.ToString()}
 owner:{codeTimerResult2.ToString()}
 ");
             }
-        }
-
-        private static void TestSolveSudoku()
-        {
-            SolveSudoku instance = new SolveSudoku();
-
-            //var boards = new[]
-            //{
-            //    new []{'5','3','.','.','7','.','.','.','.'},
-            //    new []{'6','.','.','1','9','5','.','.','.'},
-            //    new []{'.','9','8','.','.','.','.','6','.'},
-            //    new []{'8','.','.','.','6','.','.','.','3'},
-            //    new []{'4','.','.','8','.','3','.','.','1'},
-            //    new []{'7','.','.','.','2','.','.','.','6'},
-            //    new []{'.','6','.','.','.','.','2','8','.'},
-            //    new []{'.','.','.','4','1','9','.','.','5'},
-            //    new []{'.','.','.','.','8','.','.','7','9'}
-            //};
-
-            //instance.Try2(boards);
-
-            // TODO: fix bug
-
-            var boards = JsonConvert.DeserializeObject<char[][]>(@"[['.','.','9','7','4','8','.','.','.'],
-['7', '.', '.', '.', '.', '.', '.', '.', '.'],
-['.', '2', '.', '1', '.', '9', '.', '.', '.'],
-['.', '.', '7', '.', '.', '.', '2', '4', '.'],
-['.', '6', '4', '.', '1', '.', '5', '9', '.'],
-['.', '9', '8', '.', '.', '.', '3', '.', '.'],
-['.', '.', '.', '8', '.', '3', '.', '2', '.'],
-['.', '.', '.', '.', '.', '.', '.', '.', '6'],
-['.', '.', '.', '2', '7', '5', '9', '.', '.']]");
-
-            instance.Solution(boards);
-
-            //instance.Clear(boards);
         }
 
         private static void TestFindSubstring()
