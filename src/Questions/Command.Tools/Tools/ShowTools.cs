@@ -38,6 +38,7 @@ namespace Command.Tools
 
         public static void ShowLine<T>(IEnumerable<T> line)
         {
+            if (line == null) return;
             foreach (var item in line)
             {
                 Console.WriteLine($"[ {GetStr(item)} ]");
