@@ -36,12 +36,12 @@ namespace Command.Tools
             Console.WriteLine();
         }
 
-        public static void ShowLine<T>(IEnumerable<T> line)
+        public static void ShowLine<T>(IEnumerable<T> line, bool skipDefault = false)
         {
             if (line == null) return;
             foreach (var item in line)
             {
-                Console.WriteLine($"[ {GetStr(item)} ]");
+                Console.Write($"[ {GetStr(item)} ]");
             }
 
             Console.WriteLine();

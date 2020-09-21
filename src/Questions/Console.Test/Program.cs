@@ -21,33 +21,6 @@ namespace ConsoleTest
 
             Random random = new Random();
 
-            {
-                Word_Ladder_II instance = new Word_Ladder_II();
-
-                //instance.Test9();
-
-                //{
-                //    IList<IList<string>> lists = instance.Simple("a", "c", new List<string>() { "a", "b", "c" });
-
-                //    ShowTools.ShowLine(lists);
-                //}
-
-                for (int i = 0; i < 10; i++)
-                {
-                    CodeTimerResult codeTimerResult = codeTimer.Time(1, () => instance.Test8());
-                    Console.WriteLine(codeTimerResult);
-                }
-
-                //instance.Test();
-                //instance.Test2();
-                //instance.Test3();
-                //instance.Test4();
-                //instance.Test5();
-                //instance.Test6();
-                //instance.Test7();
-
-            }
-
             { // unresolve
 
                 //UnresolveTest.TestSolveSudoku();
