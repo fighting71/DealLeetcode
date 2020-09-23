@@ -9,6 +9,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Deal\Palindrome Partitioning.cs~RF4c9c0e28.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
   </ItemGroup>
 

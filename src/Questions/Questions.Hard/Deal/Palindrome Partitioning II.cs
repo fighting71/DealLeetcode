@@ -377,7 +377,7 @@ namespace Questions.Hard.Deal
                     // point:解决两个palindrome 包含重复区间的取舍问题。
                 }
 
-                return 0;
+                //return 0;
 
             }
 

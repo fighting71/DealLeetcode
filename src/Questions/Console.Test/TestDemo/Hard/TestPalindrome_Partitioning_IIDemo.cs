@@ -13,10 +13,10 @@ namespace ConsoleTest.TestDemo.Hard
     /// @source : 
     /// @des : 
     /// </summary>
-    public class TestPalindrome_Partitioning_IIDemo
+    public class TestPalindrome_Partitioning_IIDemo : BaseDemo
     {
 
-        public static void Test()
+        public void Test()
         {
             Palindrome_Partitioning_II instance = new Palindrome_Partitioning_II();
 
@@ -39,11 +39,11 @@ namespace ConsoleTest.TestDemo.Hard
 
                 foreach (var item in arr)
                 {
-                    break;
+                    //break;
                     Console.WriteLine(item);
 
                     int res = 0, real = 0;
-                    codeTimerResult = BaseTools.codeTimer.Time(1, () => {
+                    codeTimerResult = codeTimer.Time(1, () => {
                         res = new Palindrome_Partitioning_II().Solution(item);
                     });
 
@@ -64,14 +64,14 @@ namespace ConsoleTest.TestDemo.Hard
 
                 for (int i = 0; i < 500; i++)
                 {
-                    builder.Append((char)('a' + BaseTools.random.Next(26)));
+                    builder.Append((char)('a' + random.Next(26)));
                 }
                 Console.WriteLine($@"
 str:  len - {builder.Length}
 {builder}");
 
                 int res = 0, real = 0;
-                codeTimerResult = BaseTools.codeTimer.Time(1, () => {
+                codeTimerResult = codeTimer.Time(1, () => {
                     res = new Palindrome_Partitioning_II().Solution(builder.ToString());
                 });
                 Console.WriteLine($@"
