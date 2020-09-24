@@ -15,42 +15,144 @@ namespace Questions.DailyChallenge._2020September.Week4
     public class Gas_Station
     {
 
-        //bug
+        // 与1差不多。
+        public int Optimize2(int[] gas, int[] cost)
+        {
+
+            int len = gas.Length;
+            int[] need = new int[len], diff = new int[len];
+
+            int num = diff[0] = gas[0] - cost[0];
+
+            need[0] = Math.Min(num, 0);
+
+            for (int i = 1; i < len; i++)
+                need[i] = Math.Min(Math.Min(num += diff[i] = gas[i] - cost[i], 0), need[i - 1]);
+
+            int minNeed = num = 0;
+
+            for (int i = len - 1; i > 0; i--)
+            {
+
+                num += diff[i];
+                if (diff[i] >= 0)
+                {
+                    if (diff[i] >= -minNeed && num >= -need[i - 1])
+                        return i;
+                    minNeed = Math.Min(minNeed + diff[i], 0);
+                }
+                else
+                    minNeed += diff[i];
+
+            }
+
+            if (diff[0] >= 0 && diff[0] + num >= -need[0])
+                return 0;
+
+
+            return -1;
+        }
+
+        //Runtime: 96 ms
+        //Memory Usage: 24.6 MB
+        // 快蛮多了。
+        public int Optimize(int[] gas, int[] cost)
+        {
+
+            int len = gas.Length;
+            int[] need = new int[len];
+
+            int num = gas[0] - cost[0];
+
+            need[0] = Math.Min(num, 0);
+
+            for (int i = 1; i < len; i++)
+            {
+                need[i] = Math.Min(Math.Min(num += gas[i] - cost[i], 0), need[i - 1]);
+            }
+
+            int minNeed = num = 0,diff;
+
+            for (int i = len - 1; i > 0; i--)
+            {
+
+                diff = gas[i] - cost[i];
+                num += diff;
+                if(diff >= 0)
+                {
+                    if(diff >= -minNeed)
+                        if (num >= -need[i - 1])
+                        {
+                            return i;
+                        }
+                    minNeed = Math.Min(minNeed + diff, 0);
+                }
+                else
+                    minNeed += diff;
+
+            }
+
+            diff = gas[0] - cost[0];
+            if (diff>=0 && diff + num >= -need[0])
+            {
+                return 0;
+            }
+
+            //ShowTools.ShowLine(need);
+
+            return -1;
+        }
+
+        //Runtime: 248 ms
+        //Memory Usage: 24.6 MB
         public int Solution(int[] gas, int[] cost)
         {
             int len = gas.Length;
-
-            int[][] need = new int[len][]; // *** need 计算bug
+            int[] need = new int[len];
             int[] tank = new int[len];
-            for (int i = 0; i < len; i++)
-            {
-                need[i] = new int[len - i];
-            }
-            //tank[0] = cache[0][0] = gas[0] - cost[0];
+
+            int num = 0;
+
             for (int i = 0; i < len; i++)
             {
                 int diff = gas[i] - cost[i];
-                need[i][0] = Math.Min(0, diff);
+
+                num += diff;
+
                 if (tank[0] >= 0)
                     tank[0] += diff;
+
+                need[i] = Math.Min(num, 0);
+                if(i>0)
+                    need[i] = Math.Min(need[i], need[i - 1]);
+
                 for (int j = 0; j < i; j++)
                 {
-                    // bug
-                    need[j][i - j] = need[j][i - 1 - j] + need[i][0];
                     if (tank[j + 1] >= 0)
                         tank[j + 1] += diff;
                 }
             }
 
-            ShowTools.ShowMatrix(need);
-            ShowTools.ShowLine(tank);
+            //ShowTools.ShowLine(need);
+            //ShowTools.ShowLine(tank);
 
-            if (tank[0] >= -need[0][len - 1]) return 0;
-
-            for (int i = 1; i < len; i++)
+            for (int i = len - 1; i >0; i--)
             {
-                if (tank[i] >= -need[0][len - i]) return i;
+                if (tank[i] >= -need[i - 1])
+                {
+                    return i;
+                }
             }
+
+            if (tank[0] >= 0) return 0;
+
+            //for (int i = 1; i < len; i++)
+            //{
+            //    if (tank[i] >= -need[i - 1])
+            //    {
+            //        return i;
+            //    }
+            //}
 
             return -1;
         }

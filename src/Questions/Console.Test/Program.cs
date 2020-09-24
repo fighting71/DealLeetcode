@@ -31,81 +31,52 @@ namespace ConsoleTest
             Exception bugEx = new Exception("bug");
 
             {
+                {
+                    MaxPointsOnALine instance = new MaxPointsOnALine();
 
-                int res = default;
-
-                bool onlySimple = true;
-                //onlySimple = false;
-
-                { // simple test case
-
-                    int[][] gas = new[]
                     {
-                        new[] { 8, 1, 7, 9, 2, 2, 4, 4, 5, 3, 1, 4, 2, 1, 1 } ,// 1
-                        //new[] { 10, 4, 10, 9, 3, 1, 10, 2, 2, 9 } ,// 0
-                        //new[] { 4, 5, 1, 6, 1, 4, 5, 10, 1, 4, 10, 1 } ,// -1
-                        //new[] { 6, 6, 3, 8, 5, 8, 4, 5, 8, 2, 8, 3, 8, 6, 8, 8, 7, 1 } ,// 0
-                        //new[] { 2, 1, 7, 5, 4, 3, 10, 9, 6, 4, 2, 9 } ,// 3
-                        //new []{ 1, 2, 3, 4, 5 }, // 3
-                        //new[] { 2, 3, 4 } ,// 1
-                    };
-                    int[][] cost = new[]
-                    {
-                        new[] { 6,2,2,2,2,3,5,5,6,4,2,5,3,2,2},
-                        new[] { 9,2,11,2,4,2,9,2,2,8 },
-                        new[] { 5,6,2,6,2,5,6,9,2,2,9,2 },
-                        new[] { 4,4,4,6,4,5,2,4,8,3,9,2,5,4,6,7,8,2 },
-                        new[] { 3,2,8,4,2,3,3,9,3,5,3,2 },
-                        new[]{ 3, 4, 5, 1, 2 },
-                        new[]{ 3, 4, 5, 1, 2 },
-                        new[] { 3, 4, 3 },
-                    };
 
-                    for (int i = 0; i < gas.Length; i++)
-                    {
-                        if (!onlySimple) break;
-                        res = new Gas_Station().Solution(gas[i], cost[i]);
-                        ShowTools.Show(res);
 
-                        res = new Gas_Station().Try(gas[i], cost[i]);
-                        ShowTools.Show(res);
 
-                        res = new Gas_Station().Simple(gas[i], cost[i]);
-                        ShowTools.Show(res);
+                        //            Console.WriteLine(instance.Simple(new[]{
+                        //    new []{1, 1},
+                        //    new []{2, 2},
+                        //    new []{3, 3}
+                        //}));
+
+
+                        Console.WriteLine(instance.Try(JsonConvert.DeserializeObject<int[][]>("[[29,89],[57,57],[96,66],[92,76],[26,5],[76,55],[51,52],[52,93],[16,51],[6,40],[60,64],[38,19],[32,28],[8,26],[27,29],[31,5],[5,46],[92,71],[94,96],[38,63],[85,4],[99,29],[92,14],[35,68],[70,23],[56,47],[21,64],[67,65],[50,38],[24,68],[58,65],[49,96],[73,70],[50,5],[59,80],[99,20],[12,43],[55,55],[65,8],[26,18],[92,40],[56,3],[73,84],[84,40],[79,27],[21,56],[71,70],[5,19],[55,2],[56,21],[64,30],[8,90],[24,35],[34,77],[9,11],[99,41],[11,6],[75,17],[9,45],[23,88],[86,9],[25,32],[59,42],[49,42],[37,35],[99,63],[52,4],[53,62],[31,66],[79,38],[49,6],[31,68],[27,79],[44,64],[95,87],[10,10],[79,67],[35,54],[5,76],[31,81],[85,92],[40,73],[11,36],[89,6],[53,12],[86,42],[65,85],[38,79],[78,57],[4,79],[97,85],[47,49],[25,89],[83,84],[69,99],[56,54],[35,98],[52,57],[66,57],[56,91],[90,38],[10,82],[1,67],[44,94],[28,56],[75,47],[72,51],[83,0],[45,90],[47,22],[52,4],[37,54],[56,32],[7,67],[33,81],[12,21],[1,12],[89,59],[74,64],[48,57],[44,89],[55,12],[23,9],[81,83],[15,51],[12,76],[9,33],[38,85],[1,56],[26,68],[60,77],[60,47],[43,54],[46,60],[62,23],[26,80],[41,90],[77,62],[48,24],[30,47],[51,23],[51,81],[68,36],[11,67],[73,3],[58,17],[38,79],[97,67],[28,8],[68,68],[62,21],[21,91],[25,32],[34,19],[55,75],[36,76],[26,79],[17,36],[25,79],[78,7],[42,79],[86,58],[65,8],[41,61],[92,10],[34,40],[55,61],[84,29],[2,60],[55,35],[1,92],[11,97],[67,81],[91,59],[62,60],[41,49],[29,61],[25,83],[34,62],[25,16],[91,72],[26,45],[41,96],[20,64],[94,87],[34,65],[23,43],[5,50],[67,88],[91,83],[17,81],[99,31],[69,84],[10,94],[35,1],[95,39],[34,38],[44,29],[65,66],[56,71],[61,26],[65,74],[25,75],[25,86],[55,75],[15,46],[71,41],[99,9],[72,95],[75,57],[85,26],[28,92],[92,95],[31,84],[98,75],[85,0],[32,20],[22,90],[16,25],[6,94],[59,24]]")));
+                        //            Console.WriteLine(instance.Simple(JsonConvert.DeserializeObject<int[][]>("[[1,1],[3,2],[5,3],[4,1],[2,3],[1,4]]")));
+
+                        //            Console.WriteLine(instance.Simple(JsonConvert.DeserializeObject<int[][]>("[[1,1],[3,2],[5,3],[4,1],[2,3],[1,4]]")));
 
                     }
 
-                }
-
-                for (int j = 0; j < 1000; j++)
-                { // speed test case
-                    if (onlySimple) break;
-                    List<int> gas = new List<int>(), cost = new List<int>();
-
-                    for (int i = 0; i < random.Next(20) + 10; i++)
+                    for (int i = 0; i < 1; i++)
                     {
-                        int gasNum = random.Next(10) + 1, costNum = random.Next(gasNum) + 2;
-                        gas.Add(gasNum);
-                        cost.Add(costNum);
+                        break;
+                        var len =500;
+
+                        var arr = new int[len][];
+
+                        for (int j = 0; j < len; j++)
+                        {
+                            arr[j] = new[] { random.Next(100), random.Next(100) };
+                        }
+
+                        var res = instance.Try(arr);
+
+                        ShowTools.ShowMulti(new Dictionary<string, object>() {
+                    {nameof(res),res },
+                    {nameof(arr),arr }
+                });
+
+                        //if(res != instance.Simple(arr))
+                        //{
+                        //    throw bugEx;
+                        //}
+
                     }
-
-                    Console.WriteLine($@"
-gas:{JsonConvert.SerializeObject(gas)}
-cost:{JsonConvert.SerializeObject(cost)}
-res:{res}
-");
-
-                    codeTimerResult = codeTimer.Time(1, () =>
-                    {
-                        res = new Gas_Station().Solution(gas.ToArray(), cost.ToArray());
-                        //res = new Gas_Station().Try(gas.ToArray(), cost.ToArray());
-                    });
-
-                    if(res != new Gas_Station().Simple(gas.ToArray(), cost.ToArray()))
-                    {
-                        throw bugEx;
-                    }
-
                 }
 
             }

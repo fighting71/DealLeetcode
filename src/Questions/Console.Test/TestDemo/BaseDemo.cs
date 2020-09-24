@@ -24,5 +24,6 @@ namespace ConsoleTest.TestDemo
         protected Random random = new Random();
 
         protected CodeTimerResult codeTimerResult;
+        protected Exception bugEx = new Exception("bug");
     }
 }

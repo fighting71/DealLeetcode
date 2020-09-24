@@ -8,7 +8,7 @@ namespace Command.Attr
     /// @auth : monster
     /// @since : 4/10/2020 5:12:15 PM
     /// @source : 
-    /// @des : 
+    /// @des : 待优化
     /// </summary>
     public class OptimizeAttribute : Attribute
     {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Command.Attr;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,7 +37,7 @@ namespace Questions.DailyChallenge._2020September.Week4
 
         }
 
-        // how faster?
+        // TODO: how faster?
         public IList<int> Optimize(int[] nums)
         {
 

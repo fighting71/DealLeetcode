@@ -511,43 +511,6 @@ owner:{codeTimerResult2.ToString()}
             }
         }
 
-        private static void TestMaxPointsOnALine(Random random)
-        {
-            MaxPointsOnALine instance = new MaxPointsOnALine();
-
-            Console.WriteLine(instance.Simple(new[]{
-                new []{1, 1},
-                new []{2, 2},
-                new []{3, 3}
-            }));
-
-
-            Console.WriteLine(instance.Simple(JsonConvert.DeserializeObject<int[][]>("[[1,1],[3,2],[5,3],[4,1],[2,3],[1,4]]")));
-
-            Console.WriteLine(instance.Simple(JsonConvert.DeserializeObject<int[][]>("[[1,1],[3,2],[5,3],[4,1],[2,3],[1,4]]")));
-
-            for (int i = 0; i < 10; i++)
-            {
-
-                var len = random.Next(1000);
-
-                var arr = new int[len][];
-
-                for (int j = 0; j < len; j++)
-                {
-                    arr[j] = new[] { random.Next(100), random.Next(100) };
-                }
-
-                var res = instance.Simple(arr);
-
-                ShowTools.ShowMulti(new Dictionary<string, object>() {
-                    {nameof(res),res },
-                    {nameof(arr),arr }
-                });
-
-            }
-        }
-
         private static void TestWordBreakII()
         {
             WordBreakII instance = new WordBreakII();
