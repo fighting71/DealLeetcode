@@ -25,5 +25,8 @@ namespace ConsoleTest.TestDemo
 
         protected CodeTimerResult codeTimerResult;
         protected Exception bugEx = new Exception("bug");
+
+        protected bool runSimple = true;
+
     }
 }
