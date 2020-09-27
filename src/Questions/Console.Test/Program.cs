@@ -27,18 +27,99 @@ namespace ConsoleTest
 
             Random random = new Random();
 
-            CodeTimerResult codeTimerResult;
-
             Exception bugEx = new Exception("bug");
 
             bool runSimple = true;
             //runSimple = false;
+            {
 
-            new TestMaxPointsOnALineDemo().Run();
+                {
+
+
+                    IList<IList<string>>[] equationsArr = new[] {
+                        JsonConvert.DeserializeObject<List<IList<string>>>("[[\"a\",\"b\"],[\"e\",\"f\"],[\"b\",\"e\"]]"), // [0.29412,10.94800,1.00000,1.00000,-1.00000,-1.00000,0.71429]
+                        //JsonConvert.DeserializeObject<List<IList<string>>>("[[\"a\",\"b\"],[\"b\",\"c\"],[\"bc\",\"cd\"]]"),
+                        //JsonConvert.DeserializeObject<List<IList<string>>>("[[\"a\",\"b\"],[\"b\",\"c\"]]"),
+                    };
+
+                    double[][] valuesArr = new[]
+                    {
+                        new[] { 3.4,1.4,2.3 },
+                        new[] { 1.5, 2.5, 5.0 },
+                        new[] { 2.0, 3.0 },
+                    };
+
+                    IList<IList<string>>[] queriesArr = new[] {
+                        JsonConvert.DeserializeObject<List<IList<string>>>("[[\"b\",\"a\"],[\"a\",\"f\"],[\"f\",\"f\"],[\"e\",\"e\"],[\"c\",\"c\"],[\"a\",\"c\"],[\"f\",\"e\"]]"),
+                        JsonConvert.DeserializeObject<List<IList<string>>>("[[\"a\",\"c\"],[\"c\",\"b\"],[\"bc\",\"cd\"],[\"cd\",\"bc\"]]"),
+                        JsonConvert.DeserializeObject<List<IList<string>>>("[[\"a\",\"c\"],[\"b\",\"a\"],[\"a\",\"e\"],[\"a\",\"a\"],[\"x\",\"x\"]]"),
+                    };
+
+                    for (int i = 0; i < equationsArr.Length; i++)
+                    {
+                        if (!runSimple) break;
+                        var res = new Evaluate_Division().Try(equationsArr[i], valuesArr[i], queriesArr[i]);
+                        ShowTools.ShowLine(res);
+
+                    }
+
+                }
+
+                {
+                    CodeTimerResult codeTimerResult;
+
+                }
+
+            }
+
+            {
+
+                { // simple
+
+                }
+
+                { // speed&real
+                    CodeTimerResult codeTimerResult;
+
+                }
+
+            }
 
             Console.WriteLine("Hello World!");
 
             Console.ReadKey(true);
+
+        }
+
+        private static void TestLargestNumber(CodeTimer codeTimer)
+        {
+            CodeTimerResult codeTimerResult;
+
+            {
+                string res;
+                {
+                    res = new Largest_Number().LargestNumber(new[] { 3, 30, 34, 5, 9 });
+
+                    ShowTools.Show(res);
+
+                }
+                {
+
+                    for (int i = 0; i < 2; i++)
+                    {
+                        codeTimerResult = codeTimer.Time(1, () =>
+                        {
+                            res = new Largest_Number().LargestNumber(LargeArray.Arr);
+                        });
+
+                        ShowTools.Show(res);
+
+                        ShowTools.Show(codeTimerResult);
+                    }
+
+
+                }
+            }
 
         }
 
