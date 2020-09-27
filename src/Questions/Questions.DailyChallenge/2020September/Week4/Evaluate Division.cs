@@ -27,6 +27,9 @@ queries[i].length == 2
 equations[i][0], equations[i][1], queries[i][0], queries[i][1] consist of lower case English letters and digits.
          */
 
+        //Runtime: 248 ms
+        //Memory Usage: 31.8 MB Your runtime beats 84.41 % of csharp submissions
+        // nice!
         public double[] Try(IList<IList<string>> equations, double[] values, IList<IList<string>> queries)
         {
 
@@ -75,12 +78,13 @@ equations[i][0], equations[i][1], queries[i][0], queries[i][1] consist of lower 
             {
                 foreach (var item in mapperDic[a].ToArray())
                 {
+                    // 避免重复添加
                     if (dic.ContainsKey((item, b))) continue;
-                    var empty = dic[(item, b)] = dic[(item, a)] * value;
+                    var empty = dic[(item, b)] = dic[(item, a)] * value;// a/b = value  b/c = dic(b/c)  ==> a/c = a/b * b/c = > dic(b/c) * value
                     dic[(b, item)] = 1 / empty;
                     Help(dic, mapperDic, item, b, empty);
                 }
-                mapperDic[a].Add(b);
+                mapperDic[a].Add(b);// 递归完再添加，跳过不必要的循环。
             }
             else mapperDic[a] = new HashSet<string>() { b };
 
@@ -89,7 +93,7 @@ equations[i][0], equations[i][1], queries[i][0], queries[i][1] consist of lower 
                 foreach (var item in mapperDic[b].ToArray())
                 {
                     if (dic.ContainsKey((item, a))) continue;
-                    var empty = dic[(a, item)] = value / dic[(b, item)];
+                    var empty = dic[(a, item)] = value * dic[(b, item)];// 同上
                     dic[(item, a)] = 1 / empty;
                     Help(dic, mapperDic, a, item, empty);
                 }

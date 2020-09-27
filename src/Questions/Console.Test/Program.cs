@@ -38,8 +38,8 @@ namespace ConsoleTest
 
                     IList<IList<string>>[] equationsArr = new[] {
                         JsonConvert.DeserializeObject<List<IList<string>>>("[[\"a\",\"b\"],[\"e\",\"f\"],[\"b\",\"e\"]]"), // [0.29412,10.94800,1.00000,1.00000,-1.00000,-1.00000,0.71429]
-                        //JsonConvert.DeserializeObject<List<IList<string>>>("[[\"a\",\"b\"],[\"b\",\"c\"],[\"bc\",\"cd\"]]"),
-                        //JsonConvert.DeserializeObject<List<IList<string>>>("[[\"a\",\"b\"],[\"b\",\"c\"]]"),
+                        JsonConvert.DeserializeObject<List<IList<string>>>("[[\"a\",\"b\"],[\"b\",\"c\"],[\"bc\",\"cd\"]]"),
+                        JsonConvert.DeserializeObject<List<IList<string>>>("[[\"a\",\"b\"],[\"b\",\"c\"]]"),
                     };
 
                     double[][] valuesArr = new[]
