@@ -118,5 +118,11 @@ namespace Command.Tools
             return JsonConvert.SerializeObject(data);
         }
 
+
+        public static void ShowHr()
+        {
+            Console.WriteLine("---------------------------------");
+        }
+
     }
 }

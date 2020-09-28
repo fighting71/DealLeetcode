@@ -30,56 +30,72 @@ namespace ConsoleTest
             Exception bugEx = new Exception("bug");
 
             bool runSimple = true;
-            //runSimple = false;
-            {
-
-                {
-
-
-                    IList<IList<string>>[] equationsArr = new[] {
-                        JsonConvert.DeserializeObject<List<IList<string>>>("[[\"a\",\"b\"],[\"e\",\"f\"],[\"b\",\"e\"]]"), // [0.29412,10.94800,1.00000,1.00000,-1.00000,-1.00000,0.71429]
-                        JsonConvert.DeserializeObject<List<IList<string>>>("[[\"a\",\"b\"],[\"b\",\"c\"],[\"bc\",\"cd\"]]"),
-                        JsonConvert.DeserializeObject<List<IList<string>>>("[[\"a\",\"b\"],[\"b\",\"c\"]]"),
-                    };
-
-                    double[][] valuesArr = new[]
-                    {
-                        new[] { 3.4,1.4,2.3 },
-                        new[] { 1.5, 2.5, 5.0 },
-                        new[] { 2.0, 3.0 },
-                    };
-
-                    IList<IList<string>>[] queriesArr = new[] {
-                        JsonConvert.DeserializeObject<List<IList<string>>>("[[\"b\",\"a\"],[\"a\",\"f\"],[\"f\",\"f\"],[\"e\",\"e\"],[\"c\",\"c\"],[\"a\",\"c\"],[\"f\",\"e\"]]"),
-                        JsonConvert.DeserializeObject<List<IList<string>>>("[[\"a\",\"c\"],[\"c\",\"b\"],[\"bc\",\"cd\"],[\"cd\",\"bc\"]]"),
-                        JsonConvert.DeserializeObject<List<IList<string>>>("[[\"a\",\"c\"],[\"b\",\"a\"],[\"a\",\"e\"],[\"a\",\"a\"],[\"x\",\"x\"]]"),
-                    };
-
-                    for (int i = 0; i < equationsArr.Length; i++)
-                    {
-                        if (!runSimple) break;
-                        var res = new Evaluate_Division().Try(equationsArr[i], valuesArr[i], queriesArr[i]);
-                        ShowTools.ShowLine(res);
-
-                    }
-
-                }
-
-                {
-                    CodeTimerResult codeTimerResult;
-
-                }
-
-            }
+            runSimple = false;
 
             {
 
                 { // simple
 
+                    var caseArr = new[]
+                    {
+                        new[] { 3, 1, 5, 8 }, // 167
+                        new[] { 3, 1, 5, 8, 1, 5 },// 350
+                        new[] { 3, 1, 8, 5, 1, 5 }, // 389
+                        new[] { 3, 1, 2, 5, 8 },
+                        new[] { 3, 2, 1, 5, 8 },
+                    };
+
+                    foreach (var item in caseArr)
+                    {
+                        if (!runSimple) break;
+                        int real = new Burst_Balloons().Try(item);
+
+                        Console.WriteLine("real:" + real);
+
+                        int res = new Burst_Balloons().Try2(item);
+
+                        Console.WriteLine(res);
+
+                    }
                 }
 
                 { // speed&real
                     CodeTimerResult codeTimerResult;
+                    
+                    for (int i = 0; i < 100; i++)
+                    {
+                        if (runSimple) break;
+                        var list = new List<int>();
+
+                        for (int j = 0; j < 100; j++)
+                        {
+                            list.Add(random.Next(101));
+                        }
+
+                        var arr = list.ToArray();
+
+                        int res = 0, real = res;
+
+                        Console.WriteLine($@"
+({arr.Length})
+{JsonConvert.SerializeObject(arr)}
+");
+
+                        codeTimerResult = codeTimer.Time(1, () =>
+                        {
+                            res = new Burst_Balloons().Try2(arr);
+                        });
+
+                        Console.WriteLine(codeTimerResult);
+
+                        //real = new Burst_Balloons().Simple(arr);
+
+                        //if (res != real) throw bugEx;
+
+                        ShowTools.ShowHr();
+
+                    }
+
 
                 }
 
@@ -121,17 +137,6 @@ namespace ConsoleTest
                 }
             }
 
-        }
-
-        private static void TestBurst_Balloons()
-        {
-            Burst_Balloons instance = new Burst_Balloons();
-
-            //[3,1,5,8,1,5] 350
-
-            //Console.WriteLine(instance.Try(new[] { 3, 1, 5, 8 }));// 167 
-            Console.WriteLine(instance.Try(new[] { 3, 1, 5, 8, 1, 5 }));// out 315 expected 350 
-            Console.WriteLine(instance.Try(new[] { 3, 1, 8, 5, 1, 5 }));// out 315 expected 350 
         }
 
         private static void TestRemove_Invalid_Parentheses()
