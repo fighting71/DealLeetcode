@@ -30,80 +30,125 @@ namespace ConsoleTest
             Exception bugEx = new Exception("bug");
 
             bool runSimple = true;
-            runSimple = false;
+            //runSimple = false;
 
             {
-
                 { // simple
-
-                    var caseArr = new[]
-                    {
-                        new[] { 3, 1, 5, 8 }, // 167
-                        new[] { 3, 1, 5, 8, 1, 5 },// 350
-                        new[] { 3, 1, 8, 5, 1, 5 }, // 389
-                        new[] { 3, 1, 2, 5, 8 },
-                        new[] { 3, 2, 1, 5, 8 },
-                    };
-
-                    foreach (var item in caseArr)
-                    {
-                        if (!runSimple) break;
-                        int real = new Burst_Balloons().Try(item);
-
-                        Console.WriteLine("real:" + real);
-
-                        int res = new Burst_Balloons().Try2(item);
-
-                        Console.WriteLine(res);
-
-                    }
                 }
-
                 { // speed&real
                     CodeTimerResult codeTimerResult;
-                    
-                    for (int i = 0; i < 100; i++)
+
+                    List<int> list = new List<int>();
+
+                    for (int i = 0; i < 10000; i++)
                     {
-                        if (runSimple) break;
-                        var list = new List<int>();
-
-                        for (int j = 0; j < 100; j++)
-                        {
-                            list.Add(random.Next(101));
-                        }
-
-                        var arr = list.ToArray();
-
-                        int res = 0, real = res;
-
-                        Console.WriteLine($@"
-({arr.Length})
-{JsonConvert.SerializeObject(arr)}
-");
-
-                        codeTimerResult = codeTimer.Time(1, () =>
-                        {
-                            res = new Burst_Balloons().Try2(arr);
+                        list.Add(random.Next(int.MaxValue));
+                    }
+                    var arr = list.ToArray();
+                    for (int i = 0; i < 10; i++)
+                    {
+                        var min = random.Next(int.MaxValue / 2);
+                        var max = min + random.Next(int.MaxValue / 2);
+                        codeTimerResult = codeTimer.Time(1, () => {
+                            new Count_of_Range_Sum().Simple(arr, min, max);
                         });
 
                         Console.WriteLine(codeTimerResult);
 
-                        //real = new Burst_Balloons().Simple(arr);
+                        codeTimerResult = codeTimer.Time(1, () => {
+                            new Count_of_Range_Sum().Optimize(arr, min, max);
+                        });
 
-                        //if (res != real) throw bugEx;
+                        Console.WriteLine("other:"+codeTimerResult);
 
                         ShowTools.ShowHr();
 
                     }
 
-
                 }
+            }
 
+            {
+                { // simple
+                }
+                { // speed&real
+                    CodeTimerResult codeTimerResult;
+                }
             }
 
             Console.WriteLine("Hello World!");
 
             Console.ReadKey(true);
+
+        }
+
+        private static void TestBurst_Balloons(CodeTimer codeTimer, Random random, bool runSimple)
+        {
+            { // simple
+
+                var caseArr = new[]
+                {
+                        new[] { 35,16,83,87,84,59,48,41,20,54}, // 1849648  bug.
+                        //new[] { 3, 1, 5, 8 }, // 167
+                        //new[] { 3, 1, 5, 8, 1, 5 },// 350
+                        //new[] { 3, 1, 8, 5, 1, 5 }, // 389
+                        //new[] { 3, 1, 2, 5, 8 },
+                        //new[] { 3, 2, 1, 5, 8 },
+                    };
+
+                foreach (var item in caseArr)
+                {
+                    if (!runSimple) break;
+                    int real = new Burst_Balloons().Try(item);
+
+                    Console.WriteLine("real:" + real);
+
+                    int res = new Burst_Balloons().Try2(item);
+
+                    Console.WriteLine(res);
+
+                }
+            }
+
+            { // speed&real
+                CodeTimerResult codeTimerResult;
+
+                for (int i = 0; i < 100; i++)
+                {
+                    if (runSimple) break;
+                    var list = new List<int>();
+
+                    for (int j = 0; j < 100; j++)
+                    {
+                        list.Add(random.Next(101));
+                    }
+
+                    var arr = list.ToArray();
+
+                    int res = 0, real = res;
+
+                    Console.WriteLine($@"
+({arr.Length})
+{JsonConvert.SerializeObject(arr)}
+");
+
+                    codeTimerResult = codeTimer.Time(1, () =>
+                    {
+                        res = new Burst_Balloons().Try2(arr);
+                    });
+
+                    Console.WriteLine(codeTimerResult);
+
+                    //real = new Burst_Balloons().Simple(arr);
+
+                    //if (res != real) throw bugEx;
+
+                    ShowTools.ShowHr();
+
+                }
+
+
+            }
 
         }
 

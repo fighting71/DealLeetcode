@@ -15,7 +15,7 @@ namespace Questions.Hard.Deal
     /// @des : 
     /// </summary>
     [Favorite(FlagConst.DP)]
-    [Obsolete("on thinking")]
+    [Obsolete("on thinking。。。。。。。。。。")]
     public class Burst_Balloons
     {
 
@@ -106,10 +106,10 @@ namespace Questions.Hard.Deal
 
             var res = Help2(nums, nums.Select((num, index) => index).ToList());
 
-            //foreach (var item in cache.OrderBy(u => u.Key.Length).ThenBy(u => u.Value))
-            //{
-            //    Console.WriteLine($"{string.Join(',', item.Key.Split(',').Select(u => nums[int.Parse(u)]))} = {item.Value}");
-            //}
+            foreach (var item in cache.OrderBy(u => u.Key.Length).ThenBy(u => u.Value))
+            {
+                Console.WriteLine($"{string.Join(',', item.Key.Split(',').Select(u => nums[int.Parse(u)]))} = {item.Value}");
+            }
 
             return res;
         }
