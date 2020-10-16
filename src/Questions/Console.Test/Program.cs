@@ -5,7 +5,7 @@ using ConsoleTest.LargeData;
 using ConsoleTest.TestDemo;
 using ConsoleTest.TestDemo.Hard;
 using Newtonsoft.Json;
-using Questions.DailyChallenge._2020September.Week4;
+using Questions.DailyChallenge._2020.October.Week2;
 using Questions.Easy.Algorithms;
 using Questions.Hard.Deal;
 using Questions.Middle.Deal;
@@ -31,42 +31,6 @@ namespace ConsoleTest
 
             bool runSimple = true;
             //runSimple = false;
-
-            {
-                { // simple
-                }
-                { // speed&real
-                    CodeTimerResult codeTimerResult;
-
-                    List<int> list = new List<int>();
-
-                    for (int i = 0; i < 10000; i++)
-                    {
-                        list.Add(random.Next(int.MaxValue));
-                    }
-                    var arr = list.ToArray();
-                    for (int i = 0; i < 10; i++)
-                    {
-                        var min = random.Next(int.MaxValue / 2);
-                        var max = min + random.Next(int.MaxValue / 2);
-                        codeTimerResult = codeTimer.Time(1, () => {
-                            new Count_of_Range_Sum().Simple(arr, min, max);
-                        });
-
-                        Console.WriteLine(codeTimerResult);
-
-                        codeTimerResult = codeTimer.Time(1, () => {
-                            new Count_of_Range_Sum().Optimize(arr, min, max);
-                        });
-
-                        Console.WriteLine("other:"+codeTimerResult);
-
-                        ShowTools.ShowHr();
-
-                    }
-
-                }
-            }
 
             {
                 { // simple
@@ -147,42 +111,10 @@ namespace ConsoleTest
 
                 }
 
-
             }
 
         }
 
-        private static void TestLargestNumber(CodeTimer codeTimer)
-        {
-            CodeTimerResult codeTimerResult;
-
-            {
-                string res;
-                {
-                    res = new Largest_Number().LargestNumber(new[] { 3, 30, 34, 5, 9 });
-
-                    ShowTools.Show(res);
-
-                }
-                {
-
-                    for (int i = 0; i < 2; i++)
-                    {
-                        codeTimerResult = codeTimer.Time(1, () =>
-                        {
-                            res = new Largest_Number().LargestNumber(LargeArray.Arr);
-                        });
-
-                        ShowTools.Show(res);
-
-                        ShowTools.Show(codeTimerResult);
-                    }
-
-
-                }
-            }
-
-        }
 
         private static void TestRemove_Invalid_Parentheses()
         {
