@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Questions.DailyChallenge._2020.October.Week2
+namespace Questions.DailyChallenge._2020.October.Week3
 {
 
     /// <summary>
