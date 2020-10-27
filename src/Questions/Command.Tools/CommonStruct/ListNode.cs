@@ -19,7 +19,15 @@ namespace Command.CommonStruct
 
         public ListNode(int x) { val = x; }
 
+        public ListNode(int val, ListNode next) : this(val)
+        {
+            this.next = next;
+        }
 
+        public static implicit operator ListNode(int num)
+        {
+            return new ListNode(num);
+        }
         public static implicit operator ListNode(int[] arr)
         {
 

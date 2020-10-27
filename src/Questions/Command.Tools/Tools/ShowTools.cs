@@ -15,6 +15,16 @@ namespace Command.Tools
     public static class ShowTools
     {
 
+        public static void ShowMatrix<T>(IEnumerable<T[]> martix)
+        {
+            Console.WriteLine("----------------------Matrix-------S----------------");
+            foreach (var item in martix)
+            {
+                ShowLine(item);
+            }
+            Console.WriteLine("----------------------Matrix-------E----------------");
+        }
+
         public static void ShowMatrix<T>(T[][] martix)
         {
             Console.WriteLine("----------------------Matrix-------S----------------");
@@ -46,7 +56,6 @@ namespace Command.Tools
 
             Console.WriteLine();
         }
-
         public static string GetStr<T>(T[][] arr)
         {
             StringBuilder builder = new StringBuilder();
@@ -122,6 +131,11 @@ namespace Command.Tools
         public static void ShowHr()
         {
             Console.WriteLine("---------------------------------");
+        }
+
+        public static void ShowHr<T>(T t)
+        {
+            Console.WriteLine($"---------------{t}------------------");
         }
 
     }

@@ -6,6 +6,7 @@ using ConsoleTest.TestDemo;
 using ConsoleTest.TestDemo.Hard;
 using Newtonsoft.Json;
 using Questions.DailyChallenge._2020.October.Week2;
+using Questions.DailyChallenge._2020.October.Week4;
 using Questions.Easy.Algorithms;
 using Questions.Hard.Deal;
 using Questions.Middle.Deal;
@@ -34,6 +35,22 @@ namespace ConsoleTest
 
             {
                 { // simple
+                    // 3,2,0,-4
+                    ListNode node = new[] { 3, 2, 0, -4 };
+
+                    ListNode last = node;
+                    while (last.next != null) last = last.next;
+                    last.next = node;
+
+                    Console.WriteLine(new Linked_List_Cycle_II().Optimize(node).val);
+                }
+                { // speed&real
+                    CodeTimerResult codeTimerResult;
+                }
+            }
+
+            {
+                { // simple
                 }
                 { // speed&real
                     CodeTimerResult codeTimerResult;
@@ -52,13 +69,13 @@ namespace ConsoleTest
 
                 var caseArr = new[]
                 {
-                        new[] { 35,16,83,87,84,59,48,41,20,54}, // 1849648  bug.
-                        //new[] { 3, 1, 5, 8 }, // 167
-                        //new[] { 3, 1, 5, 8, 1, 5 },// 350
-                        //new[] { 3, 1, 8, 5, 1, 5 }, // 389
-                        //new[] { 3, 1, 2, 5, 8 },
-                        //new[] { 3, 2, 1, 5, 8 },
-                    };
+                    new[] { 35,16,83,87,84,59,48,41,20,54}, // 1849648  bug.
+                    //new[] { 3, 1, 5, 8 }, // 167
+                    //new[] { 3, 1, 5, 8, 1, 5 },// 350
+                    //new[] { 3, 1, 8, 5, 1, 5 }, // 389
+                    //new[] { 3, 1, 2, 5, 8 },
+                    //new[] { 3, 2, 1, 5, 8 },
+                };
 
                 foreach (var item in caseArr)
                 {
