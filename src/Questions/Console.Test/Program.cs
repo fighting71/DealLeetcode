@@ -7,6 +7,7 @@ using ConsoleTest.TestDemo.Hard;
 using Newtonsoft.Json;
 using Questions.DailyChallenge._2020.October.Week2;
 using Questions.DailyChallenge._2020.October.Week4;
+using Questions.DailyChallenge._2020.October.Week5;
 using Questions.Easy.Algorithms;
 using Questions.Hard.Deal;
 using Questions.Middle.Deal;
@@ -34,18 +35,31 @@ namespace ConsoleTest
             //runSimple = false;
 
             {
+                Maximize_Distance_to_Closest_Person instance = new Maximize_Distance_to_Closest_Person();
                 { // simple
-                    // 3,2,0,-4
-                    ListNode node = new[] { 3, 2, 0, -4 };
 
-                    ListNode last = node;
-                    while (last.next != null) last = last.next;
-                    last.next = node;
+                    Console.WriteLine(instance.Solution(new[] { 1, 0, 1 }));// 1
+                    Console.WriteLine(instance.Solution(new[] { 1, 0, 0, 0, 1, 0, 1 })); // 2
 
-                    Console.WriteLine(new Linked_List_Cycle_II().Optimize(node).val);
                 }
                 { // speed&real
                     CodeTimerResult codeTimerResult;
+
+                    int[] arr = new int[2 * 104];
+
+                    for (int i = 0; i < arr.Length; i++)
+                    {
+                        arr[i] = random.Next(2);
+                    }
+
+                    int res = instance.Solution(arr);
+
+                    ShowTools.ShowMulti(new Dictionary<string, object>
+                    {
+                        {nameof(arr),arr },
+                        {nameof(res),res }
+                    });
+
                 }
             }
 
