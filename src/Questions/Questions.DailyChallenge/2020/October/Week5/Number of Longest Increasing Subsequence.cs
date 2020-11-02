@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Command.Attr;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace Questions.DailyChallenge._2020.October.Week5
     /// @source : https://leetcode.com/explore/challenge/card/october-leetcoding-challenge/563/week-5-october-29th-october-31st/3513/
     /// @des : 
     /// </summary>
+    [Optimize]
     public class Number_of_Longest_Increasing_Subsequence
     {
 
