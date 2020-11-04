@@ -36,9 +36,30 @@ namespace ConsoleTest
             //runSimple = false;
 
             {
-                Insertion_Sort_List instance = new Insertion_Sort_List();
+                Minimum_Height_Trees instance = new Minimum_Height_Trees();
                 { // simple
-                    Console.WriteLine(instance.Solution(new[] { 6, 5, 3, 1, 8, 7, 2, 4 }));
+
+                    ShowTools.Show(instance.Clear(4, new[] {
+                        new []{1, 0},
+                        new []{1, 2},
+                        new []{1, 3}
+                    }));// [1]
+
+                    ShowTools.Show(instance.Clear(6, new[] {
+                        new []{3, 0},
+                        new []{3,1},
+                        new []{3,2},
+                        new []{3,4},
+                        new []{5,4}
+                    }));// [3,4]
+
+
+                    ShowTools.Show(instance.Clear(1, new int[0][]));// [0]
+
+                    ShowTools.Show(instance.Clear(2, new[] {
+                        new []{1, 0},
+                    }));// [0,1]
+
                 }
                 { // speed&real
                     CodeTimerResult codeTimerResult;
