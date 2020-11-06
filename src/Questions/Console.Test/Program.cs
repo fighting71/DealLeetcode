@@ -14,6 +14,7 @@ using Questions.Hard.Deal;
 using Questions.Middle.Deal;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -35,36 +36,53 @@ namespace ConsoleTest
             bool runSimple = true;
             //runSimple = false;
 
+
             {
-                Minimum_Height_Trees instance = new Minimum_Height_Trees();
+                Find_the_Smallest_Divisor_Given_a_Threshold instance = new Find_the_Smallest_Divisor_Given_a_Threshold();
                 { // simple
 
-                    ShowTools.Show(instance.Clear(4, new[] {
-                        new []{1, 0},
-                        new []{1, 2},
-                        new []{1, 3}
-                    }));// [1]
+                    Console.WriteLine(instance.Try2(JsonConvert.DeserializeObject<int[]>("[1,2,3]"), 6));
 
-                    ShowTools.Show(instance.Clear(6, new[] {
-                        new []{3, 0},
-                        new []{3,1},
-                        new []{3,2},
-                        new []{3,4},
-                        new []{5,4}
-                    }));// [3,4]
+                    Console.WriteLine(instance.Try2(JsonConvert.DeserializeObject<int[]>(File.ReadAllText(@"F:\Davis\EmptyTxt\intarr3.txt")), 405207));
+                    //Console.WriteLine(instance.Try2(JsonConvert.DeserializeObject<int[]>(File.ReadAllText(@"F:\Davis\EmptyTxt\intarr2.txt")), 574401));
+                    //Console.WriteLine(instance.Try2(JsonConvert.DeserializeObject<int[]>(File.ReadAllText(@"F:\Davis\EmptyTxt\intarr.txt")), 713994));
 
-
-                    ShowTools.Show(instance.Clear(1, new int[0][]));// [0]
-
-                    ShowTools.Show(instance.Clear(2, new[] {
-                        new []{1, 0},
-                    }));// [0,1]
-
+                    //Console.WriteLine(instance.Simple(JsonConvert.DeserializeObject<int[]>("[1,2,5,9]"),6));
+                    //Console.WriteLine(instance.Simple(JsonConvert.DeserializeObject<int[]>("[2,3,5,7,11]"),11));
                 }
+                for (int j = 0; j < 2; j++)
                 { // speed&real
-                    CodeTimerResult codeTimerResult;
+                    if (runSimple) break;
+                    var arr = new int[5 * 10_000];
+                    //var arr = new int[20];
+
+                    for (int i = 0; i < arr.Length; i++)
+                    {
+                        arr[i] = random.Next(1000_000) + 1;
+                        //arr[i] = random.Next(10)+1;
+                    }
+
+                    int threshold = random.Next(1000_000) + 1;
+                    //int threshold = random.Next(50) + 1;
+
+                    int res = 0;
+
+                    CodeTimerResult codeTimerResult = codeTimer.Time(1, () =>
+                    {
+                        res = instance.Try2(arr, threshold);
+                    });
+
+                    ShowTools.ShowMulti(new Dictionary<string, object>()
+                    {
+                        {nameof(arr),arr },
+                        {nameof(threshold),threshold },
+                        {nameof(res),res },
+                        {nameof(codeTimerResult),codeTimerResult }
+                    });
+
                 }
             }
+
 
             {
                 { // simple
@@ -78,6 +96,38 @@ namespace ConsoleTest
 
             Console.ReadKey(true);
 
+        }
+
+        private static void TestMinimum_Height_Trees()
+        {
+            Minimum_Height_Trees instance = new Minimum_Height_Trees();
+            { // simple
+
+                ShowTools.Show(instance.OtherSolution(4, new[] {
+                        new []{1, 0},
+                        new []{1, 2},
+                        new []{1, 3}
+                    }));// [1]
+
+                ShowTools.Show(instance.OtherSolution(6, new[] {
+                        new []{3, 0},
+                        new []{3,1},
+                        new []{3,2},
+                        new []{3,4},
+                        new []{5,4}
+                    }));// [3,4]
+
+
+                ShowTools.Show(instance.OtherSolution(1, new int[0][]));// [0]
+
+                ShowTools.Show(instance.OtherSolution(2, new[] {
+                        new []{1, 0},
+                    }));// [0,1]
+
+            }
+            { // speed&real
+                CodeTimerResult codeTimerResult;
+            }
         }
 
         private static void TestConvert_Binary_Number_in_a_Linked_List_to_Integer()

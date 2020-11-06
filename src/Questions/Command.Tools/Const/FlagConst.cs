@@ -24,6 +24,7 @@ namespace Command.Const
         /// 深度优先搜索
         /// </summary>
         public const string DFS = nameof(DFS);
+        public const string BFS = nameof(BFS);
         /// <summary>
         /// 排序
         /// </summary>

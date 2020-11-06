@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Command.Attr;
+using Command.Const;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +14,7 @@ namespace Questions.DailyChallenge._2020.November.Week1
     /// @source : https://leetcode.com/explore/challenge/card/november-leetcoding-challenge/564/week-1-november-1st-november-7th/3519/
     /// @des : 
     /// </summary>
+    [Favorite(FlagConst.BFS, FlagConst.Complex)]
     public class Minimum_Height_Trees
     {
         // 1 <= n <= 2 * 104
@@ -21,43 +24,56 @@ namespace Questions.DailyChallenge._2020.November.Week1
         //All the pairs (ai, bi) are distinct.
         //The given input is guaranteed to be a tree and there will be no repeated edges.
 
-        public IList<int> Optimize(int n, int[][] edges)
+        // 参考其他解决方案
+        // source:https://blog.csdn.net/xinqrs01/article/details/55503068?locationNum=6&fps=1
+        // beats 92.96 % of nb
+        public IList<int> OtherSolution(int n, int[][] edges)
         {
             if (n == 1) return new List<int>() { 0 };
+            // 记录 node -> other node
             List<int>[] dic = new List<int>[n];
 
             for (int i = 0; i < n; i++)
-            {
                 dic[i] = new List<int>();
-            }
 
-            for (int i = 0; i < edges.Length; i++)
+            // 记录 node 与 other node 的连接数
+            int[] degree = new int[n];
+
+            foreach (var item in edges)
             {
-                int node = edges[i][0], node2 = edges[i][1];
-
-                dic[node].Add(node2);
-                dic[node2].Add(node);
+                dic[item[0]].Add(item[1]);
+                dic[item[1]].Add(item[0]);
+                degree[item[0]]++;
+                degree[item[1]]++;
             }
 
-            int[] deepDic = new int[n];
-
-            int minDeep = int.MaxValue;
-            bool[] visited = new bool[n];
+            Queue<int> queue = new Queue<int>();
             for (int i = 0; i < n; i++)
             {
-                var deep = GetDeep(i, dic, 0, visited);
-                deepDic[i] = deep;
-                minDeep = Math.Min(deep, minDeep);
+                if (degree[i] == 1) // 将连接数为1 即一定是叶子节点
+                    queue.Enqueue(i);
             }
 
-            List<int> res = new List<int>();
-
-            for (int i = 0; i < n; i++)
+            // why root is 1 or 2?
+            while (n > 2)// 从叶子节点出发，寻找根节点
             {
-                if (deepDic[i] == minDeep) res.Add(i);
+                int size = queue.Count;
+                for (int i = 0; i < size; i++)
+                {
+                    int cur = queue.Dequeue();
+                    n--;
+                    foreach (var item in dic[cur])
+                    {
+                        if ((--degree[item]) == 1)
+                        {
+                            queue.Enqueue(item);
+                        }
+                    }
+                }
             }
 
-            return res;
+            return queue.ToArray();
+
         }
 
         // time limit
@@ -100,6 +116,7 @@ namespace Questions.DailyChallenge._2020.November.Week1
             return res;
         }
 
+        // bfs.
         private int GetDeep(int key, List<int>[] dic, int deep, bool[] visited,int maxDeep = int.MinValue)
         {
             if (deep > maxDeep) return maxDeep;
