@@ -25,7 +25,7 @@ namespace ConsoleTest.TestDemo.Challenge
 
                 Console.WriteLine(instance.Try2(JsonConvert.DeserializeObject<int[]>("[1,2,3]"), 6));
 
-                Console.WriteLine(instance.Try2(JsonConvert.DeserializeObject<int[]>(File.ReadAllText(@"F:\Davis\EmptyTxt\intarr3.txt")), 405207));
+                //Console.WriteLine(instance.Try2(JsonConvert.DeserializeObject<int[]>(File.ReadAllText(@"F:\Davis\EmptyTxt\intarr3.txt")), 405207));
                 //Console.WriteLine(instance.Try2(JsonConvert.DeserializeObject<int[]>(File.ReadAllText(@"F:\Davis\EmptyTxt\intarr2.txt")), 574401));
                 //Console.WriteLine(instance.Try2(JsonConvert.DeserializeObject<int[]>(File.ReadAllText(@"F:\Davis\EmptyTxt\intarr.txt")), 713994));
 

@@ -6,6 +6,7 @@ using ConsoleTest.TestDemo;
 using ConsoleTest.TestDemo.Hard;
 using Newtonsoft.Json;
 using Questions.DailyChallenge._2020.November.Week1;
+using Questions.DailyChallenge._2020.November.Week2;
 using Questions.DailyChallenge._2020.October.Week2;
 using Questions.DailyChallenge._2020.October.Week4;
 using Questions.DailyChallenge._2020.October.Week5;
@@ -37,10 +38,20 @@ namespace ConsoleTest
             //runSimple = false;
 
             {
+                Maximum_Difference_Between_Node_and_Ancestor instance = new Maximum_Difference_Between_Node_and_Ancestor();
+                { // simple
+
+                    Console.WriteLine(instance.Simple("[8,3,10,1,6,null,14,null,null,4,7,13]"));
+                    Console.WriteLine(instance.Simple("[1,2,null,0,null,3]"));
+
+                }
+                { // speed&real
+                }
+            }
+            {
                 { // simple
                 }
                 { // speed&real
-                    CodeTimerResult codeTimerResult;
                 }
             }
 
