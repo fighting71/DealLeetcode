@@ -1,4 +1,6 @@
-﻿using Command.CommonStruct;
+﻿using Command.Attr;
+using Command.CommonStruct;
+using Command.Const;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,6 +14,7 @@ namespace Questions.DailyChallenge._2020.November.Week2
     /// @source : https://leetcode.com/explore/challenge/card/november-leetcoding-challenge/565/week-2-november-8th-november-14th/3525/
     /// @des : 
     /// </summary>
+    [Favorite(FlagConst.DFS)]
     public class Maximum_Difference_Between_Node_and_Ancestor
     {
         // The number of nodes in the tree is in the range [2, 5000].

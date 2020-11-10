@@ -30,6 +30,5 @@ namespace ConsoleTest.TestDemo.Challenge
             }
         }
 
-
     }
 }

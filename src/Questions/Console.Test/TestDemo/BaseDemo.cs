@@ -12,8 +12,9 @@ namespace ConsoleTest.TestDemo
     /// @source : 
     /// @des : 
     /// </summary>
-    public class BaseDemo
+    public abstract class BaseDemo
     {
+       
         protected CodeTimer codeTimer = new CodeTimer();
 
         public BaseDemo()
@@ -29,4 +30,11 @@ namespace ConsoleTest.TestDemo
         protected bool runSimple = true;
 
     }
+
+    public interface IWork
+    {
+        public void Run();
+
+    }
+
 }

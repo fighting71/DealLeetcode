@@ -176,76 +176,6 @@ owner:{codeTimerResult2.ToString()}
             Console.WriteLine("test over~");
         }
 
-        [Obsolete]
-        private static void TestMinDeletionSize(Random rand, CodeTimer codeTimer)
-        {
-            MinDeletionSize instance = new MinDeletionSize();
-
-            Console.WriteLine(instance.Solution(new[]
-            {
-                "bbazb", "dabca"
-            })); // 3
-
-            Console.WriteLine(instance.Solution(new[]
-            {
-                "dabca", "bbazb"
-            })); // 3
-
-            Console.WriteLine(instance.Solution(new[]
-            {
-                "edcba"
-            })); // 4
-
-            Console.WriteLine(instance.Solution(new[]
-            {
-                "ghi", "def", "abc"
-            })); // 0
-
-            Console.WriteLine(instance.Solution(new[]
-            {
-                "aaaabaa"
-            })); // 1
-
-            Console.WriteLine(instance.Solution(new[]
-            {
-                "abcacba", "cbbcacb", "acabcbb", "aabaabc"
-            })); // 4
-
-            Console.ReadKey();
-
-            int testCount = 100, strLen = 100, lowLen = 1, arrLen = 100, lowArrLen = 1;
-
-            for (int i = 0; i < testCount; i++)
-            {
-                var len = rand.Next(strLen) + lowLen;
-
-                var arr = new string[rand.Next(arrLen) + lowArrLen];
-
-                for (int j = 0; j < arr.Length; j++)
-                {
-                    StringBuilder builder = new StringBuilder();
-
-                    for (int k = 0; k < len; k++)
-                    {
-                        builder.Append((char)(rand.Next(26) + 'a'));
-                    }
-
-                    arr[j] = builder.ToString();
-                }
-
-                int res = len;
-
-                var codeTimerResult = codeTimer.Time(1, (() => { res = instance.Solution(arr); }));
-
-                ShowTools.ShowMulti(new Dictionary<string, object>()
-                {
-                    {nameof(res), res},
-                    {nameof(codeTimerResult), codeTimerResult},
-                    {nameof(arr), arr}
-                });
-            }
-        }
-
         private static void TestSmallestRange(CodeTimer codeTimer)
         {
             var instance = new SmallestRange();
@@ -459,8 +389,6 @@ owner:{codeTimerResult2.ToString()}
             }
         }
 
-
-        [Obsolete]
         private static void TestFindMinimumInRotatedSortedArrayII(CodeTimer codeTimer, Random random)
         {
             FindMinimumInRotatedSortedArrayII instance = new FindMinimumInRotatedSortedArrayII();

@@ -38,17 +38,6 @@ namespace ConsoleTest
             //runSimple = false;
 
             {
-                Maximum_Difference_Between_Node_and_Ancestor instance = new Maximum_Difference_Between_Node_and_Ancestor();
-                { // simple
-
-                    Console.WriteLine(instance.Simple("[8,3,10,1,6,null,14,null,null,4,7,13]"));
-                    Console.WriteLine(instance.Simple("[1,2,null,0,null,3]"));
-
-                }
-                { // speed&real
-                }
-            }
-            {
                 { // simple
                 }
                 { // speed&real
@@ -378,9 +367,10 @@ namespace ConsoleTest
 
         private static void TestDungeon_Game(Random random)
         {
-            Dungeon_Game instance = new Dungeon_Game();
-
-            instance.IsDebug = true;
+            Dungeon_Game instance = new Dungeon_Game
+            {
+                IsDebug = true
+            };
 
             //Console.WriteLine(instance.Solution(JsonConvert.DeserializeObject<int[][]>("[[2,-7,-8,-16,-19,-19,-12,-19,-20,-27,-21,-16,-8,-12],[-3,-9,0,-9,-1,-6,-3,-13,-23,-16,-22,-14,-20,-20],[-5,-3,-10,-12,-6,-10,-6,-15,-14,-5,3,0,-7,-16],[1,-1,4,-3,4,7,16,6,8,-2,-7,-9,-4,-3],[-8,0,11,9,5,4,21,28,21,20,19,20,28,21],[-5,8,3,9,0,5,15,30,22,13,9,20,28,25],[-15,17,9,3,6,12,5,39,31,30,20,26,24,34],[-20,12,15,10,15,20,17,42,49,53,43,35,32,33]]")));// 7
 
