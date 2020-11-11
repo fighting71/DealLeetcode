@@ -17,6 +17,122 @@ namespace Questions.Middle.Deal
     [Obsolete("crash...")]
     public class NthUglyNumber
     {
+
+        // 1 <= n, a, b, c <= 10^9
+        // 1 <= a* b * c <= 10^18
+
+        /*
+            des:
+                找出能够整除(a/b/c)的第n个数
+         */
+
+        public int Try(int n, int a, int b, int c)
+        {
+            if (a > b && a > c)
+                if (b > c) return Help(n, a, b, c);
+                else return Help(n, a, c, b);
+
+            if (b > a && b > c)
+                if (a > c) return Help(n, b, a, c);
+                else return Help(n, b, c, a);
+
+            if (a > b)
+                return Help(n, c, a, b);
+
+            return Help(n, c, b, a);
+        }
+
+
+        private int Help(int n, int max, int second,int min)
+        {
+            if (max % second == 0 || max % min == 0) return Help(n, second, min);
+            if (second % min == 0) return Help(n, max, min);
+
+            var count = max + min + second - 2;
+            int mulA = 0, mulB = 0,mulC = 0;
+            if (n > count)
+            {
+                int mul = n / count;
+                if ((n %= count) == 0)
+                    return mul * max * min * second;
+                mulA = mul * min * second;
+                mulB = mul * max * min;
+                mulC = mul * max * second;
+            }
+
+            while (n > 0)
+            {
+                while (true)
+                {
+                    var mulNum = (second * (++mulB) - min * mulC) / min;
+
+                    if (n <= mulNum) return min * (mulC + n);
+                    n -= mulNum;
+                    mulC += mulNum;
+                    if (--n == 0) return second * (mulB + 1);
+                }
+
+            }
+
+            return default;
+        }
+
+        private int Help(int n, int max, int min)
+        {
+            if (max % min == 0) return min * n;
+
+            var count = max + min - 1;
+            int mulA = 0, mulB = 0;
+            if(n > count)
+            {
+
+                int mul = n / count;
+                if ((n %= count) == 0)
+                {
+                    return mul * max * min;
+                }
+                mulA = mul * min;
+                mulB = mul * max;
+            }
+
+            while (n > 0)
+            {
+                var mulNum = (max * (++mulA) - min * mulB) / min;
+
+                if (n <= mulNum) return min * (mulB + n);
+                n -= mulNum;
+                mulB += mulNum;
+
+                if (--n == 0) return max * mulA;
+            }
+
+            return default;
+
+        }
+
+        public int Try(int n, int a, int b) => a > b ? Help(n, a, b) : Help(n, b, a);
+
+        // time limit
+        public int Simple(int n, int a, int b, int c)
+        {
+
+            int count = 0, res = 0;
+
+            while (count != n)
+            {
+                res++;
+                if (res % a == 0 || res % b == 0 || res % c == 0)
+                    //if (res % a == 0 || res % b == 0 )
+                {
+                    count++;
+                    //Console.WriteLine(res);
+                }
+            }
+
+            return res;
+
+        }
+
         private class NumItem
         {
             public NumItem(int num, int add)

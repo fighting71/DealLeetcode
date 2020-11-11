@@ -38,6 +38,41 @@ namespace ConsoleTest
             //runSimple = false;
 
             {
+                Valid_Square instance = new Valid_Square();
+                { // simple
+                    Console.WriteLine(instance.OtherSolution(new[] { 0, 0 },new[] { 5,0},new[] { 5,4 },new[] { 0, 4 }));
+                    //Console.WriteLine(instance.OtherSolution(new[] { 0, 0 },new[] { 1, 1 },new[] { 1, 0 },new[] { 0, 1 }));
+                }
+                { // speed&real
+                }
+            }
+            {
+                //NthUglyNumber instance = new NthUglyNumber();
+                //{ // simple
+
+                //    for (int i = 0; i < 10; i++)
+                //    {
+                //        Console.WriteLine(instance.Try(i + 1, 2, 3));
+                //    }
+
+                //    var argArr = new[]
+                //    {
+                //        (100, 2, 3, 5), //4
+                //        //(20, 2, 3, 4),// 6
+                //        //(1000000000, 2, 217983653, 336916467),
+                //    };
+
+                //    foreach (var item in argArr)
+                //    {
+                //        //ShowTools.Show(instance.Simple(item.Item1, item.Item2, item.Item3, item.Item4));
+                //    }
+
+                //}
+                //{ // speed&real
+                //}
+            }
+
+            {
                 { // simple
                 }
                 { // speed&real

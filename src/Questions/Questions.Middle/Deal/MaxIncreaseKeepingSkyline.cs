@@ -61,7 +61,7 @@ namespace Questions.Middle.Deal
             return sum;
         }
 
-        [Obsolete("don't understand")]
+        // don't understand
         public int Try(int[][] grid)
         {
             int sum = 0;

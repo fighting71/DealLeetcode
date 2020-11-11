@@ -786,14 +786,6 @@ owner:{codeTimerResult2.ToString()}
             }
         }
 
-        private static void TestFindSubstring()
-        {
-            FindSubstring instance = new FindSubstring();
-
-            //Console.WriteLine(JsonConvert.SerializeObject(instance.Simple("barfoothefoobarman", new[] { "foo", "bar" })));
-            Console.WriteLine(JsonConvert.SerializeObject(instance.Simple2("barfoothefoobarman", new[] { "foo", "bar" })));
-        }
-
         private static void TestReverseKGroup()
         {
             ReverseKGroup instance = new ReverseKGroup();

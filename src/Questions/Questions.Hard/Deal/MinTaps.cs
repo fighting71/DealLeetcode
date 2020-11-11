@@ -103,7 +103,7 @@ namespace Questions.Hard.Deal
             return res == n + 2 ? -1 : res;
         }
 
-        [Obsolete]
+        // bug
         public int Try2(int n, int[] ranges)
         {
             return Helper(-1, -1, n, ranges, 0, 0);
