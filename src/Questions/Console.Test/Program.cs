@@ -37,39 +37,17 @@ namespace ConsoleTest
             bool runSimple = true;
             //runSimple = false;
 
+            //new TestCount_of_Range_SumDemo().Run();
+
             {
-                Valid_Square instance = new Valid_Square();
+                Populating_Next_Right_Pointers_in_Each_Node instance = new Populating_Next_Right_Pointers_in_Each_Node();
                 { // simple
-                    Console.WriteLine(instance.OtherSolution(new[] { 0, 0 },new[] { 5,0},new[] { 5,4 },new[] { 0, 4 }));
-                    //Console.WriteLine(instance.OtherSolution(new[] { 0, 0 },new[] { 1, 1 },new[] { 1, 0 },new[] { 0, 1 }));
+
+                    TreeNode res = instance.Simple("[1,2,3,4,5,6,7]");
+                    Console.WriteLine(res);
                 }
                 { // speed&real
                 }
-            }
-            {
-                //NthUglyNumber instance = new NthUglyNumber();
-                //{ // simple
-
-                //    for (int i = 0; i < 10; i++)
-                //    {
-                //        Console.WriteLine(instance.Try(i + 1, 2, 3));
-                //    }
-
-                //    var argArr = new[]
-                //    {
-                //        (100, 2, 3, 5), //4
-                //        //(20, 2, 3, 4),// 6
-                //        //(1000000000, 2, 217983653, 336916467),
-                //    };
-
-                //    foreach (var item in argArr)
-                //    {
-                //        //ShowTools.Show(instance.Simple(item.Item1, item.Item2, item.Item3, item.Item4));
-                //    }
-
-                //}
-                //{ // speed&real
-                //}
             }
 
             {
@@ -193,76 +171,6 @@ namespace ConsoleTest
 
             }
         }
-
-        private static void TestBurst_Balloons(CodeTimer codeTimer, Random random, bool runSimple)
-        {
-            { // simple
-
-                var caseArr = new[]
-                {
-                    new[] { 35,16,83,87,84,59,48,41,20,54}, // 1849648  bug.
-                    //new[] { 3, 1, 5, 8 }, // 167
-                    //new[] { 3, 1, 5, 8, 1, 5 },// 350
-                    //new[] { 3, 1, 8, 5, 1, 5 }, // 389
-                    //new[] { 3, 1, 2, 5, 8 },
-                    //new[] { 3, 2, 1, 5, 8 },
-                };
-
-                foreach (var item in caseArr)
-                {
-                    if (!runSimple) break;
-                    int real = new Burst_Balloons().Try(item);
-
-                    Console.WriteLine("real:" + real);
-
-                    int res = new Burst_Balloons().Try2(item);
-
-                    Console.WriteLine(res);
-
-                }
-            }
-
-            { // speed&real
-                CodeTimerResult codeTimerResult;
-
-                for (int i = 0; i < 100; i++)
-                {
-                    if (runSimple) break;
-                    var list = new List<int>();
-
-                    for (int j = 0; j < 100; j++)
-                    {
-                        list.Add(random.Next(101));
-                    }
-
-                    var arr = list.ToArray();
-
-                    int res = 0, real = res;
-
-                    Console.WriteLine($@"
-({arr.Length})
-{JsonConvert.SerializeObject(arr)}
-");
-
-                    codeTimerResult = codeTimer.Time(1, () =>
-                    {
-                        res = new Burst_Balloons().Try2(arr);
-                    });
-
-                    Console.WriteLine(codeTimerResult);
-
-                    //real = new Burst_Balloons().Simple(arr);
-
-                    //if (res != real) throw bugEx;
-
-                    ShowTools.ShowHr();
-
-                }
-
-            }
-
-        }
-
 
         private static void TestRemove_Invalid_Parentheses()
         {

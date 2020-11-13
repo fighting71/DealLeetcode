@@ -19,6 +19,61 @@ namespace Questions.Hard.Deal
     public class Burst_Balloons
     {
 
+        public int OtherSolution(int[] iNums)
+        {
+
+            int[] nums = new int[iNums.Length + 2];
+            int n = 1;
+            foreach (int x in iNums) if (x > 0) nums[n++] = x;
+            nums[0] = nums[n++] = 1;
+
+
+            int[][] dp = new int[n][];
+
+            for (int i = 0; i < n; i++)
+            {
+                dp[i] = new int[n];
+            }
+
+            for (int k = 2; k < n; ++k)
+            {
+                for (int left = 0; left < n - k; ++left)
+                {
+                    int right = left + k;
+                    for (int i = left + 1; i < right; ++i)
+                    {
+                        dp[left][right] = Math.Max(dp[left][right],
+                        nums[left] * nums[i] * nums[right]
+                        + dp[left][i] + dp[i][right]);
+                    }
+                }
+            }
+
+            return dp[0][n - 1];
+        }
+        public int DpSolution(int[] nums)
+        {
+            var len = nums.Length;
+
+            var dp = new int[len][];
+            for (int i = 0; i < len; i++)
+            {
+                dp[i] = new int[len];
+
+                for (int j = 0; j < len -i + 1; j++)
+                {
+                    int right = j + i - 1;
+                    for (int k = j; k < right; k++)
+                    {
+                        dp[j][k] = Math.Max(dp[j][k], nums[j] * nums[k] * nums[right + 1] + dp[j][k] + dp[k][right]);
+                    }
+                }
+
+            }
+            return dp[0][len - 1];
+
+        }
+
         /**
          * You may imagine nums[-1] = nums[n] = 1. They are not real therefore you can not burst them.
 0 ≤ n ≤ 500, 0 ≤ nums[i] ≤ 100

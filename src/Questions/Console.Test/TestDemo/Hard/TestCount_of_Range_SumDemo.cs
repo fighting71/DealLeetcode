@@ -16,12 +16,50 @@ namespace ConsoleTest.TestDemo.Hard
     public class TestCount_of_Range_SumDemo : BaseDemo
     {
 
+        int[] GetArr(int len)
+        {
+            var arr = new int[len];
+
+            for (int i = 0; i < len; i++)
+            {
+                arr[i] = random.Next(int.MinValue, int.MaxValue);
+            }
+            return arr;
+        }
+
         public void Run()
         {
+            //for (int i = 0; i < 3; i++)
+            {
+                //var arr = GetArr(random.Next(10_000));
+                var arr = GetArr(10_000);
+                var instance = new Count_of_Range_Sum();
+                int min = random.Next(int.MinValue, int.MaxValue);
+                int max = random.Next(int.MinValue, int.MaxValue);
+                int res = 0, real = 0;
+                CodeTimerResult codeTimerResult1 = codeTimer.Time(1, () =>
+                {
+                    real = instance.Simple(arr, min, max);
+                });
+
+                CodeTimerResult codeTimerResult2 = codeTimer.Time(1, () =>
+                {
+                    res = instance.Solution(arr, min, max);
+                });
+
+                ShowTools.ShowMulti(new Dictionary<string, object>
+                {
+                    {nameof(codeTimerResult1),codeTimerResult1 },
+                    {nameof(codeTimerResult2),codeTimerResult2 },
+                    {nameof(real),real },
+                });
+
+            }
+            return;
             if (runSimple)
             { // simple
-                int res = new Count_of_Range_Sum().Optimize(new[] { 0, 0, 5, 5, 5, 6, 0, 8, 0, 1 }, 4, 12);
-                Console.WriteLine(res);
+                //int res = new Count_of_Range_Sum().Optimize(new[] { 0, 0, 5, 5, 5, 6, 0, 8, 0, 1 }, 4, 12);
+                //Console.WriteLine(res);
             }
             else
             { // speed&real

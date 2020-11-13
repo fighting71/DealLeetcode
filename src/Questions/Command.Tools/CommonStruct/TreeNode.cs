@@ -14,6 +14,7 @@ namespace Command.CommonStruct
         public int val;
         public TreeNode left;
         public TreeNode right;
+        public TreeNode next { get; set; }
 
         public TreeNode(int val, TreeNode left, TreeNode right)
         {

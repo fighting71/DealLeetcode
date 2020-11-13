@@ -40,6 +40,7 @@ namespace Questions.DailyChallenge._2020.November.Week2
             //数组排序 最长的是对角线
             Array.Sort(len);
             //相邻两边相等,对角线相等的四边形是正方形;
+            //if (len[0] == len[1] && len[4] == len[5] && len[4] > len[1]) // 菱形◆◇
             if (len[0] == len[1] && len[2] == len[3] && len[0] == len[2] && len[4] == len[5] && len[4] > len[1])
             {
                 return true;

@@ -16,6 +16,7 @@ namespace Questions.Hard.Deal
     public class Count_of_Range_Sum
     {
 
+        // 0 <= nums.length <= 10^4
 
         public int Optimize(int[] nums, int lower, int upper)
         {
@@ -59,6 +60,14 @@ namespace Questions.Hard.Deal
 
         }
 
+        public int Solution(int[] nums, int lower, int upper)
+        {
+            int len = nums.Length, res = 0;
+            // OPUF*(@*#(F
+            return res;
+        }
+
+        // 能过，但太慢了.
         public int Simple(int[] nums, int lower, int upper)
         {
 
