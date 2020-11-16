@@ -13,8 +13,7 @@ namespace Questions.Hard.Deal
     /// </summary>
     public class SwimInWater
     {
-        // bug
-        [Obsolete("解决了左右点，但未考虑到上下点|_|")]
+        // bug 解决了左右点，但未考虑到上下点|_|
         public int Solution(int[][] grid, bool showDp = false)
         {
             if (grid == null) return 0;

@@ -405,7 +405,7 @@ namespace Questions.Hard.Deal
 
         }
 
-        [Obsolete("烂大街版...")]
+        // 烂大街版...
         public class Check {
 
             //untime: 2336 ms, faster than 7.81% of C# online submissions for Palindrome Partitioning II.
@@ -461,7 +461,7 @@ namespace Questions.Hard.Deal
 
         }
 
-        [Obsolete("time limit")]
+        // time limit
         public class Try2
         {
             public int Solution(string str)
@@ -510,8 +510,8 @@ namespace Questions.Hard.Deal
                 return min;
             }
         }
-
-        [Obsolete("time limit")]
+        
+        // time limit
         public class Try1
         {
             public int Solution(string str)

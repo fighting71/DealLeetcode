@@ -7,6 +7,7 @@ using ConsoleTest.TestDemo.Hard;
 using Newtonsoft.Json;
 using Questions.DailyChallenge._2020.November.Week1;
 using Questions.DailyChallenge._2020.November.Week2;
+using Questions.DailyChallenge._2020.November.Week3;
 using Questions.DailyChallenge._2020.October.Week2;
 using Questions.DailyChallenge._2020.October.Week4;
 using Questions.DailyChallenge._2020.October.Week5;
@@ -40,13 +41,45 @@ namespace ConsoleTest
             //new TestCount_of_Range_SumDemo().Run();
 
             {
-                Populating_Next_Right_Pointers_in_Each_Node instance = new Populating_Next_Right_Pointers_in_Each_Node();
+                JumpII instance = new JumpII();
                 { // simple
 
-                    TreeNode res = instance.Simple("[1,2,3,4,5,6,7]");
-                    Console.WriteLine(res);
+                    var argArr = new[]
+                    {
+                        JsonConvert.DeserializeObject<int[]>("[2, 3, 1, 1, 4]"),// 2
+                        JsonConvert.DeserializeObject<int[]>("[2, 3, 0, 1, 4]"),// 2
+                        JsonConvert.DeserializeObject<int[]>("[9, 4, 6, 7, 1, 4, 9, 0, 1, 9, 9, 9, 5, 0, 7, 7, 9, 2, 4, 6, 6, 7, 6, 3, 6, 1, 8, 5, 4, 3, 3, 3, 7, 1, 0, 8, 6, 1, 0, 7, 1, 1, 9, 6, 1, 6, 6, 3, 1, 2, 1, 7, 0, 8, 0, 6, 1, 9, 1, 6, 4, 5, 9, 1, 8, 0, 1, 4]"),// 11
+                    };
+
+                    foreach (var item in argArr)
+                    {
+                        ShowTools.Show(instance.Optimize(item));
+                    }
+
                 }
+                for (int j = 0; j < 10; j++)
                 { // speed&real
+                    //break;
+                    var arr = new int[3 * 10_000];
+
+                    for (int i = 0; i < arr.Length; i++)
+                    {
+                        arr[i] = random.Next(100_000);
+                    }
+
+                    int res = 0;
+
+                    CodeTimerResult codeTimerResult = codeTimer.Time(1, () =>
+                    {
+                        res = instance.Optimize(arr);
+                    });
+
+                    ShowTools.ShowMulti(new Dictionary<string, object>() {
+                        {nameof(arr),arr },
+                        {nameof(res),res },
+                        {nameof(codeTimerResult),codeTimerResult },
+                    });
+
                 }
             }
 

@@ -127,7 +127,7 @@ namespace Questions.Hard.Deal
 
         // 题目有点坑 no two queens attack each other. 表示在上下对角线不会出现两个皇后...
         // 无考虑对角线 maybe
-        [Obsolete("不符题意")]
+        // bug: 不符题意
         private void Helper(int i, int n, bool[] exists, int num)
         {
             if (num == 0)

@@ -131,7 +131,7 @@ namespace Questions.Hard.Deal
             return max;
         }
 
-        [Obsolete("[[0,0],[94911151,94911150],[94911152,94911151]] 斜率相同 却不在同一直线上？")]
+        // [[0,0],[94911151,94911150],[94911152,94911151]] 斜率相同 却不在同一直线上？
         // https://zh.numberempire.com/graphingcalculator.php?functions=0.9999999894638303*x&xmin=94911151&xmax=94911152&ymin=94911150&ymax=94911153&var=x
         // 经绘制确实在同一直线，题有问题？
         // 经验证，是double精确度不够...
@@ -335,7 +335,7 @@ namespace Questions.Hard.Deal
             //return dic.Values.Max();
         }
 
-        [Obsolete("同一条线难以解决(斜率不固定，即任意两点都可连成一线，考虑信息量过大Tv)...")]
+        // bug: 同一条线难以解决(斜率不固定，即任意两点都可连成一线，考虑信息量过大Tv)...
         public int Simple(int[][] points)
         {
 
