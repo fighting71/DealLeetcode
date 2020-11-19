@@ -41,51 +41,21 @@ namespace ConsoleTest
             //new TestCount_of_Range_SumDemo().Run();
 
             {
-                JumpII instance = new JumpII();
+                Best_Time_to_Buy_and_Sell_Stock_with_Transaction_Fee instance = new Best_Time_to_Buy_and_Sell_Stock_with_Transaction_Fee();
+                if (runSimple)
                 { // simple
-
-                    var argArr = new[]
-                    {
-                        JsonConvert.DeserializeObject<int[]>("[2, 3, 1, 1, 4]"),// 2
-                        JsonConvert.DeserializeObject<int[]>("[2, 3, 0, 1, 4]"),// 2
-                        JsonConvert.DeserializeObject<int[]>("[9, 4, 6, 7, 1, 4, 9, 0, 1, 9, 9, 9, 5, 0, 7, 7, 9, 2, 4, 6, 6, 7, 6, 3, 6, 1, 8, 5, 4, 3, 3, 3, 7, 1, 0, 8, 6, 1, 0, 7, 1, 1, 9, 6, 1, 6, 6, 3, 1, 2, 1, 7, 0, 8, 0, 6, 1, 9, 1, 6, 4, 5, 9, 1, 8, 0, 1, 4]"),// 11
-                    };
-
-                    foreach (var item in argArr)
-                    {
-                        ShowTools.Show(instance.Optimize(item));
-                    }
-
+                    Console.WriteLine(instance.MaxProfit(new[] { 1, 3, 2, 8, 4, 9 }, 2));
                 }
-                for (int j = 0; j < 10; j++)
+                else
                 { // speed&real
-                    //break;
-                    var arr = new int[3 * 10_000];
-
-                    for (int i = 0; i < arr.Length; i++)
-                    {
-                        arr[i] = random.Next(100_000);
-                    }
-
-                    int res = 0;
-
-                    CodeTimerResult codeTimerResult = codeTimer.Time(1, () =>
-                    {
-                        res = instance.Optimize(arr);
-                    });
-
-                    ShowTools.ShowMulti(new Dictionary<string, object>() {
-                        {nameof(arr),arr },
-                        {nameof(res),res },
-                        {nameof(codeTimerResult),codeTimerResult },
-                    });
-
                 }
             }
 
             {
+                if (runSimple)
                 { // simple
                 }
+                else
                 { // speed&real
                 }
             }
@@ -124,7 +94,6 @@ namespace ConsoleTest
 
             }
             { // speed&real
-                CodeTimerResult codeTimerResult;
             }
         }
 
@@ -138,9 +107,6 @@ namespace ConsoleTest
 
             }
             { // speed&real
-                CodeTimerResult codeTimerResult;
-
-
 
             }
         }
@@ -263,7 +229,7 @@ namespace ConsoleTest
 
         private static void TestBasic_Calculator()
         {
-            Basic_Calculator instance = new Basic_Calculator();
+            //Basic_Calculator instance = new Basic_Calculator();
 
             //Console.WriteLine(instance.Solution("1 + 1")); // 2
             //Console.WriteLine(instance.Solution(" 2-1 + 2 "));// 3
