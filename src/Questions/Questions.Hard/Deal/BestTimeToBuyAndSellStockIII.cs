@@ -14,6 +14,59 @@ namespace Questions.Hard.Deal
     public class BestTimeToBuyAndSellStockIII
     {
 
+
+        public int Clear(int[] prices)
+        {
+            int len = prices.Length;
+            var price = -prices[0];
+            int dp_1_0 = 0, dp_1_1 = price;
+            int dp_2_0 = 0, dp_2_1 = price;
+
+            var dp = new int[len][][];
+
+            for (int i = 1; i < len; i++)
+            {
+                price = prices[i];
+
+                dp_1_0 = Math.Max(dp_1_0, dp_1_1 + price);
+                dp_1_1 = Math.Max(dp_1_1, -price);
+                dp_2_0 = Math.Max(dp_2_0, dp_2_1 + price);
+                dp_2_1 = Math.Max(dp_2_1, dp_1_0 - price);
+            }
+
+            return dp_2_0;
+        }
+
+        public int Solution2(int[] prices)
+        {
+            int len = prices.Length;
+
+            var dp = new int[len][][];
+
+            for (int i = 0; i < len; i++)
+            {
+                dp[i] = new int[3][];
+                if (i == 0)
+                {
+                    dp[i][0] = new int[] { 0, 0 };
+                    dp[i][1] = new int[] { 0, -prices[i] };
+                    dp[i][2] = new int[] { 0, -prices[i] };// *** 此处不能用0....   
+                }
+                else
+                {
+                    dp[i][0] = new int[2];
+                    for (int j = 2; j >= 1; j--)
+                    {
+                        var arr = new int[2];
+                        arr[0] = Math.Max(dp[i - 1][j][0], dp[i - 1][j][1] + prices[i]);
+                        arr[1] = Math.Max(dp[i - 1][j][1], dp[i - 1][j-1][0] - prices[i]);
+                        dp[i][j] = arr;
+                    }
+                }
+            }
+            return dp[len - 1][2][0];
+        }
+
         /// <summary>
         /// Runtime: 96 ms, faster than 78.83% of C# online submissions for Best Time to Buy and Sell Stock III.
         /// Memory Usage: 25.4 MB, less than 100.00% of C# online submissions for Best Time to Buy and Sell Stock III.

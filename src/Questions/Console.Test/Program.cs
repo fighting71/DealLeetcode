@@ -38,19 +38,6 @@ namespace ConsoleTest
             bool runSimple = true;
             //runSimple = false;
 
-            //new TestCount_of_Range_SumDemo().Run();
-
-            {
-                Best_Time_to_Buy_and_Sell_Stock_with_Transaction_Fee instance = new Best_Time_to_Buy_and_Sell_Stock_with_Transaction_Fee();
-                if (runSimple)
-                { // simple
-                    Console.WriteLine(instance.MaxProfit(new[] { 1, 3, 2, 8, 4, 9 }, 2));
-                }
-                else
-                { // speed&real
-                }
-            }
-
             {
                 if (runSimple)
                 { // simple

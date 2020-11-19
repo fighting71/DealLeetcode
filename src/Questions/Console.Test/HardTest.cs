@@ -502,20 +502,21 @@ codeTimerResult2:{codeTimerResult2}
             }
         }
 
-        private static void TestBestTimeToBuyAndSellStockIII(CodeTimer codeTimer, Random random)
+        public static void TestBestTimeToBuyAndSellStockIII(CodeTimer codeTimer, Random random)
         {
             BestTimeToBuyAndSellStockIII instance = new BestTimeToBuyAndSellStockIII();
 
-            Console.WriteLine(instance.Simple(new[] { 2, 1, 4 }));// 3
-            Console.WriteLine(instance.Simple(new[] { 3, 3, 5, 0, 0, 3, 1, 4 }));// 6
-            Console.WriteLine(instance.Simple(new[] { 1, 2, 3, 4, 5 }));// 4
+            //Console.WriteLine(instance.Solution2(new[] { 3, 3, 5, 0, 0, 3, 1, 4 }));// 3
+            //Console.WriteLine(instance.Simple(new[] { 2, 1, 4 }));// 3
+            //Console.WriteLine(instance.Simple(new[] { 3, 3, 5, 0, 0, 3, 1, 4 }));// 6
+            //Console.WriteLine(instance.Simple(new[] { 1, 2, 3, 4, 5 }));// 4
 
 
-            Console.WriteLine(instance.Solution(new[] { 2, 1, 4 }));// 3
-            Console.WriteLine(instance.Solution(new[] { 3, 3, 5, 0, 0, 3, 1, 4 }));// 6
-            Console.WriteLine(instance.Solution(new[] { 1, 2, 3, 4, 5 }));// 4
+            //Console.WriteLine(instance.Solution(new[] { 2, 1, 4 }));// 3
+            //Console.WriteLine(instance.Solution(new[] { 3, 3, 5, 0, 0, 3, 1, 4 }));// 6
+            //Console.WriteLine(instance.Solution(new[] { 1, 2, 3, 4, 5 }));// 4
 
-            for (int i = 0; i < 10000; i++)
+            for (int i = 0; i < 1000; i++)
             {
                 var len = random.Next(10) + 2;
                 var arr = new int[len];
@@ -527,9 +528,9 @@ codeTimerResult2:{codeTimerResult2}
 
                 int real = 0, res = 0;
 
-                CodeTimerResult codeTimerResult = codeTimer.Time(1, () => { real = instance.Simple(arr); });
+                CodeTimerResult codeTimerResult = codeTimer.Time(1, () => { real = instance.Solution(arr); });
 
-                CodeTimerResult codeTimerResult2 = codeTimer.Time(1, () => { res = instance.Solution(arr); });
+                CodeTimerResult codeTimerResult2 = codeTimer.Time(1, () => { res = instance.Clear(arr); });
 
                 ShowTools.ShowMulti(new Dictionary<string, object>() {
                     { nameof(res),res},
