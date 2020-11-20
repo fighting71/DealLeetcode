@@ -87,7 +87,7 @@ namespace Questions.Hard.Deal
             int res = 0, len = prices.Length;
 
             // left[0] 与 right[len-1] 是无效的 故还可节省~
-            int[] left = new int[len], right = new int[len];
+            int[] left = new int[len], right = new int[len]; // <-- 因为k为2，之前的思路就把prices拆两半，然后看在哪天合起来最大...
 
             int min = prices[0], max = prices[len - 1];
 

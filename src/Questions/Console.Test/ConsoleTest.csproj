@@ -12,6 +12,7 @@
     <ProjectReference Include="..\Questions.Easy\Questions.Easy.csproj" />
     <ProjectReference Include="..\Questions.Hard\Questions.Hard.csproj" />
     <ProjectReference Include="..\Questions.Middle\Questions.Middle.csproj" />
+    <ProjectReference Include="..\Questions.Series\Questions.Series.csproj" />
   </ItemGroup>
 
 </Project>

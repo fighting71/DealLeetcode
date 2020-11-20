@@ -14,6 +14,8 @@ using Questions.DailyChallenge._2020.October.Week5;
 using Questions.Easy.Algorithms;
 using Questions.Hard.Deal;
 using Questions.Middle.Deal;
+using Questions.Series.Dp.动态规划之正则表达;
+using Questions.Series.Dp.贪心算法之区间调度问题;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -37,6 +39,53 @@ namespace ConsoleTest
 
             bool runSimple = true;
             //runSimple = false;
+
+            //for (int j = 0; j < 10000; j++)
+            {
+
+                var instance = new Regular_Expression_Matching();
+
+                int len = 100, len2 = 50;
+
+                StringBuilder builder = new StringBuilder(),builder2 = new StringBuilder();
+
+                for (int i = 0; i < len; i++)
+                {
+                    builder.Append((char)(random.Next(26) + 'a'));
+                }
+                bool prevIsChar = false;
+                for (int i = 0; i < len2; i++)
+                {
+                    int rand = prevIsChar ? random.Next(28) : random.Next(27);
+                    prevIsChar = true;
+                    if (rand == 27)
+                    {
+                        prevIsChar = false;
+                        builder2.Append('*');
+                    }
+                    else if(rand == 26)
+                    {
+                        builder2.Append('.');
+                    }else
+                    {
+                        builder2.Append((char)(random.Next(26) + 'a'));
+                    }
+                }
+
+                string s = builder.ToString(), p = builder2.ToString();
+
+                s = "aab";
+                p = "c*a*b";
+
+                bool real = instance.OldSolution(s, p);
+                bool res = instance.Solution(s, p);
+
+                if (real)
+                {
+                    Console.WriteLine($"s:{s},p:{p}");
+                }
+                if (real != res) throw bugEx;
+            }
 
             {
                 if (runSimple)
