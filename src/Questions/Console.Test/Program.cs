@@ -8,12 +8,16 @@ using Newtonsoft.Json;
 using Questions.DailyChallenge._2020.November.Week1;
 using Questions.DailyChallenge._2020.November.Week2;
 using Questions.DailyChallenge._2020.November.Week3;
+using Questions.DailyChallenge._2020.November.Week4;
 using Questions.DailyChallenge._2020.October.Week2;
 using Questions.DailyChallenge._2020.October.Week4;
 using Questions.DailyChallenge._2020.October.Week5;
 using Questions.Easy.Algorithms;
 using Questions.Hard.Deal;
 using Questions.Middle.Deal;
+using Questions.Series.Common_Think;
+using Questions.Series.Common_Think.BinarySearch;
+using Questions.Series.Dp;
 using Questions.Series.Dp.动态规划之正则表达;
 using Questions.Series.Dp.贪心算法之区间调度问题;
 using System;
@@ -39,6 +43,36 @@ namespace ConsoleTest
 
             bool runSimple = true;
             //runSimple = false;
+
+            {
+                House_Robber_III instance = new House_Robber_III();
+                if (runSimple)
+                { // simple
+                    var argArr = new[]
+                    {
+                        "[3,2,3,null,3,null,1]",// 7
+                        LargeTree.Tree,
+                        "[3,4,5,1,3,null,1]", // 9
+                    };
+
+                    foreach (var arg in argArr)
+                    {
+                        TreeNode root = arg;
+                        ShowTools.Show(instance.Optimize2(root));
+                        ShowTools.Show(instance.Optimize(root));
+                    }
+                }
+                else
+                for (int i = 0; i < 3; i++)
+                { // speed&real
+
+                    CodeTimerResult codeTimerResult = codeTimer.Time(1, () => { instance.Optimize(LargeTree.Tree); });
+                    CodeTimerResult codeTimerResult2 = codeTimer.Time(1, () => { instance.Optimize2(LargeTree.Tree); });
+                    Console.WriteLine(codeTimerResult);
+                    Console.WriteLine(codeTimerResult2);
+
+                }
+            }
 
             {
                 if (runSimple)

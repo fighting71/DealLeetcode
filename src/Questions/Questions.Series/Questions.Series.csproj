@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Common-Think\" />
+    <ProjectReference Include="..\Command.Tools\Command.csproj" />
   </ItemGroup>
 
 </Project>
