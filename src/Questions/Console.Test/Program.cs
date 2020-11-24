@@ -45,32 +45,19 @@ namespace ConsoleTest
             //runSimple = false;
 
             {
-                House_Robber_III instance = new House_Robber_III();
+                Basic_Calculator_II instance = new Basic_Calculator_II();
                 if (runSimple)
                 { // simple
-                    var argArr = new[]
-                    {
-                        "[3,2,3,null,3,null,1]",// 7
-                        LargeTree.Tree,
-                        "[3,4,5,1,3,null,1]", // 9
-                    };
+                    var argArr = new[] { "3 + 2 * 2", "3/2", "3+5 / 2" };
 
-                    foreach (var arg in argArr)
+                    foreach (var item in argArr)
                     {
-                        TreeNode root = arg;
-                        ShowTools.Show(instance.Optimize2(root));
-                        ShowTools.Show(instance.Optimize(root));
+                        ShowTools.Show(instance.Calculate(item));
                     }
+
                 }
                 else
-                for (int i = 0; i < 3; i++)
                 { // speed&real
-
-                    CodeTimerResult codeTimerResult = codeTimer.Time(1, () => { instance.Optimize(LargeTree.Tree); });
-                    CodeTimerResult codeTimerResult2 = codeTimer.Time(1, () => { instance.Optimize2(LargeTree.Tree); });
-                    Console.WriteLine(codeTimerResult);
-                    Console.WriteLine(codeTimerResult2);
-
                 }
             }
 

@@ -16,6 +16,7 @@ namespace Questions.DailyChallenge._2020.November.Week4
     public class House_Robber_III
     {
         // todo : how save dp?
+        // 差不多.
         public int Optimize2(TreeNode root)
         {
 
