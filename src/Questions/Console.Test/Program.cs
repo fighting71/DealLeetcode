@@ -48,7 +48,13 @@ namespace ConsoleTest
                 Basic_Calculator_II instance = new Basic_Calculator_II();
                 if (runSimple)
                 { // simple
-                    var argArr = new[] { "3 + 2 * 2", "3/2", "3+5 / 2" };
+                    var argArr = new[] { 
+                        "3 + 2 * 2", 
+                        "3/2", 
+                        "3+5 / 2",
+                        $"0{int.MinValue}",
+                        "14/3*2"
+                    };
 
                     foreach (var item in argArr)
                     {
