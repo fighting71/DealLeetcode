@@ -13,8 +13,120 @@ namespace Questions.DailyChallenge._2020.November.Week4
     public class Basic_Calculator_II
     {
 
+        // 直接存变量没stack高效...
+        public int Clear(string s)
+        {
+            int num = 0;
+            int prev = 1, prev2 = 0;
+            bool isMul = true, isAdd = true;
+
+            int GetNumWithAllOpt(int num) => isAdd ? prev2 + GetNum(num) : prev2 - GetNum(num);
+            int GetNum(int num) => isMul ? num * prev : prev / num;
+
+            foreach (var c in s)
+            {
+                if (c == ' ') continue;
+                if (c >= '0' && c <= '9') num = num * 10 + c - '0';
+                else if (c == '+')
+                {
+                    prev2 = GetNumWithAllOpt(num);
+                    isAdd = true;
+                    isMul = true;
+                    prev = 1;
+                    num = 0;
+                }
+                else if (c == '-')
+                {
+                    prev2 = GetNumWithAllOpt(num);
+                    isAdd = false;
+                    isMul = true;
+                    prev = 1;
+                    num = 0;
+                }
+                else if (c == '*')
+                {
+                    prev = GetNum(num);
+                    isMul = true;
+                    num = 0;
+                }
+                else if (c == '/')
+                {
+                    prev = GetNum(num);
+                    isMul = false;
+                    num = 0;
+                }
+            }
+            return GetNumWithAllOpt(num);
+        }
+
+        // Your runtime beats 76.74 % of
+        public int Optimize(string s)
+        {
+            int num = 0;
+            int prev = 1,addPrev = 0;
+            bool isMul = true,isAdd = true;
+
+            int GetNumWithAllOpt(int num)
+            {
+                if (isMul)
+                    num *= prev;
+                else
+                    num = prev / num;
+                if (isAdd)
+                    num += addPrev;
+                else num = addPrev - num;
+                return num;
+            }
+            int GetNum(int num)
+            {
+                if (isMul)
+                    num *= prev;
+                else
+                    num = prev / num;
+                return num;
+            }
+
+            foreach (var c in s)
+            {
+                if (c == ' ') continue;
+                if (c >= '0' && c <= '9')
+                {
+                    num = num * 10 + c - '0';
+                }
+                else if (c == '+')
+                {
+                    addPrev = GetNumWithAllOpt(num);
+                    isAdd = true;
+                    isMul = true;
+                    prev = 1;
+                    num = 0;
+                }
+                else if (c == '-')
+                {
+                    addPrev = GetNumWithAllOpt(num);
+                    isAdd = false;
+                    isMul = true;
+                    prev = 1;
+                    num = 0;
+                }
+                else if (c == '*')
+                {
+                    prev = GetNum(num);
+                    isMul = true;
+                    num = 0;
+                }
+                else if (c == '/')
+                {
+                    prev = GetNum(num);
+                    isMul = false;
+                    num = 0;
+                }
+            }
+            return GetNumWithAllOpt(num);
+        }
+
         // Your runtime beats 89.66 % of csharp submissions
-        // ahaha 明天简化下~
+        // ahaha 
         public int Calculate(string s)
         {
             int num = 0;

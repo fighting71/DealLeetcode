@@ -45,26 +45,12 @@ namespace ConsoleTest
             //runSimple = false;
 
             {
-                Basic_Calculator_II instance = new Basic_Calculator_II();
-                if (runSimple)
-                { // simple
-                    var argArr = new[] { 
-                        "3 + 2 * 2", 
-                        "3/2", 
-                        "3+5 / 2",
-                        $"0{int.MinValue}",
-                        "14/3*2"
-                    };
 
-                    foreach (var item in argArr)
-                    {
-                        ShowTools.Show(instance.Calculate(item));
-                    }
-
-                }
-                else
-                { // speed&real
-                }
+                Super_Egg_Drop instance = new Super_Egg_Drop();
+                ShowTools.Show(instance.Level2(2, 9));// 4
+                ShowTools.Show(instance.Level2(3, 14)); // 4
+                ShowTools.Show(instance.Level2(2, 6));// 3
+            
             }
 
             {
