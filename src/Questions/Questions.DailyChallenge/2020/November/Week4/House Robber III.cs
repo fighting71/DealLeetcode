@@ -12,7 +12,6 @@ namespace Questions.DailyChallenge._2020.November.Week4
     /// @source : https://leetcode.com/explore/challenge/card/november-leetcoding-challenge/567/week-4-november-22nd-november-28th/3541/
     /// @des :  对于Tree的DP
     /// </summary>
-    [Optimize]
     public class House_Robber_III
     {
 

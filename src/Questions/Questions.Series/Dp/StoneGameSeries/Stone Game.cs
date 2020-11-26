@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Questions.Series.Dp
+namespace Questions.Series.Dp.Stone_Game
 {
     /// <summary>
     /// @auth : monster
