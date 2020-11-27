@@ -46,11 +46,24 @@ namespace ConsoleTest
             bool runSimple = true;
             //runSimple = false;
 
+            //{
+            //    Stone_Game_II instance = new Stone_Game_II();
+            //    ShowTools.Show(instance.Simple(new[] { 8, 6, 9, 1, 7, 9 }));// 25
+            //    ShowTools.Show(instance.Simple(new[] { 1, 2, 3, 4, 5, 100 }));// 104
+            //    ShowTools.Show(instance.Simple(new[] { 2, 7, 9, 4, 4 }));// 10
+            //}
+
             {
-                Stone_Game_II instance = new Stone_Game_II();
-                ShowTools.Show(instance.Simple(new[] { 8, 6, 9, 1, 7, 9 }));// 25
-                ShowTools.Show(instance.Simple(new[] { 1, 2, 3, 4, 5, 100 }));// 104
-                ShowTools.Show(instance.Simple(new[] { 2, 7, 9, 4, 4 }));// 10
+                Partition_Equal_Subset_Sum instance = new Partition_Equal_Subset_Sum();
+                if (runSimple)
+                { // simple
+
+                    ShowTools.Show(instance.Simple(new[] { 1, 5, 11, 5 }));
+
+                }
+                else
+                { // speed&real
+                }
             }
 
             {

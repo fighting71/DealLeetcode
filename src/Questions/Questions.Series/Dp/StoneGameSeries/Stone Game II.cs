@@ -100,9 +100,25 @@ namespace Questions.Series.Dp.Stone_Game
             return _dic[key] = new[] { res, i + resI, resM };
         }
 
+        // todo: 自下而上
         public int DpSolution(int[] piles)
         {
+            int len = piles.Length;
+            int[][][] dp = new int[len][][];
+            for (int i = 0; i < len; i++)
+            {
+                dp[i] = new int[len - i][];
+            }
 
+            for (int i = len - 1; i >= 0; i++)
+            {
+                //for (int m = len; m < length; m++)
+                //{
+
+                //}
+            }
+
+            return default;
         }
 
     }
