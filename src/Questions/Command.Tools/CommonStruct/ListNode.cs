@@ -10,7 +10,7 @@ namespace Command.CommonStruct
     /// @source : 
     /// @des : 
     /// </summary>
-    public class ListNode
+    public class ListNode 
     {
 
         public int val;
@@ -33,11 +33,46 @@ namespace Command.CommonStruct
 
             if (arr.Length == 0) return null;
 
-            ListNode root = new ListNode(arr[0]),node = root;
+            ListNode root = new ListNode(arr[0]), node = root;
 
             for (int i = 1; i < arr.Length; i++)
             {
                 node = (node.next = new ListNode(arr[i]));
+            }
+
+            return root;
+        }
+
+    }
+
+    public class ListNode<T>
+    {
+
+        public T val;
+
+        public ListNode<T> next;
+
+        public ListNode(T x) { val = x; }
+
+        public ListNode(T val, ListNode<T> next) : this(val)
+        {
+            this.next = next;
+        }
+
+        public static implicit operator ListNode<T>(T num)
+        {
+            return new ListNode<T>(num);
+        }
+        public static implicit operator ListNode<T>(T[] arr)
+        {
+
+            if (arr.Length == 0) return null;
+
+            ListNode<T> root = new ListNode<T>(arr[0]), node = root;
+
+            for (int i = 1; i < arr.Length; i++)
+            {
+                node = (node.next = new ListNode<T>(arr[i]));
             }
 
             return root;

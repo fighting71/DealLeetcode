@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Command.Attr;
+using Command.Const;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 
@@ -11,9 +14,10 @@ namespace Questions.DailyChallenge._2020.November.Week5
     /// @source : https://leetcode.com/explore/challenge/card/november-leetcoding-challenge/568/week-5-november-29th-november-30th/3549/
     /// @des : 
     /// </summary>
+    [Optimize(FlagConst.Complex)]
     public class The_Skyline_Problem
     {
-        public IList<IList<int>> GetSkyline(int[][] buildings)
+        private IList<IList<int>> Thinking(int[][] buildings)
         {
             IList<IList<int>> res = new List<IList<int>>();
 
@@ -21,7 +25,7 @@ namespace Questions.DailyChallenge._2020.November.Week5
 
             int[] curr = buildings[0];
 
-            res.Add(new[] {curr[0],curr[2] });
+            res.Add(new[] { curr[0], curr[2] });
 
             for (int i = 1; i < buildings.Length; i++)
             {
@@ -64,10 +68,234 @@ namespace Questions.DailyChallenge._2020.November.Week5
 
         }
 
+        #region optimize
+
+        public IList<IList<int>> Optimize(int[][] buildings)
+        {
+            IList<IList<int>> res = new List<IList<int>>();
+            if (buildings.Length == 0) return res;
+
+            LinkedList<int[]> link = new LinkedList<int[]>(buildings);
+
+            int[] curr = link.First();
+            link.RemoveFirst();
+            while (link.Count > 0)
+            {
+                int[] next = link.First();
+                link.RemoveFirst();
+                curr = Help(curr, next, res, link);
+            }
+            return res;
+        }
+
+        private int[] Help(int[] curr, int[] next, IList<IList<int>> res, LinkedList<int[]> list)
+        {
+            if (next[0] == curr[1])
+            {
+                if (next[2] != curr[2])
+                    AddItem(new[] { next[0], next[2] }, res);
+                curr = next;
+            }
+            if (next[0] > curr[1])
+            {
+                AddItem(new[] { curr[1], 0 }, res);
+                curr = next;
+                AddItem(new[] { curr[0], curr[2] }, res);
+            }
+            else if (next[1] == curr[1])
+            {
+                if (next[2] <= curr[2]) return curr;
+                curr = next;
+                AddItem(new[] { curr[0], curr[2] }, res);
+            }
+            else if (next[1] < curr[1])
+            {
+                if (next[2] <= curr[2]) return curr;
+                curr[0] = next[1];
+                AddOne(list, curr);
+                curr = next;
+                AddItem(new[] { curr[0], curr[2] }, res);
+            }
+            else
+            {
+                if (next[2] > curr[2])
+                {
+                    AddItem(new[] { next[0], next[2] }, res);
+                    curr = next;
+                }
+                else if (next[2] == curr[2])
+                {
+                    curr[1] = Math.Max(curr[1], next[1]);
+                }
+                else
+                {
+                    AddOne(list, new[] { curr[1], next[1], next[2] });
+                }
+            }
+            return curr;
+        }
+
+        private void AddOne(LinkedList<int[]> list, int[] item)
+        {
+            if (list.Count == 0 || list.Last.Value[0] < item[0]) list.AddLast(item);
+            var node = list.First;
+            while (node != null && node.Value[0] <= item[0])
+            {
+                node = node.Next;
+            }
+            list.AddBefore(node, item);
+        }
+
+        #endregion
+
+        #region try3
+
+        private class SortList : IComparer<int[]>
+        {
+            public int Compare([AllowNull] int[] x, [AllowNull] int[] y)
+            {
+                return x[0] - y[0];
+            }
+        }
+
+        // Your runtime beats 17.44 % of csharp submissions. 
+        // 泪了泪了...
+        public IList<IList<int>> Try3(int[][] buildings)
+        {
+            IList<IList<int>> res = new List<IList<int>>();
+            if (buildings.Length == 0) return res;
+            int[] curr = buildings[0], next;
+            res.Add(new[] { curr[0], curr[2] });
+
+            List<int[]> list = buildings.ToList();
+
+            while (list.Count > 0)
+            {
+                next = list[0];
+                list.RemoveAt(0);
+                curr = Help(curr, next, res, list);
+            }
+            res.Add(new[] { curr[1], 0 });
+            return res;
+        }
+
+        private int[] Help(int[] curr, int[] next, IList<IList<int>> res, List<int[]> list)
+        {
+            if (next[0] == curr[1])
+            {
+                if (next[2] != curr[2])
+                    AddItem(new[] { next[0], next[2] }, res);
+                curr = next;
+            }
+            if (next[0] > curr[1])
+            {
+                AddItem(new[] { curr[1], 0 }, res);
+                curr = next;
+                AddItem(new[] { curr[0], curr[2] }, res);
+            }
+            else if (next[1] == curr[1])
+            {
+                if (next[2] <= curr[2]) return curr;
+                curr = next;
+                AddItem(new[] { curr[0], curr[2] }, res);
+            }
+            else if (next[1] < curr[1])
+            {
+                if (next[2] <= curr[2]) return curr;
+                curr[0] = next[1];
+                AddOne(list, curr);
+                curr = next;
+                AddItem(new[] { curr[0], curr[2] }, res);
+            }
+            else
+            {
+                if (next[2] > curr[2])
+                {
+                    AddItem(new[] { next[0], next[2] }, res);
+                    curr = next;
+                }
+                else if (next[2] == curr[2])
+                {
+                    curr[1] = Math.Max(curr[1], next[1]);
+                }
+                else
+                {
+                    AddOne(list, new[] { curr[1], next[1], next[2] });
+                }
+            }
+            return curr;
+        }
+
+        private void AddOne(List<int[]> list, int[] item)
+        {
+            int i = 0;
+            while (i < list.Count)
+            {
+                if (list[i][0] > item[0])
+                {
+                    list.Insert(i, item);
+                    return;
+                }
+                i++;
+            }
+            list.Add(item);
+        }
+
+        // bug : SortedSet 可能存在值不同但key相同 导致添加不进去...?
+        private int[] Help(int[] curr, int[] next, IList<IList<int>> res, SortedSet<int[]> set)
+        {
+            if (next[0] == curr[1])
+            {
+                if (next[2] != curr[2])
+                    AddItem(new[] { next[0], next[2] }, res);
+                curr = next;
+            }
+            if (next[0] > curr[1])
+            {
+                AddItem(new[] { curr[1], 0 }, res);
+                curr = next;
+                AddItem(new[] { curr[0], curr[2] }, res);
+            }
+            else if (next[1] == curr[1])
+            {
+                if (next[2] <= curr[2]) return curr;
+                curr = next;
+                AddItem(new[] { curr[0], curr[2] }, res);
+            }
+            else if (next[1] < curr[1])
+            {
+                if (next[2] <= curr[2]) return curr;
+                curr[0] = next[1];
+                set.Add(curr);
+                curr = next;
+                AddItem(new[] { curr[0], curr[2] }, res);
+            }
+            else
+            {
+                if (next[2] > curr[2])
+                {
+                    AddItem(new[] { next[0], next[2] }, res);
+                    curr = next;
+                }
+                else if (next[2] == curr[2])
+                {
+                    curr[1] = Math.Max(curr[1], next[1]);
+                }
+                else
+                {
+                    set.Add(new[] { curr[1], next[1], next[2] });
+                }
+            }
+            return curr;
+        }
+        #endregion
+
+        #region bug solution
+
         public IList<IList<int>> Try(int[][] buildings)
         {
             IList<IList<int>> res = new List<IList<int>>();
-            int[] curr = buildings[0],next;
+            int[] curr = buildings[0], next;
             res.Add(new[] { curr[0], curr[2] });
 
             Stack<int[]> stack = new Stack<int[]>();
@@ -99,7 +327,42 @@ namespace Questions.DailyChallenge._2020.November.Week5
             res.Add(new[] { curr[1], 0 });
             return res;
         }
+        public IList<IList<int>> Try2(int[][] buildings)
+        {
+            IList<IList<int>> res = new List<IList<int>>();
+            if (buildings.Length == 0) return res;
+            int[] curr = buildings[0], next;
+            res.Add(new[] { curr[0], curr[2] });
 
+            Queue<int[]> queue = new Queue<int[]>();
+
+            for (int index = 1; index < buildings.Length; index++)
+            {
+                next = buildings[index];
+                if (queue.Count > 0)
+                {
+                    int[] cache = queue.Peek();
+
+                    if (cache[0] < next[0] || (cache[0] == next[0] && cache[1] < next[1]))
+                    {
+                        queue.Dequeue();
+                        next = cache;
+                        index--;
+                    }
+                }
+
+                curr = Help(curr, next, res, queue);
+            }
+
+            while (queue.Count > 0)
+            {
+                next = queue.Dequeue();
+                curr = Help(curr, next, res, queue);
+            }
+
+            res.Add(new[] { curr[1], 0 });
+            return res;
+        }
 
         /*  
          *                            |￣￣￣￣￣￣￣|
@@ -111,7 +374,7 @@ namespace Questions.DailyChallenge._2020.November.Week5
          * 
          */
 
-        private int[] BugHelp(int[] curr,int[] next, IList<IList<int>> res, Stack<int[]> stack)
+        private int[] BugHelp(int[] curr, int[] next, IList<IList<int>> res, Stack<int[]> stack)
         {
             if (next[0] >= curr[1])
             {
@@ -161,25 +424,26 @@ namespace Questions.DailyChallenge._2020.November.Week5
          * 
          */
 
+        // stack特性导致-》不连续
         private int[] Help(int[] curr, int[] next, IList<IList<int>> res, Stack<int[]> stack)
         {
-            if(next[0] == curr[1])
+            if (next[0] == curr[1])
             {
                 curr = next;
-                res.Add(new[] { curr[0], curr[2] });
+                AddItem(new[] { curr[0], curr[2] }, res);
             }
             if (next[0] > curr[1])
             {
-                res.Add(new[] { curr[1], 0 });
+                AddItem(new[] { curr[1], 0 }, res);
                 curr = next;
-                res.Add(new[] { curr[0], curr[2] });
+                AddItem(new[] { curr[0], curr[2] }, res);
             }
             else if (next[1] == curr[1])
             {
                 if (next[2] <= curr[2]) return curr;
                 if (next[0] == curr[0]) res.RemoveAt(res.Count - 1);
                 curr = next;
-                res.Add(new[] { curr[0], curr[2] });
+                AddItem(new[] { curr[0], curr[2] }, res);
             }
             else if (next[1] < curr[1])
             {
@@ -188,15 +452,19 @@ namespace Questions.DailyChallenge._2020.November.Week5
                 curr[0] = next[1];
                 stack.Push(curr);
                 curr = next;
-                res.Add(new[] { curr[0], curr[2] });
+                AddItem(new[] { curr[0], curr[2] }, res);
             }
             else
             {
                 if (next[2] > curr[2])
                 {
                     if (next[0] == curr[0]) res.RemoveAt(res.Count - 1);
-                    res.Add(new[] { next[0], next[2] });
+                    AddItem(new[] { next[0], next[2] }, res);
                     curr = next;
+                }
+                else if (next[2] == curr[2])
+                {
+                    curr[1] = Math.Max(curr[1], next[1]);
                 }
                 else
                 {
@@ -205,14 +473,82 @@ namespace Questions.DailyChallenge._2020.November.Week5
             }
             return curr;
         }
-
-        public class Test
+        // queue依然存在不连续
+        private int[] Help(int[] curr, int[] next, IList<IList<int>> res, Queue<int[]> queue)
         {
+            if (next[0] == curr[1])
+            {
+                if (next[2] != curr[2])
+                    AddItem(new[] { next[0], next[2] }, res);
+                curr = next;
+            }
+            if (next[0] > curr[1])
+            {
+                AddItem(new[] { curr[1], 0 }, res);
+                curr = next;
+                AddItem(new[] { curr[0], curr[2] }, res);
+            }
+            else if (next[1] == curr[1])
+            {
+                if (next[2] <= curr[2]) return curr;
+                curr = next;
+                AddItem(new[] { curr[0], curr[2] }, res);
+            }
+            else if (next[1] < curr[1])
+            {
+                if (next[2] <= curr[2]) return curr;
+                curr[0] = next[1];
+                queue.Enqueue(curr);
+                curr = next;
+                AddItem(new[] { curr[0], curr[2] }, res);
+            }
+            else
+            {
+                if (next[2] > curr[2])
+                {
+                    AddItem(new[] { next[0], next[2] }, res);
+                    curr = next;
+                }
+                else if (next[2] == curr[2])
+                {
+                    curr[1] = Math.Max(curr[1], next[1]);
+                }
+                else
+                {
+                    queue.Enqueue(new[] { curr[1], next[1], next[2] });
+                }
+            }
+            return curr;
+        }
+        #endregion
 
-            public void ShowImage(int[][] buildings)
+        #region help method
+
+        private void AddItem(int[] item, IList<IList<int>> res)
+        {
+            while (res.Count > 0)
+            {
+                var last = res[res.Count - 1];
+
+                if (last[0] > item[0]) res.RemoveAt(res.Count - 1);
+                else if (last[0] == item[0])
+                {
+                    last[1] = Math.Max(last[1], item[1]);
+                    return;
+                }
+                else break;
+            }
+            res.Add(item);
+        }
+
+        #endregion
+
+        public class Tools
+        {
+            // 无效方法... pass~
+            public void Check(int[][] buildings, IList<IList<int>> res)
             {
                 int right = buildings.Max(u => u[1]), height = buildings.Max(u => u[2]);
-
 
                 bool[][] points = new bool[right + 1][];
                 for (int i = 0; i < right + 1; i++)
@@ -226,9 +562,67 @@ namespace Questions.DailyChallenge._2020.November.Week5
                     {
                         points[i][item[2]] = true;
                     }
+                    for (int i = 0; i < item[2]; i++)
+                    {
+                        points[item[0]][i] = points[item[1]][i] = true;
+                    }
+                }
+                int index = 0;
+                int prev = 0;
+                for (int i = 0; i <= right; i++)
+                {
+                    i = 3;
+                    if (!points[i][0]) continue;
+
+                    for (int j = height; j > 0; j--)
+                    {
+                        if(points[i][j])
+                        {
+                            if (prev != j)
+                            {
+                                if(!(res[index][0] == i && res[index][1] == j))
+                                {
+                                    Console.WriteLine("exists bug");
+                                    ShowImage(points, height, right);
+                                    return;
+                                }
+                                prev = j;
+                                index++;
+                            }
+                            break;
+                        }
+                    }
                 }
 
+            }
+            public void ShowImage(int[][] buildings)
+            {
+                int right = buildings.Max(u => u[1]), height = buildings.Max(u => u[2]);
 
+                bool[][] points = new bool[right + 1][];
+                for (int i = 0; i < right + 1; i++)
+                {
+                    points[i] = new bool[height + 1];
+                }
+
+                foreach (var item in buildings)
+                {
+                    for (int i = item[0]; i <= item[1]; i++)
+                    {
+                        points[i][item[2]] = true;
+                    }
+                    for (int i = 0; i < item[2]; i++)
+                    {
+                        points[item[0]][i] = points[item[1]][i] = true;
+                    }
+                }
+
+                ShowImage(points, height, right);
+
+            }
+
+            private void ShowImage(bool[][] points,int height,int right)
+            {
                 for (int i = height; i >= 0; i--)
                 {
                     Console.Write($"i:{AutoFill(i)}---");
@@ -246,12 +640,11 @@ namespace Questions.DailyChallenge._2020.November.Week5
                     Console.Write(AutoFill(x));
                 }
                 Console.WriteLine();
-
             }
 
             private string AutoFill(int num)
             {
-                if (num > 10) return " " + num;
+                if (num >= 10) return " " + num;
                 else return " " + num + " ";
             }
 
