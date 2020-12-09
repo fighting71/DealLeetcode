@@ -50,11 +50,13 @@ namespace ConsoleTest
             //runSimple = false;
 
             {
-                Increasing_Order_Search_Tree instance = new Increasing_Order_Search_Tree();
+                Spiral_Matrix_II instance = new Spiral_Matrix_II();
                 if (runSimple)
                 { // simple
-                    TreeNode treeNode = instance.Simple("[5,3,6,2,4,null,8,1,null,null,null,7,9]");
-                    Console.WriteLine(treeNode);
+                    for (int i = 2; i < 21; i++)
+                    {
+                        ShowTools.Show(instance.GenerateMatrix(i));
+                    }
                 }
                 else
                 { // speed&real
@@ -64,13 +66,11 @@ namespace ConsoleTest
             {
                 if (runSimple)
                 { // simple
-
                 }
                 else
                 { // speed&real
                 }
             }
-
             //{
             //    Stone_Game_II instance = new Stone_Game_II();
             //    ShowTools.Show(instance.Simple(new[] { 8, 6, 9, 1, 7, 9 }));// 25
