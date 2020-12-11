@@ -41,7 +41,7 @@ nums: len - {len}
 
                 codeTimerResult = codeTimer.Time(1, () =>
                 {
-                    res = new Majority_Element_II().Optimize(nums.ToArray());
+                    res = new Majority_Element_II().Optimize2(nums.ToArray());
                 });
 
                 Console.WriteLine($"[optimize]:{codeTimerResult}");

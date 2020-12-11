@@ -41,5 +41,12 @@ namespace Command.Const
         /// 效率优化
         /// </summary>
         public const string Efficient = nameof(Efficient);
+        /// <summary>
+        /// 多数表决算法
+        /// 参考：https://gregable.com/2013/10/majority-vote-algorithm-find-majority.html
+        ///      http://www.cs.rug.nl/~wim/pub/whh348.pdf
+        /// 其他参考:(Fewer comparisons) [在N票中占多数] http://www.cs.yale.edu/publications/techreports/tr252.pdf
+        /// </summary>
+        public const string BoyerMoore = nameof(BoyerMoore);
     }
 }

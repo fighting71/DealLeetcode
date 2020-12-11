@@ -153,4 +153,56 @@ namespace Command.CommonStruct
         }
 
     }
+
+
+    public class TreeNode<T>
+    {
+        public T val;
+        public TreeNode<T> left;
+        public TreeNode<T> right;
+        public TreeNode<T> next { get; set; }
+        public TreeNode<T> parent { get; set; }
+
+        public TreeNode(T val, TreeNode<T> left, TreeNode<T> right)
+        {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+
+        public TreeNode(T x)
+        {
+            val = x;
+        }
+
+        public static implicit operator TreeNode<T>(T num)
+        {
+            return new TreeNode<T>(num);
+        }
+
+
+        public static implicit operator TreeNode<T>(T[] arr)
+        {
+            if (arr.Length == 0) return null;
+
+            TreeNode<T> root = arr[0];
+
+            Queue<TreeNode<T>> queue = new Queue<TreeNode<T>>();
+            queue.Enqueue(root);
+
+            for (int i = 1; i < arr.Length; i += 2)
+            {
+                var node = queue.Dequeue();
+                node.left = arr[i];
+                if (i + 1 != arr.Length)
+                    node.right = arr[i + 1];
+
+                if (node.left != null) queue.Enqueue(node.left);
+                if (node.right != null) queue.Enqueue(node.right);
+
+            }
+            return root;
+        }
+
+    }
 }

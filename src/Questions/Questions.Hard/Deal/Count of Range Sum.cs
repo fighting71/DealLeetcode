@@ -17,6 +17,14 @@ namespace Questions.Hard.Deal
     {
 
         // 0 <= nums.length <= 10^4
+        // sum[i] = nums[0] + nums[1] + ... nums[i]
+        // target: lower <= sum[i] - sum[j] <= upper
+        // sum[j] <= sum[i] - lower sum[j] >= sum[i] - upper
+
+        public int Optimize2(int[] nums, int lower, int upper)
+        {
+            return default;
+        }
 
         public int Optimize(int[] nums, int lower, int upper)
         {

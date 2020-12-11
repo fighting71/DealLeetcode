@@ -7,6 +7,7 @@ using ConsoleTest.TestDemo.Challenge;
 using ConsoleTest.TestDemo.Hard;
 using Newtonsoft.Json;
 using Questions.DailyChallenge._2020.December.Week1;
+using Questions.DailyChallenge._2020.December.Week2;
 using Questions.DailyChallenge._2020.November.Week1;
 using Questions.DailyChallenge._2020.November.Week2;
 using Questions.DailyChallenge._2020.November.Week3;
@@ -48,20 +49,6 @@ namespace ConsoleTest
 
             bool runSimple = true;
             //runSimple = false;
-
-            {
-                Spiral_Matrix_II instance = new Spiral_Matrix_II();
-                if (runSimple)
-                { // simple
-                    for (int i = 2; i < 21; i++)
-                    {
-                        ShowTools.Show(instance.GenerateMatrix(i));
-                    }
-                }
-                else
-                { // speed&real
-                }
-            }
 
             {
                 if (runSimple)
