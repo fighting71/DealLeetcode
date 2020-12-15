@@ -16,6 +16,20 @@ namespace Questions.Easy.Algorithms
     public class TwoSumII
     {
 
+        public int[] Optimize(int[] numbers, int target)
+        {
+            Dictionary<int, int> dic = new Dictionary<int, int>();
+
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                var num = numbers[i];
+                var diff = target - num;
+                if (dic.ContainsKey(diff)) return new[] { dic[diff] + 1, i + 1 };
+                if (!dic.ContainsKey(num))
+                    dic[num] = i;
+            }
+            return null;
+        }
         /// <summary>
         /// Runtime: 556 ms, faster than 5.20% of C# online submissions for Two Sum II - Input array is sorted.
         /// Memory Usage: 31.2 MB, less than 16.67% of C# online submissions for Two Sum II - Input array is sorted.

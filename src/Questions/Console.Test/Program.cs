@@ -46,10 +46,50 @@ namespace ConsoleTest
             Random random = new Random();
 
             Exception bugEx = new Exception("bug");
-
             bool runSimple = true;
             //runSimple = false;
+            {
+                Expression_Add_Operators instance = new Expression_Add_Operators();
+                if (runSimple)
+                { // simple
 
+                    var argArr = new[]
+                    {
+                        ("1234567890", 8),
+                        ("1111",-1),
+                        ("232", 8),
+                        ("2147483648", int.MinValue),
+                    };
+
+                    foreach (var item in argArr)
+                    {
+                        IList<string> res = instance.Try3(item.Item1, item.Item2);
+                        IList<string> real = instance.Try2(item.Item1, item.Item2);
+
+                        //ShowTools.Show(res);
+                        //ShowTools.Show(real);
+
+                        if (ShowTools.GetStr(res) != ShowTools.GetStr(real))
+                        {
+                            ShowTools.Show(res.Where(u => !real.Contains(u)));
+                            //ShowTools.Show(real.Where(u => !res.Contains(u)));
+                            throw bugEx;
+                        }
+
+                    }
+                }
+                else
+                { // speed&real
+                    //for (int i = 0; i < 10; i++)
+                    //{
+                    //    CodeTimerResult codeTimerResult = codeTimer.Time(1, () =>
+                    //    {
+                    //        instance.Try2("1234567890", 8);
+                    //    });
+                    //    Console.WriteLine(codeTimerResult);
+                    //}
+                }
+            }
             {
                 if (runSimple)
                 { // simple

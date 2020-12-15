@@ -46,7 +46,6 @@ namespace Command.CommonStruct.Tree
                 if(node.right == null)
                 {
                     node.right = new TreeNode<Node>(new Node { Val = num, IsRed = true }) { parent = node};
-
                     return;
                 }
                 InternalAdd(node.right, num);
