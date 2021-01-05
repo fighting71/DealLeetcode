@@ -48,5 +48,10 @@ namespace Command.Const
         /// 其他参考:(Fewer comparisons) [在N票中占多数] http://www.cs.yale.edu/publications/techreports/tr252.pdf
         /// </summary>
         public const string BoyerMoore = nameof(BoyerMoore);
+        /// <summary>
+        /// 充满技巧性
+        /// ~远在天边近在眼前~
+        /// </summary>
+        public const string Special = nameof(Special);
     }
 }

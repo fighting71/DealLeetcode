@@ -87,6 +87,19 @@ namespace Command.Tools
             Console.WriteLine("-------------ShowMulti E---------------------\n");
         }
 
+        public static void ShowMulti((string,object)[] dictionary)
+        {
+            Console.WriteLine("\n-------------ShowMulti S---------------------");
+
+            foreach (var item in dictionary)
+            {
+                if(!string.IsNullOrEmpty(item.Item1))
+                    Console.WriteLine($"{item.Item1} : ");
+                Console.WriteLine(GetStr(item.Item2));
+            }
+
+            Console.WriteLine("-------------ShowMulti E---------------------\n");
+        }
         public static void ShowMulti<T>(Dictionary<string, T> dictionary)
         {
             Console.WriteLine("-------------ShowMulti S---------------------");
@@ -120,6 +133,7 @@ namespace Command.Tools
 
         public static string GetStr(object data)
         {
+            if (data == null) return string.Empty;
             if (data is string)
                 return (string)data;
             if (data.GetType().IsValueType || data.GetType() == typeof(StringBuilder))

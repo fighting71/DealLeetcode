@@ -29,6 +29,7 @@ namespace Questions.Hard.Deal
 
         int _maxStackCount = 0;
         // Runtime: 416 ms, faster than 61.98%
+        // optimize direction : 避免stack复制. 将递归进行替换~
         private void Help(string str, int index, Stack<(long, Opt)> stack, long num, Opt[] opts)
         {
 

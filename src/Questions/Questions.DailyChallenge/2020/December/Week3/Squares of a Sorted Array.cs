@@ -23,7 +23,7 @@ namespace Questions.DailyChallenge._2020.December.Week3
             int len = nums.Length;
             int[] res = new int[len];
 
-            Stack<int> stack = new Stack<int>(); // nums已经排过序，只需在此处缓存<0的项，并借助先入后入特点保持顺序.
+            Stack<int> stack = new Stack<int>(); // nums已经排过序，只需在此处缓存<0的项，并借助先入后出特点保持顺序.
 
             int index = 0;
             foreach (var item in nums)
@@ -40,7 +40,7 @@ namespace Questions.DailyChallenge._2020.December.Week3
                 }
             }
 
-            while (stack.Count > 0)
+            while (stack.Count > 0) // 避免stack还有剩余
             {
                 int prev = stack.Pop();
                 res[index++] = prev * prev;
