@@ -1,5 +1,6 @@
 ﻿using Command.CommonStruct;
 using Command.CusStruct;
+using Command.Helper;
 using Command.Tools;
 using ConsoleTest.LargeData;
 using ConsoleTest.TestDemo;
@@ -41,6 +42,7 @@ namespace ConsoleTest
 {
     class Program
     {
+
         static void Main(string[] args)
         {
             CodeTimer codeTimer = new CodeTimer();
@@ -51,9 +53,28 @@ namespace ConsoleTest
 
             Exception bugEx = new Exception("bug");
             bool runSimple = true;
-            //runSimple = false;
-            { if (runSimple) { } else { } }
+            runSimple = false;
 
+            {
+                Arithmetic_Slices_II___Subsequence instance = new Arithmetic_Slices_II___Subsequence();
+
+                BaseLibrary.CommonTest(new[] {
+                    //new []{1,2,3},
+                    //new []{1,2,3,4},
+                    //new []{1,2,3,4,5},
+                    //new []{1,2,3,4,5,6},
+                    //new []{1,2,3,4,5,6,7},
+                    //new []{1,2,3,4,5,6,7,8},
+                    //new []{1,2,3,4,5,6,7,8,9},
+                    //new []{1,2,3,4,5,6,7,8,9,10},
+                    new []{1,2,3,4,4,5},
+                    new []{1,2,2,3,4,4,5},
+                    JsonConvert.DeserializeObject<int[]>("[18,2,0,0,12,8,17,15,4,14,1,18,18,12,5,10,15,13,1,6]"),// 24
+                }, instance.Try, () => CollectionHelper.GetArr(20, () => random.Next(20)).ToArray());
+
+            }
+
+            { if (runSimple) { } else { } }
 
             //{
             //    Stone_Game_II instance = new Stone_Game_II();
@@ -62,14 +83,12 @@ namespace ConsoleTest
             //    ShowTools.Show(instance.Simple(new[] { 2, 7, 9, 4, 4 }));// 10
             //}
 
-
-
-
             Console.WriteLine("Hello World!");
 
             Console.ReadKey(true);
 
         }
+
 
     }
 }

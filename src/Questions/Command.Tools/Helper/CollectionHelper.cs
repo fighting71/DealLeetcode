@@ -13,6 +13,15 @@ namespace Command.Helper
     public class CollectionHelper
     {
 
+        public static IEnumerable<T> GetArr<T>(int len, Func<T> getItemFunc)
+        {
+            for (int i = 0; i < len; i++)
+            {
+                yield return getItemFunc();
+            }
+            yield break;
+        }
+
         public static int GetMaxSortLen<T>(T[] arr, Func<T, T, bool> comparable)
         {
             var max = 0;

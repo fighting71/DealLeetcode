@@ -27,9 +27,9 @@ namespace Questions.Easy.Algorithms
             if (l1 == null) return l2;
             if (l2 == null) return l1;
 
-            ListNode res = null,item = res;
+            ListNode res = null, item = res;
 
-            bool flag = l1 != null, flag2 = l2 != null,flag3;
+            bool flag = l1 != null, flag2 = l2 != null, flag3;
 
             while (flag || flag2)
             {
@@ -38,7 +38,8 @@ namespace Questions.Easy.Algorithms
                 {
                     item.next = l2;
                     return res;
-                }else if (!flag2)
+                }
+                else if (!flag2)
                 {
                     item.next = l1;
                     return res;
@@ -46,7 +47,7 @@ namespace Questions.Easy.Algorithms
 
                 flag3 = l1.val <= l2.val;
 
-                if(res == null)
+                if (res == null)
                 {
                     if (flag3)
                     {
