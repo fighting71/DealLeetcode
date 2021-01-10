@@ -25,7 +25,7 @@ namespace Questions.Hard.Deal2
         // Runtime: 176 ms, faster than 100.00% of C# online submissions for Arithmetic Slices II - Subsequence.
         // Memory Usage: 29.1 MB, less than 100.00% of C# online submissions for Arithmetic Slices II - Subsequence.
         // 成就感一下子就刷刷上来了~
-        public int Try3(int[] arr)
+        public int EfficientSolution(int[] arr)
         {
             int len = arr.Length, res = 0;
 
@@ -89,8 +89,9 @@ namespace Questions.Hard.Deal2
             return res;
         }
 
-        #region 递归版
+        #region 递归版 
         /*
+         * 递归大法好，完美的规避了数字重复√
          * Explain:
          *  两个一组进行遍历，寻找下一位
          *  
