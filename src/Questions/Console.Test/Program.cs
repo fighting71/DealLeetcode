@@ -56,10 +56,14 @@ namespace ConsoleTest
             bool runSimple = true;
             runSimple = false;
 
-            checked
             {
-                var num = 1;
-                Console.WriteLine(int.MinValue - num);
+                Create_Sorted_Array_through_Instructions instance = new Create_Sorted_Array_through_Instructions();
+
+                BaseLibrary.CommonTest(new[] {
+                    JsonConvert.DeserializeObject<int[]>("[1,5,6,2]"), // 1
+                    JsonConvert.DeserializeObject<int[]>("[1,2,3,6,5,4]"), // 3
+                    JsonConvert.DeserializeObject<int[]>("[1,3,3,3,2,4,2,1,2]"), // 4
+                }, instance.Try, instance.Optimize, () => CollectionHelper.GetArr(1000_00, () => random.Next(1000_00) + 1).ToArray(), showArg: false);
             }
 
             { if (runSimple) { } else { } }

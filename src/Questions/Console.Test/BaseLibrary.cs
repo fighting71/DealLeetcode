@@ -87,12 +87,15 @@ namespace ConsoleTest
             {
 
                 TArg arg = generateArg();
-                TRes res = default;
+                TRes res = default,real = default;
 
                 CodeTimerResult codeTimerResult = CodeTimer.Time(1, () => { res = func(arg); });
+                CodeTimerResult checkCodeTimerResult = CodeTimer.Time(1, () => { res = checkFunc(arg); });
+
                 Dictionary<string, object> mul = new Dictionary<string, object>() {
                             {nameof(res),res },
                             {nameof(codeTimerResult),codeTimerResult },
+                            {nameof(checkCodeTimerResult),checkCodeTimerResult },
                         };
                 if (showArg) mul[nameof(arg)] = arg;
                 ShowTools.ShowMulti(mul);

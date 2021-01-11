@@ -14,7 +14,6 @@ namespace Questions.Hard.Deal2
     /// @des : 
     ///     返回数组A中等差子序列片的数量 (等差序列的长度>=3)
     ///     子序列： (P0, P1, ..., Pk) such that 0 ≤ P0 < P1 < ... < Pk < N.
-    ///     数组A是一个已排序的数组 from 小 to 大
     /// </summary>
     [Favorite(FlagConst.DP, FlagConst.Complex)]
     public class Arithmetic_Slices_II___Subsequence
