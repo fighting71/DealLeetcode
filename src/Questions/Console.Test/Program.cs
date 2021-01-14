@@ -56,17 +56,25 @@ namespace ConsoleTest
             bool runSimple = true;
             runSimple = false;
 
-            {
-                Create_Sorted_Array_through_Instructions instance = new Create_Sorted_Array_through_Instructions();
-
-                BaseLibrary.CommonTest(new[] {
-                    JsonConvert.DeserializeObject<int[]>("[1,5,6,2]"), // 1
-                    JsonConvert.DeserializeObject<int[]>("[1,2,3,6,5,4]"), // 3
-                    JsonConvert.DeserializeObject<int[]>("[1,3,3,3,2,4,2,1,2]"), // 4
-                }, instance.Try, instance.Optimize, () => CollectionHelper.GetArr(1000_00, () => random.Next(1000_00) + 1).ToArray(), showArg: false);
-            }
-
             { if (runSimple) { } else { } }
+
+            {
+                Minimum_Operations_to_Reduce_X_to_Zero instance = new Minimum_Operations_to_Reduce_X_to_Zero();
+
+                BaseLibrary.CommonTest(new[]
+                {
+                    (new[] { 3,2,20,1,1,3 },10),
+                    (new[] { 1, 1, 4, 2, 3 },5),
+                }, arg => instance.Try2(arg.Item1, arg.Item2), () =>
+                {
+
+                    int[] arr = CollectionHelper.GetArr(1000_00, () => random.Next(1000_0) + 1).ToArray();
+
+                    return (arr, random.Next(1000_000_000) + 1);
+
+                }, showArg: true);
+
+            }
 
             //{
             //    Stone_Game_II instance = new Stone_Game_II();
@@ -81,5 +89,15 @@ namespace ConsoleTest
 
         }
 
+        private static void TestCreate_Sorted_Array_through_Instructions(Random random)
+        {
+            Create_Sorted_Array_through_Instructions instance = new Create_Sorted_Array_through_Instructions();
+
+            BaseLibrary.CommonTest(new[] {
+                    JsonConvert.DeserializeObject<int[]>("[1,5,6,2]"), // 1
+                    JsonConvert.DeserializeObject<int[]>("[1,2,3,6,5,4]"), // 3
+                    JsonConvert.DeserializeObject<int[]>("[1,3,3,3,2,4,2,1,2]"), // 4
+                }, instance.Try, instance.Optimize, () => CollectionHelper.GetArr(1000_00, () => random.Next(1000_00) + 1).ToArray(), showArg: false);
+        }
     }
 }

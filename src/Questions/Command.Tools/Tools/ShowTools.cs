@@ -87,13 +87,13 @@ namespace Command.Tools
             Console.WriteLine("-------------ShowMulti E---------------------\n");
         }
 
-        public static void ShowMulti((string,object)[] dictionary)
+        public static void ShowMulti((string, object)[] dictionary)
         {
             Console.WriteLine("\n-------------ShowMulti S---------------------");
 
             foreach (var item in dictionary)
             {
-                if(!string.IsNullOrEmpty(item.Item1))
+                if (!string.IsNullOrEmpty(item.Item1))
                     Console.WriteLine($"{item.Item1} : ");
                 Console.WriteLine(GetStr(item.Item2));
             }
@@ -124,23 +124,19 @@ namespace Command.Tools
             System.Console.WriteLine("----------------E------------------");
         }
 
-        public static string GetStr<T>(T data)
-        {
-            if (typeof(T).IsValueType)
-                return data.ToString();
-            return JsonConvert.SerializeObject(data);
-        }
-
         public static string GetStr(object data)
         {
             if (data == null) return string.Empty;
             if (data is string)
                 return (string)data;
-            if (data.GetType().IsValueType || data.GetType() == typeof(StringBuilder))
-                return data.ToString();
+            Type type = data.GetType();
+            if (!type.Name.StartsWith(nameof(ValueTuple)))
+            {
+                if (type.IsValueType || type == typeof(StringBuilder))
+                    return data.ToString();
+            }
             return JsonConvert.SerializeObject(data);
         }
-
 
         public static void ShowHr()
         {

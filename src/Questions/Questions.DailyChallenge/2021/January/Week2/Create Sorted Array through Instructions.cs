@@ -11,6 +11,7 @@ namespace Questions.DailyChallenge._2021.January.Week2
     /// @source : https://leetcode.com/explore/challenge/card/january-leetcoding-challenge-2021/580/week-2-january-8th-january-14th/3599/
     /// @des : 
     /// </summary>
+    [Obsolete("time limit")]
     public class Create_Sorted_Array_through_Instructions
     {
 
