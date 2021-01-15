@@ -22,6 +22,7 @@ using Questions.DailyChallenge._2020.October.Week4;
 using Questions.DailyChallenge._2020.October.Week5;
 using Questions.DailyChallenge._2021.January;
 using Questions.DailyChallenge._2021.January.Week2;
+using Questions.DailyChallenge._2021.January.Week3;
 using Questions.Easy.Algorithms;
 using Questions.Hard.Deal;
 using Questions.Hard.Deal2;
@@ -57,24 +58,6 @@ namespace ConsoleTest
             runSimple = false;
 
             { if (runSimple) { } else { } }
-
-            {
-                Minimum_Operations_to_Reduce_X_to_Zero instance = new Minimum_Operations_to_Reduce_X_to_Zero();
-
-                BaseLibrary.CommonTest(new[]
-                {
-                    (new[] { 3,2,20,1,1,3 },10),
-                    (new[] { 1, 1, 4, 2, 3 },5),
-                }, arg => instance.Try2(arg.Item1, arg.Item2), () =>
-                {
-
-                    int[] arr = CollectionHelper.GetArr(1000_00, () => random.Next(1000_0) + 1).ToArray();
-
-                    return (arr, random.Next(1000_000_000) + 1);
-
-                }, showArg: true);
-
-            }
 
             //{
             //    Stone_Game_II instance = new Stone_Game_II();

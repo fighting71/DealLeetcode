@@ -28,6 +28,7 @@ namespace Questions.DailyChallenge._2021.January.Week2
             int len = nums.Length;
             int res = int.MaxValue;
 
+            // 使用dic 保存 {num,从最左边开始使用了多少个数字}
             Dictionary<int, int> dic = new Dictionary<int, int>();
 
             int num = 0;
@@ -45,7 +46,7 @@ namespace Questions.DailyChallenge._2021.January.Week2
             }
 
             num = 0;
-            for (int j = len - 1; j >i; j--)
+            for (int j = len - 1; j > i ; j--) // && j < res
             {
                 num += nums[j];
                 if (num > x) break;
