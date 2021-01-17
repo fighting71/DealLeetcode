@@ -39,6 +39,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace ConsoleTest
 {
@@ -57,6 +58,27 @@ namespace ConsoleTest
             bool runSimple = true;
             runSimple = false;
 
+            {
+                Count_Sorted_Vowel_Strings instance = new Count_Sorted_Vowel_Strings();
+
+                for (int i = 50; i <= 50; i++)
+                {
+                    int res = instance.Optimize2(i);
+                    int real = instance.Optimize(i);
+
+                    Console.WriteLine($"i:{i},res:{res},real:{real}");
+
+                    if (res != real) throw bugEx;
+
+                }
+
+                BaseLibrary.CommonTest(new[] {
+                    1,
+                    2,
+                    33
+                }, instance.Simple);
+            }
+
             { if (runSimple) { } else { } }
 
             //{
@@ -69,6 +91,28 @@ namespace ConsoleTest
             Console.WriteLine("Hello World!");
 
             Console.ReadKey(true);
+
+        }
+
+        private static void TestCount_The_Repetitions(Random random)
+        {
+            Count_The_Repetitions instance = new Count_The_Repetitions();
+
+            BaseLibrary.CommonTest(new[] {
+                    ("bacaba",3,"abacab",1), // 2
+                    ("aaa",3,"aa",1), // 4
+                    ("acb",4,"ab",2),// 2
+                }, arg => instance.Simple(arg.Item1, arg.Item2, arg.Item3, arg.Item4)
+            , () =>
+            {
+                return (
+                    string.Concat(CollectionHelper.GetArr(10, () => (char)(random.Next(10) + 'a'))),
+                    (random.Next(10) + 1) * 3,
+
+                    string.Concat(CollectionHelper.GetArr(5, () => (char)(random.Next(10) + 'a'))),
+                    (random.Next(5) + 1) * 2
+                );
+            });
 
         }
 

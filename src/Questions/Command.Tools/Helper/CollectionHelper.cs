@@ -21,6 +21,14 @@ namespace Command.Helper
             }
             yield break;
         }
+        public static IEnumerable<T> GetArr<T>(int len, Func<int, T> getItemFunc)
+        {
+            for (int i = 0; i < len; i++)
+            {
+                yield return getItemFunc(i);
+            }
+            yield break;
+        }
 
         public static int GetMaxSortLen<T>(T[] arr, Func<T, T, bool> comparable)
         {
