@@ -33,6 +33,28 @@ namespace Command.CommonStruct
             return new TreeNode(num);
         }
 
+        public static implicit operator TreeNode(int[] arr)
+        {
+            if (arr.Length == 0) return null;
+
+            TreeNode root = arr[0];
+
+            Queue<TreeNode> queue = new Queue<TreeNode>();
+            queue.Enqueue(root);
+
+            for (int i = 1; i < arr.Length; i += 2)
+            {
+                var node = queue.Dequeue();
+                node.left = arr[i];
+                if (i + 1 != arr.Length)
+                    node.right = arr[i + 1];
+
+                if (node.left != null) queue.Enqueue(node.left);
+                if (node.right != null) queue.Enqueue(node.right);
+
+            }
+            return root;
+        }
 
         public static implicit operator TreeNode(int?[] arr)
         {

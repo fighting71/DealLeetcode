@@ -1,4 +1,5 @@
-﻿using Command.Tools;
+﻿using Command.Attr;
+using Command.Tools;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,6 +12,7 @@ namespace Questions.DailyChallenge._2021.January.Week3
     /// @source : https://leetcode.com/explore/challenge/card/january-leetcoding-challenge-2021/581/week-3-january-15th-january-21st/3607/
     /// @des : 
     /// </summary>
+    [Optimize]
     public class Count_Sorted_Vowel_Strings
     {
 
@@ -33,27 +35,27 @@ namespace Questions.DailyChallenge._2021.January.Week3
 
             return res;
 
-            int[] cache = new[] { 1, 2, 3, 4, 5 };
+            //int[] cache = new[] { 1, 2, 3, 4, 5 };
 
-            if(n > 1)
-            {
-                //cache[1] += n - 1;
-                cache[1] = 2 + n - 1;
-                // 1 + 2 + 3 + 4 + 5 + 6 + 7 = (n-1)*n/2
-                //cache[2] += (n - 1) * n / 2;
-                cache[2] = (n - 1) * n / 2;
+            //if(n > 1)
+            //{
+            //    //cache[1] += n - 1;
+            //    cache[1] = 2 + n - 1;
+            //    // 1 + 2 + 3 + 4 + 5 + 6 + 7 = (n-1)*n/2
+            //    //cache[2] += (n - 1) * n / 2;
+            //    cache[2] = (n - 1) * n / 2;
 
-                // error.
-                // 4 + 6 + 10 + 15 + 21 + 28 = 4 + 6*(n-1) + 4+ 5 + 6 = 4 + 6(n-1) + (n-2)*(n-1)/2  
-                // 4 + 6*(n-1) + (n+2)(n+1)/2 - 6
-                //cache[3] += cache[3] * n; 
-                cache[3] = 4 + 6 * (n - 1) + (n + 2) * (n + 1) / 2 - 6;
+            //    // error.
+            //    // 4 + 6 + 10 + 15 + 21 + 28 = 4 + 6*(n-1) + 4+ 5 + 6 = 4 + 6(n-1) + (n-2)*(n-1)/2  
+            //    // 4 + 6*(n-1) + (n+2)(n+1)/2 - 6
+            //    //cache[3] += cache[3] * n; 
+            //    cache[3] = 4 + 6 * (n - 1) + (n + 2) * (n + 1) / 2 - 6;
 
-                // 5 + 10 + 20 + 35 + 56 + 84
-                cache[3] += cache[3] * n;
-            }
+            //    // 5 + 10 + 20 + 35 + 56 + 84
+            //    cache[3] += cache[3] * n;
+            //}
 
-            return cache[4];
+            //return cache[4];
 
         }
 

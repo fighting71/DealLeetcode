@@ -23,6 +23,7 @@ using Questions.DailyChallenge._2020.October.Week5;
 using Questions.DailyChallenge._2021.January;
 using Questions.DailyChallenge._2021.January.Week2;
 using Questions.DailyChallenge._2021.January.Week3;
+using Questions.DailyChallenge._2021.January.Week4;
 using Questions.Easy.Algorithms;
 using Questions.Hard.Deal;
 using Questions.Hard.Deal2;
@@ -57,27 +58,6 @@ namespace ConsoleTest
             Exception bugEx = new Exception("bug");
             bool runSimple = true;
             runSimple = false;
-
-            {
-                Count_Sorted_Vowel_Strings instance = new Count_Sorted_Vowel_Strings();
-
-                for (int i = 50; i <= 50; i++)
-                {
-                    int res = instance.Optimize2(i);
-                    int real = instance.Optimize(i);
-
-                    Console.WriteLine($"i:{i},res:{res},real:{real}");
-
-                    if (res != real) throw bugEx;
-
-                }
-
-                BaseLibrary.CommonTest(new[] {
-                    1,
-                    2,
-                    33
-                }, instance.Simple);
-            }
 
             { if (runSimple) { } else { } }
 
