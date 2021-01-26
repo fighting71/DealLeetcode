@@ -57,5 +57,15 @@ namespace Command.Helper
 
         }
 
+        public static string GetString(int len,Func<char> getItemFunc)
+        {
+            StringBuilder builder = new StringBuilder();
+            for (int j = 0; j < len; j++)
+            {
+                builder.Append(getItemFunc());
+            }
+            return builder.ToString();
+        }
+
     }
 }

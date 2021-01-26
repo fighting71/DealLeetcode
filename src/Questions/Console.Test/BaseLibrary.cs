@@ -24,7 +24,7 @@ namespace ConsoleTest
         {
             foreach (var arg in argArr)
             {
-                Console.WriteLine(func(arg));
+                ShowTools.Show(func(arg));
             }
 
             Console.WriteLine("是否运行测速?n-否");
@@ -55,7 +55,7 @@ namespace ConsoleTest
             }
         }
 
-        public static void CommonTest<TArg, TRes>(TArg[] argArr, Func<TArg, TRes> func, Func<TArg, TRes> checkFunc, Func<TArg> generateArg = null, int codeTimeCount = 10, bool showArg = true)
+        public static void CommonTest<TArg, TRes>(TArg[] argArr, Func<TArg, TRes> func, Func<TArg, TRes> checkFunc, Func<TArg> generateArg = null, int codeTimeCount = 10, bool showArg = true,bool showRes = true)
         {
             foreach (var arg in argArr)
             {
@@ -93,10 +93,10 @@ namespace ConsoleTest
                 CodeTimerResult checkCodeTimerResult = CodeTimer.Time(1, () => { res = checkFunc(arg); });
 
                 Dictionary<string, object> mul = new Dictionary<string, object>() {
-                            {nameof(res),res },
                             {nameof(codeTimerResult),codeTimerResult },
                             {nameof(checkCodeTimerResult),checkCodeTimerResult },
                         };
+                if (showRes) mul[nameof(res)] = res;
                 if (showArg) mul[nameof(arg)] = arg;
                 ShowTools.ShowMulti(mul);
             }
