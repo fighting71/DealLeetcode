@@ -62,11 +62,6 @@ namespace ConsoleTest
             { if (runSimple) { } else { } }
 
             {
-                Path_With_Minimum_Effort instance = new Path_With_Minimum_Effort();
-
-                BaseLibrary.CommonTest(new int[0][][], instance.Try, 
-                    () => CollectionHelper.GetArr(100, () => CollectionHelper.GetArr(100, () => random.Next(106) + 1).ToArray()).ToArray()
-                    );
 
             }
 
