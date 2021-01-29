@@ -38,8 +38,8 @@ namespace ConsoleTest.TestDemo.Challenge._2021.January
                         return builder.ToString();
                     };
 
-                    return (CollectionHelper.GetArr(1000, getEle).ToArray(),
-                     CollectionHelper.GetArr(1000, getEle).ToArray());
+                    return (CollectionHelper.GetEnumerable(1000, getEle).ToArray(),
+                     CollectionHelper.GetEnumerable(1000, getEle).ToArray());
                 }, showArg: false);
 
         }

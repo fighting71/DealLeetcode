@@ -36,7 +36,7 @@ namespace ConsoleTest.TestDemo.Hard
                     new []{1,2,2,3,4,4,5}, // 21
                     //JsonConvert.DeserializeObject<int[]>("[18,2,0,0,12,8,17,15,4,14,1,18,18,12,5,10,15,13,1,6]"),// 24
                     JsonConvert.DeserializeObject<int[]>("[2147483638,2147483639,2147483640,2147483641,2147483642,2147483643,2147483644,2147483645,2147483646,2147483647,-2147483648,-2147483647,-2147483646,-2147483645,-2147483644,-2147483643,-2147483642,-2147483641,-2147483640,-2147483639]"),// 110
-                }, instance.EfficientSolution, () => CollectionHelper.GetArr(1000, () => random.Next(100)).ToArray());
+                }, instance.EfficientSolution, () => CollectionHelper.GetEnumerable(1000, () => random.Next(100)).ToArray());
 
             ShowTools.ShowHr();
 

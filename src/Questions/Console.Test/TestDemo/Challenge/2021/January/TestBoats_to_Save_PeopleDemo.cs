@@ -28,7 +28,7 @@ namespace ConsoleTest.TestDemo.Challenge._2021.January
                 }, arg => instance.NumRescueBoats(arg.Item1, arg.Item2), () =>
                 {
                     int limit = random.Next(100) + 1;
-                    var arr = CollectionHelper.GetArr(20, () => random.Next(limit) + 1).ToArray();
+                    var arr = CollectionHelper.GetEnumerable(20, () => random.Next(limit) + 1).ToArray();
                     ShowTools.Show(arr);
                     return (arr, limit);
                 });

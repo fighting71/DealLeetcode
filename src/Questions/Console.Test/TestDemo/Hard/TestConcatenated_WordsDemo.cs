@@ -26,7 +26,7 @@ namespace ConsoleTest.TestDemo.Hard
                     LargeArray.Arr3,
                     //new []{ "cat", "cats", "catsdogcats", "dog", "dogcatsdog", "hippopotamuses", "rat", "ratcatdogcat" },
                     //new []{ "cat","dog","catdog" },
-                }, instance.findAllConcatenatedWordsInADict, () => CollectionHelper.GetArr(1000_0, () => CollectionHelper.GetString(random.Next(1000), () => (char)('a' + random.Next(26)))).ToHashSet().ToArray(), showArg: false);
+                }, instance.findAllConcatenatedWordsInADict, () => CollectionHelper.GetEnumerable(1000_0, () => CollectionHelper.GetString(random.Next(1000), () => (char)('a' + random.Next(26)))).ToHashSet().ToArray(), showArg: false);
 
         }
     }

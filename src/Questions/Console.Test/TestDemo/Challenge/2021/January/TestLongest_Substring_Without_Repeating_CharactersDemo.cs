@@ -27,7 +27,7 @@ namespace ConsoleTest.TestDemo.Challenge._2021.January
                 }
                 , instance.OldSolution, () =>
                 {
-                    var arr = CollectionHelper.GetArr(5000_0, () => (char)(random.Next(26) + 'a'));
+                    var arr = CollectionHelper.GetEnumerable(5000_0, () => (char)(random.Next(26) + 'a'));
 
                     return string.Concat(arr);
                 }

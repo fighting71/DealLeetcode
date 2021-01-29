@@ -13,7 +13,7 @@ namespace Command.Helper
     public class CollectionHelper
     {
 
-        public static IEnumerable<T> GetArr<T>(int len, Func<T> getItemFunc)
+        public static IEnumerable<T> GetEnumerable<T>(int len, Func<T> getItemFunc)
         {
             for (int i = 0; i < len; i++)
             {
@@ -21,7 +21,7 @@ namespace Command.Helper
             }
             yield break;
         }
-        public static IEnumerable<T> GetArr<T>(int len, Func<int, T> getItemFunc)
+        public static IEnumerable<T> GetEnumerable<T>(int len, Func<int, T> getItemFunc)
         {
             for (int i = 0; i < len; i++)
             {

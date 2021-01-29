@@ -24,6 +24,7 @@ using Questions.DailyChallenge._2021.January;
 using Questions.DailyChallenge._2021.January.Week2;
 using Questions.DailyChallenge._2021.January.Week3;
 using Questions.DailyChallenge._2021.January.Week4;
+using Questions.DailyChallenge._2021.January.Week5;
 using Questions.Easy.Algorithms;
 using Questions.Hard.Deal;
 using Questions.Hard.Deal2;
@@ -61,10 +62,6 @@ namespace ConsoleTest
 
             { if (runSimple) { } else { } }
 
-            {
-
-            }
-
             //{
             //    Stone_Game_II instance = new Stone_Game_II();
             //    ShowTools.Show(instance.Simple(new[] { 8, 6, 9, 1, 7, 9 }));// 25
@@ -90,10 +87,10 @@ namespace ConsoleTest
             , () =>
             {
                 return (
-                    string.Concat(CollectionHelper.GetArr(10, () => (char)(random.Next(10) + 'a'))),
+                    string.Concat(CollectionHelper.GetEnumerable(10, () => (char)(random.Next(10) + 'a'))),
                     (random.Next(10) + 1) * 3,
 
-                    string.Concat(CollectionHelper.GetArr(5, () => (char)(random.Next(10) + 'a'))),
+                    string.Concat(CollectionHelper.GetEnumerable(5, () => (char)(random.Next(10) + 'a'))),
                     (random.Next(5) + 1) * 2
                 );
             });
@@ -108,7 +105,7 @@ namespace ConsoleTest
                     JsonConvert.DeserializeObject<int[]>("[1,5,6,2]"), // 1
                     JsonConvert.DeserializeObject<int[]>("[1,2,3,6,5,4]"), // 3
                     JsonConvert.DeserializeObject<int[]>("[1,3,3,3,2,4,2,1,2]"), // 4
-                }, instance.Try, instance.Optimize, () => CollectionHelper.GetArr(1000_00, () => random.Next(1000_00) + 1).ToArray(), showArg: false);
+                }, instance.Try, instance.Optimize, () => CollectionHelper.GetEnumerable(1000_00, () => random.Next(1000_00) + 1).ToArray(), showArg: false);
         }
     }
 }

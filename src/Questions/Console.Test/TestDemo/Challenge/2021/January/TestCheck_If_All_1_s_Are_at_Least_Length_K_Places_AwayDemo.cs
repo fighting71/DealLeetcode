@@ -26,7 +26,7 @@ namespace ConsoleTest.TestDemo.Challenge._2021.January
                     (new[]{0,1,0,1},1),
                 }, arg => instance.KLengthApart(arg.Item1, arg.Item2), () => {
 
-                    var arr = CollectionHelper.GetArr(10000, () => random.Next(3) / 2).ToArray();
+                    var arr = CollectionHelper.GetEnumerable(10000, () => random.Next(3) / 2).ToArray();
 
                     var k = random.Next(arr.Length + 1);
 

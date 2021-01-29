@@ -20,9 +20,9 @@ namespace ConsoleTest.TestDemo.Challenge._2021.January
             Path_With_Minimum_Effort instance = new Path_With_Minimum_Effort();
 
             BaseLibrary.CommonTest(new[] {
-                    CollectionHelper.GetArr(5, () => CollectionHelper.GetArr(5, () => random.Next(1000_000) + 1).ToArray()).ToArray()
+                    CollectionHelper.GetEnumerable(5, () => CollectionHelper.GetEnumerable(5, () => random.Next(1000_000) + 1).ToArray()).ToArray()
                 }, instance.Try3,
-                () => CollectionHelper.GetArr(100, () => CollectionHelper.GetArr(100, () => random.Next(1000_000) + 1).ToArray()).ToArray()
+                () => CollectionHelper.GetEnumerable(100, () => CollectionHelper.GetEnumerable(100, () => random.Next(1000_000) + 1).ToArray()).ToArray()
                 );
 
         }

@@ -26,7 +26,7 @@ namespace ConsoleTest.TestDemo.Challenge._2021.January
                 }, arg => instance.Try2(arg.Item1, arg.Item2), () =>
                 {
 
-                    int[] arr = CollectionHelper.GetArr(1000_00, () => random.Next(1000_0) + 1).ToArray();
+                    int[] arr = CollectionHelper.GetEnumerable(1000_00, () => random.Next(1000_0) + 1).ToArray();
 
                     return (arr, random.Next(1000_000_000) + 1);
 

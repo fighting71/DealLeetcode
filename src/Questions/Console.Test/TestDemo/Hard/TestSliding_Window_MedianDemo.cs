@@ -26,7 +26,7 @@ namespace ConsoleTest.TestDemo.Hard
                     //(new []{int.MaxValue,int.MaxValue},2),
                 }, arg => instance.Try(arg.Item1, arg.Item2), arg => instance.Simple(arg.Item1, arg.Item2), () =>
                 {
-                    var arr = CollectionHelper.GetArr(10000, () => random.Next(int.MaxValue)).ToArray();
+                    var arr = CollectionHelper.GetEnumerable(10000, () => random.Next(int.MaxValue)).ToArray();
                     return (arr, random.Next(arr.Length) + 1);
                 }, showArg: false, showRes: false);
         }

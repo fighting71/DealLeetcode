@@ -15,4 +15,22 @@
     <ProjectReference Include="..\Questions.Series\Questions.Series.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="large_data\int\arr5.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="large_data\str\arr3.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="large_data\int\arr1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="large_data\int\arr2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="large_data\int\arr4.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
