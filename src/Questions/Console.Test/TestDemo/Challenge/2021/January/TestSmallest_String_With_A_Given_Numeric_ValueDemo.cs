@@ -17,7 +17,7 @@ namespace ConsoleTest.TestDemo.Challenge._2021.January
         {
             Smallest_String_With_A_Given_Numeric_Value instance = new Smallest_String_With_A_Given_Numeric_Value();
 
-            BaseLibrary.CommonTest(new[] {
+            BaseLibrary.CommonWithCheckTest(new[] {
                     (3,27), // “aay”
                     (5,73), // “aaszz”
                     //(53168,485414), // “aaszz”

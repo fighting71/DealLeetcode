@@ -63,7 +63,6 @@ namespace ConsoleTest
                 Dictionary<string, object> mul = new Dictionary<string, object>() {
                             {nameof(codeTimerResult),codeTimerResult },
                         };
-                if (showRes) mul[nameof(res)] = res;
                 if (showArg)
                 {
                     if(formatArg == null)
@@ -71,6 +70,7 @@ namespace ConsoleTest
                     else
                         mul[nameof(arg)] = formatArg(arg);
                 }
+                if (showRes) mul[nameof(res)] = res;
 
                 if (checkFunc != null)
                 {
@@ -92,7 +92,7 @@ namespace ConsoleTest
             }
         }
 
-        public static void CommonTest<TArg, TRes>(TArg[] argArr, Func<TArg, TRes> func, Func<TArg, TRes> checkFunc, Func<TArg> generateArg = null, int codeTimeCount = 10, bool showArg = true,bool showRes = true)
+        public static void CommonWithCheckTest<TArg, TRes>(TArg[] argArr, Func<TArg, TRes> func, Func<TArg, TRes> checkFunc, Func<TArg> generateArg = null, int codeTimeCount = 10, bool showArg = true,bool showRes = true)
         {
             CommonTest(argArr, func, generateArg, codeTimeCount, showArg, null, showRes, null, checkFunc);
 

@@ -21,7 +21,7 @@ namespace ConsoleTest.TestDemo.Hard
 
             Reverse_Pairs instance = new Reverse_Pairs();
 
-            BaseLibrary.CommonTest(new[] {
+            BaseLibrary.CommonWithCheckTest(new[] {
                     LargeArray.Arr4.Skip(250).Take(10).ToArray(),
                     LargeArray.Arr4,
                     LargeArray.Get<int[]>("large_data/int/arr5.txt").Skip(0).Take(13).ToArray(),

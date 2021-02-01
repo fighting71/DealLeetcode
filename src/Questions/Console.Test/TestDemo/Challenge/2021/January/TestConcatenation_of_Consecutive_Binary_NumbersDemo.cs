@@ -17,7 +17,7 @@ namespace ConsoleTest.TestDemo.Challenge._2021.January
         {
             Concatenation_of_Consecutive_Binary_Numbers instance = new Concatenation_of_Consecutive_Binary_Numbers();
 
-            BaseLibrary.CommonTest(new[] {
+            BaseLibrary.CommonWithCheckTest(new[] {
                     1,
                     3,
                     12

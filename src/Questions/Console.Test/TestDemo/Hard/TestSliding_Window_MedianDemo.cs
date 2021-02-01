@@ -19,7 +19,7 @@ namespace ConsoleTest.TestDemo.Hard
             Sliding_Window_Median instance = new Sliding_Window_Median();
 
             // [1,-1,-1,3,5,6]
-            BaseLibrary.CommonTest(new[] {
+            BaseLibrary.CommonWithCheckTest(new[] {
                     (new []{1,1,1,1},2),
                     //(new []{1,2},1),
                     //(new []{1,3,-1,-3,5,3,6,7},3),

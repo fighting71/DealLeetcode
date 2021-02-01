@@ -5,6 +5,7 @@ using Command.Tools;
 using ConsoleTest.LargeData;
 using ConsoleTest.TestDemo;
 using ConsoleTest.TestDemo.Challenge;
+using ConsoleTest.TestDemo.Challenge._2021.February.Week1;
 using ConsoleTest.TestDemo.Hard;
 using Newtonsoft.Json;
 using Questions.DailyChallenge._2020.December.Week1;
@@ -101,7 +102,7 @@ namespace ConsoleTest
         {
             Create_Sorted_Array_through_Instructions instance = new Create_Sorted_Array_through_Instructions();
 
-            BaseLibrary.CommonTest(new[] {
+            BaseLibrary.CommonWithCheckTest(new[] {
                     JsonConvert.DeserializeObject<int[]>("[1,5,6,2]"), // 1
                     JsonConvert.DeserializeObject<int[]>("[1,2,3,6,5,4]"), // 3
                     JsonConvert.DeserializeObject<int[]>("[1,3,3,3,2,4,2,1,2]"), // 4
