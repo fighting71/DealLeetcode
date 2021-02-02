@@ -22,7 +22,7 @@ namespace ConsoleTest
 
         public static Exception bugException = new Exception("bug");
 
-        public static void CommonTest<TArg, TRes>(TArg[] argArr, Func<TArg, TRes> func, Func<TArg> generateArg = null, int codeTimeCount = 10, bool showArg = true,Func<TRes,bool> isShowInfo = null, bool showRes = true,Func<TArg,string> formatArg = null, Func<TArg, TRes> checkFunc = null,bool throwDiff = true)
+        public static void CommonTest<TArg, TRes>(TArg[] argArr, Func<TArg, TRes> func, Func<TArg> generateArg = null, int codeTimeCount = 10, bool showArg = true,Func<TRes,bool> isShowInfo = null, bool showRes = true,Func<TArg,string> formatArg = null, Func<TArg, TRes> checkFunc = null,bool throwDiff = true,Func<TRes,bool> skipFunc = null)
         {
             foreach (var arg in argArr)
             {
@@ -32,6 +32,7 @@ namespace ConsoleTest
                     if (!res.Equals(real))
                     {
                         ShowTools.ShowMulti(new Dictionary<string, object>() {
+                            {nameof(arg),arg },
                             {nameof(res),res },
                             {nameof(real),real }
                         });
@@ -60,6 +61,13 @@ namespace ConsoleTest
                 TRes res = default,real = default;
 
                 CodeTimerResult codeTimerResult = CodeTimer.Time(1, () => { res = func(arg); });
+
+                if(skipFunc != null && skipFunc(res))
+                {
+                    i--;
+                    continue;
+                }
+
                 Dictionary<string, object> mul = new Dictionary<string, object>() {
                             {nameof(codeTimerResult),codeTimerResult },
                         };
