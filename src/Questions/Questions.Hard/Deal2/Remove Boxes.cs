@@ -26,6 +26,38 @@ namespace Questions.Hard.Deal2
 
         public int Explain(int[] boxes)
         {
+
+            /**
+             * 
+             * 将box看做成《祖玛》中的珠子，
+             * 每次操作时
+             *  你可以选择移除其中一部分(count > 0)并获得积分
+             * 不断移除直到全部移除
+             * 
+             * 若有3个相连的同色box，仅移除1个或2个是无意义的，因为只有全部移除才能获取最大值
+             * 
+             * 故step1:你可以缩减boxes
+             *      111->(1,3) 来减少不必要的步骤
+             * step2: 你需要获取积分的最大值，将boxes看做一个区间 [0,len-1] 被中间部分[left,right](left>=0,right<len) 的操作影响着 ，故可以使用动态规划来求值
+             *      dp 关系：当前部分的最大值受中间部分影响
+             *      dp 状态：区间 [left,right]
+             *      dp 值： 能获取的最大积分
+             * step3:
+             *      遍历求值，由dp关系可知，需要先获取中间部分的值再获取更大区间的值
+             *          基础情况：
+             *              [l,l] + + [r,r] + [l + 1][r - 1] = 最左+最右+中间部分
+             *              [l,l] + [l + 1, r] = 最左 + 其他部分
+             *              [r, r] + [l, r - 1] = 最右 + 其他部分
+             *          若 lBox == rBox 即消除中间部分后可叠加消除
+             *              为求最大值，还需考虑中间部分出现的lBox,实现lBox的最大利用
+             *          否则
+             *              需考虑考虑中间部分出现的lBox,实现lBox的最大利用
+             *              需考虑考虑中间部分出现的rBox,实现rBox的最大利用
+             * 
+             * 最终返回dp[0, len-1]
+             * 
+             */
+
             // box -> index_list
             // 方便查找box颜色的盒子
             Dictionary<int, List<int>> indexDic = new Dictionary<int, List<int>>();
@@ -51,7 +83,6 @@ namespace Questions.Hard.Deal2
 
             int len = list.Count;
 
-            // 此题和戳气球类型，一看就是典型的动态规划,可参见Burst_Balloons
             // dp[i][j] i,j -> 下标 = 可获取的最大分数
             int[][] dp = new int[len][];
 
@@ -188,6 +219,7 @@ namespace Questions.Hard.Deal2
 
             int[][] dp = new int[len][];
 
+            // 此题和戳气球类型，一看就是典型的动态规划,可参见Burst_Balloons
             for (int i = 0; i < len; i++)
             {
                 dp[i] = new int[len];

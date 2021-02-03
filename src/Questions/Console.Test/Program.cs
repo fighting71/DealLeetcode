@@ -61,7 +61,6 @@ namespace ConsoleTest
             bool runSimple = true;
             runSimple = false;
 
-
             { if (runSimple) { } else { } }
 
             //{
