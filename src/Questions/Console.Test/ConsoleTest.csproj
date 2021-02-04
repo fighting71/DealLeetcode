@@ -16,6 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="large_data\int\empty.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="large_data\int\arr5.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

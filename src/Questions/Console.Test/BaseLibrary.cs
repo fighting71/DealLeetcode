@@ -22,12 +22,12 @@ namespace ConsoleTest
 
         public static Exception bugException = new Exception("bug");
 
-        public static void CommonTest<TArg, TRes>(TArg[] argArr, Func<TArg, TRes> func, Func<TArg> generateArg = null, int codeTimeCount = 10, bool showArg = true,Func<TRes,bool> isShowInfo = null, bool showRes = true,Func<TArg,string> formatArg = null, Func<TArg, TRes> checkFunc = null,bool throwDiff = true,Func<TRes,bool> skipFunc = null)
+        public static void CommonTest<TArg, TRes>(TArg[] argArr, Func<TArg, TRes> func, Func<TArg> generateArg = null, int codeTimeCount = 10, bool showArg = true, Func<TRes, bool> isShowInfo = null, bool showRes = true, Func<TArg, string> formatArg = null, Func<TArg, TRes> checkFunc = null, bool throwDiff = true, Func<TRes, bool> skipFunc = null)
         {
             foreach (var arg in argArr)
             {
                 TRes real = checkFunc == null ? default : checkFunc(arg), res = func(arg);
-                if (checkFunc!= null)
+                if (checkFunc != null)
                 {
                     if (!res.Equals(real))
                     {
@@ -54,15 +54,16 @@ namespace ConsoleTest
                 return;
             }
 
+            long maxTimeElapsed = 0;
             for (int i = 0; i < codeTimeCount; i++)
             {
 
                 TArg arg = generateArg();
-                TRes res = default,real = default;
+                TRes res = default, real = default;
 
                 CodeTimerResult codeTimerResult = CodeTimer.Time(1, () => { res = func(arg); });
 
-                if(skipFunc != null && skipFunc(res))
+                if (skipFunc != null && skipFunc(res))
                 {
                     i--;
                     continue;
@@ -73,7 +74,7 @@ namespace ConsoleTest
                         };
                 if (showArg)
                 {
-                    if(formatArg == null)
+                    if (formatArg == null)
                         mul[nameof(arg)] = arg;
                     else
                         mul[nameof(arg)] = formatArg(arg);
@@ -93,14 +94,19 @@ namespace ConsoleTest
                 {
                     mul[nameof(real)] = real;
                     ShowTools.ShowMulti(mul);
-                    if(throwDiff)
+                    if (throwDiff)
                         throw bugException;
                 }
 
+                maxTimeElapsed = Math.Max(maxTimeElapsed, codeTimerResult.TimeElapsed);
+
             }
+
+            Console.WriteLine("测试结束，单次最大耗时：" + maxTimeElapsed);
+
         }
 
-        public static void CommonWithCheckTest<TArg, TRes>(TArg[] argArr, Func<TArg, TRes> func, Func<TArg, TRes> checkFunc, Func<TArg> generateArg = null, int codeTimeCount = 10, bool showArg = true,bool showRes = true)
+        public static void CommonWithCheckTest<TArg, TRes>(TArg[] argArr, Func<TArg, TRes> func, Func<TArg, TRes> checkFunc, Func<TArg> generateArg = null, int codeTimeCount = 10, bool showArg = true, bool showRes = true)
         {
             CommonTest(argArr, func, generateArg, codeTimeCount, showArg, null, showRes, null, checkFunc);
 
@@ -113,7 +119,7 @@ namespace ConsoleTest
                 {
                     ShowTools.ShowMulti(new Dictionary<string, object>() {
                             {nameof(res),res },
-                            {nameof(real),real } 
+                            {nameof(real),real }
                     });
                 }
             }

@@ -49,6 +49,15 @@ namespace ConsoleTest.LargeData
             }
         }
 
+        public static int[] Empty
+        {
+            get
+            {
+                string txt = File.ReadAllText("large_data/int/empty.txt");
+                return JsonConvert.DeserializeObject<int[]>(txt);
+            }
+        }
+
         public static T Get<T>(string path)
         {
             string txt = File.ReadAllText(path);
