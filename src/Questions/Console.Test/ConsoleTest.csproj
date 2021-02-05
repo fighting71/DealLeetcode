@@ -36,8 +36,4 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="TestDemo\Challenge\2021\February\" />
-  </ItemGroup>
-
 </Project>
