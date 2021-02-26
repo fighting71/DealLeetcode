@@ -45,6 +45,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using Command.Extension;
+using Questions.DailyChallenge._2021.February.Week4;
 
 namespace ConsoleTest
 {
@@ -62,20 +63,6 @@ namespace ConsoleTest
             Exception bugEx = new Exception("bug");
             bool runSimple = true;
             runSimple = false;
-
-            {
-                Simplify_Path instance = new Simplify_Path();
-
-                BaseLibrary.CommonTest(new[] {
-                    "/..hidden",
-                    "/.../",
-                    "/home/",
-                    "/../",
-                    "/home/foo",
-                    "/a/./b/../../c/"
-                }, instance.SimplifyPath);
-
-            }
 
             { if (runSimple) { } else { } }
 

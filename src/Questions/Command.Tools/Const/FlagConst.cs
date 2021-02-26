@@ -53,5 +53,6 @@ namespace Command.Const
         /// ~远在天边近在眼前~
         /// </summary>
         public const string Special = nameof(Special);
+        public const string BinarySearch = nameof(BinarySearch);
     }
 }

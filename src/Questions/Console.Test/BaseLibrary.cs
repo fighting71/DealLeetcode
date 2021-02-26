@@ -55,6 +55,7 @@ namespace ConsoleTest
             }
 
             long maxTimeElapsed = 0;
+            TArg maxArg = default;
             for (int i = 0; i < codeTimeCount; i++)
             {
 
@@ -98,11 +99,21 @@ namespace ConsoleTest
                         throw bugException;
                 }
 
+                if (codeTimerResult.TimeElapsed > maxTimeElapsed)
+                {
+                    maxTimeElapsed = codeTimerResult.TimeElapsed;
+                    maxArg = arg;
+                }
+
                 maxTimeElapsed = Math.Max(maxTimeElapsed, codeTimerResult.TimeElapsed);
 
             }
 
-            Console.WriteLine("测试结束，单次最大耗时：" + maxTimeElapsed);
+            ShowTools.ShowMulti(new Dictionary<string, object> {
+                {"单次耗时最长",maxTimeElapsed },
+                {"参数",maxArg }
+            });
+
 
         }
 
