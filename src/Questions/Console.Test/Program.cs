@@ -46,11 +46,22 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Command.Extension;
 using Questions.DailyChallenge._2021.February.Week4;
+using Questions.DailyChallenge._2021.March.Week1;
 
 namespace ConsoleTest
 {
     class Program
     {
+
+        #region base node
+        
+        // 子序列： 不连续
+        // 子串: 连续
+        //例如：
+        //    123456789：
+        //        (137)-子序列
+        //        (123)-子串
+        #endregion
 
         static void Main(string[] args)
         {
@@ -64,28 +75,6 @@ namespace ConsoleTest
             bool runSimple = true;
             runSimple = false;
 
-            {
-                Maximum_Frequency_Stack instance = new Maximum_Frequency_Stack();
-
-                var arg = LargeArray.Get<string[]>(@"F:\Davis\EmptyTxt\Maximum_Frequency_Stack.txt");
-                var arg2 = LargeArray.Get<int[][]>(@"F:\Davis\EmptyTxt\Maximum_Frequency_Stack_arg.txt");
-
-                for (int i = 0; i < arg.Length; i++)
-                {
-                    var key = arg[i];
-
-                    if(key == "push")
-                    {
-                        instance.Push(arg2[i][0]);
-                    }
-                    else
-                    {
-                        instance.Pop();
-                    }
-
-                }
-
-            }
 
             { if (runSimple) { } else { } }
 

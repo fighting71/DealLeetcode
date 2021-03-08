@@ -54,5 +54,6 @@ namespace Command.Const
         /// </summary>
         public const string Special = nameof(Special);
         public const string BinarySearch = nameof(BinarySearch);
+        public const string Design = nameof(Design);
     }
 }
