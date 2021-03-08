@@ -21,6 +21,10 @@ namespace Questions.DailyChallenge._2021.March.Week2
     ///         Are subsequences composed of only one type of letter always palindrome strings ?
     ///         
     ///     看完提示才发现是我想多了，只由(a/b)构成的字符串，不管长啥样，最多也就两步搞定(第一步删a,第二步删b....) 恶心到了。
+    ///     故结果就是： 
+    ///         是回文就1
+    ///         不是回文就2
+    ///         长度<2就长度
     /// 
     /// </summary>
     public class Remove_Palindromic_Subsequences
@@ -36,12 +40,8 @@ namespace Questions.DailyChallenge._2021.March.Week2
             if (s.Length < 2) return s.Length;
 
             for (int i = 0; i < s.Length / 2; i++)
-            {
                 if (s[i] != s[s.Length - 1 - i])
-                {
                     return 2;
-                }
-            }
 
             return 1;
         }
