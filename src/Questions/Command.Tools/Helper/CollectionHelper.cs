@@ -67,5 +67,9 @@ namespace Command.Helper
             return builder.ToString();
         }
 
+        public static string GetString(Func<int> getLenFunc, Func<char> getItemFunc)
+        {
+            return GetString(getLenFunc(), getItemFunc);
+        }
     }
 }
