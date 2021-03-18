@@ -47,6 +47,9 @@ using System.Text.RegularExpressions;
 using Command.Extension;
 using Questions.DailyChallenge._2021.February.Week4;
 using Questions.DailyChallenge._2021.March.Week1;
+using Questions.DailyChallenge._2021.March.Week2;
+using Questions.DailyChallenge._2021.March.Week3;
+using Questions.Hard.Deal3;
 
 namespace ConsoleTest
 {
@@ -54,7 +57,7 @@ namespace ConsoleTest
     {
 
         #region base node
-        
+
         // 子序列： 不连续
         // 子串: 连续
         //例如：
@@ -74,7 +77,6 @@ namespace ConsoleTest
             Exception bugEx = new Exception("bug");
             bool runSimple = true;
             runSimple = false;
-
 
             { if (runSimple) { } else { } }
 
