@@ -109,9 +109,10 @@ namespace ConsoleTest
 
             }
 
+
             ShowTools.ShowMulti(new Dictionary<string, object> {
                 {"单次耗时最长",maxTimeElapsed },
-                {"参数",maxArg }
+                {"参数", formatArg != null ? formatArg(maxArg)  as object: maxArg }
             });
 
 

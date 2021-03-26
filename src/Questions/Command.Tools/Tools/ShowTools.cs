@@ -117,7 +117,7 @@ namespace Command.Tools
             Show(func());
         }
 
-        public static void Show<T>(T data)
+        public static void Show(object data)
         {
             System.Console.WriteLine("----------------S------------------");
             Console.WriteLine(GetStr(data));

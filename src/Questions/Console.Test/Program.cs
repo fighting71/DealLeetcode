@@ -50,9 +50,11 @@ using Questions.DailyChallenge._2021.March.Week1;
 using Questions.DailyChallenge._2021.March.Week2;
 using Questions.DailyChallenge._2021.March.Week3;
 using Questions.Hard.Deal3;
+using Questions.DailyChallenge._2021.March.Week4;
 
 namespace ConsoleTest
 {
+
     class Program
     {
 
@@ -78,6 +80,7 @@ namespace ConsoleTest
             bool runSimple = true;
             runSimple = false;
 
+
             { if (runSimple) { } else { } }
 
             //{
@@ -86,6 +89,25 @@ namespace ConsoleTest
             //    ShowTools.Show(instance.Simple(new[] { 1, 2, 3, 4, 5, 100 }));// 104
             //    ShowTools.Show(instance.Simple(new[] { 2, 7, 9, 4, 4 }));// 10
             //}
+
+            {
+                _24_Game instance = new _24_Game();
+
+                BaseLibrary.CommonTest(
+                    new[]
+                    {
+                        new[] { 1, 9, 1, 2 },// t
+                        new[] { 1, 5, 9, 1 },// f
+                        new[] { 9, 8, 6, 8 },// t
+                        new[] { 4, 1, 8, 7 },// true
+                        new[] { 1, 2, 1, 2 },// f
+                        new[] { 1, 3, 4, 6 },// t
+                    }
+                    , instance.Try2
+                    , generateArg: () => CollectionHelper.GetEnumerable(4, () => random.Next(9) + 1).ToArray()
+                );
+
+            }
 
             Console.WriteLine("Hello World!");
 
