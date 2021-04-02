@@ -12,6 +12,7 @@ namespace Questions.Hard.Deal3
     /// @des : 
     ///     你有4张卡片，每张卡片上都有从1到9的数字。您需要判断它们是否可以通过*、/、+、-、(，)操作来获得24的值。
     /// </summary>
+    [Obsolete(" 1, 9, 1, 2 返回true,就离谱...")]
     public class _24_Game
     {
 

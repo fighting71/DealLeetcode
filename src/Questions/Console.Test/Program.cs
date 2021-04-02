@@ -51,6 +51,10 @@ using Questions.DailyChallenge._2021.March.Week2;
 using Questions.DailyChallenge._2021.March.Week3;
 using Questions.Hard.Deal3;
 using Questions.DailyChallenge._2021.March.Week4;
+using Questions.DailyChallenge._2021.March.Week5;
+using ConsoleTest.TestDemo.Challenge._2021.January;
+using Questions.Series.CountDistinctSubSequences;
+using Questions.DailyChallenge._2021.April.Week1;
 
 namespace ConsoleTest
 {
@@ -80,8 +84,29 @@ namespace ConsoleTest
             bool runSimple = true;
             runSimple = false;
 
-
             { if (runSimple) { } else { } }
+
+            {
+                Ones_and_Zeroes instance = new Ones_and_Zeroes();
+
+                BaseLibrary.CommonTest(new[] {
+                    (new []{"10","0001","111001","1","0"},5,3),// 4
+                    (new []{"10","0","1"},1,1),// 2
+
+                }
+                , arg => instance.Try(arg.Item1, arg.Item2, arg.Item3)
+                , checkFunc: arg => instance.Simple(arg.Item1, arg.Item2, arg.Item3)
+                , generateArg: () =>
+                {
+                    return (
+                            CollectionHelper.GetEnumerable(30, () => CollectionHelper.GetString(() => random.Next(100) + 1, () => (char)(random.Next(2) + '0'))).ToArray(),
+                            random.Next(100) + 1,
+                            random.Next(100) + 1
+                        );
+                }
+                );
+
+            }
 
             //{
             //    Stone_Game_II instance = new Stone_Game_II();
@@ -89,25 +114,6 @@ namespace ConsoleTest
             //    ShowTools.Show(instance.Simple(new[] { 1, 2, 3, 4, 5, 100 }));// 104
             //    ShowTools.Show(instance.Simple(new[] { 2, 7, 9, 4, 4 }));// 10
             //}
-
-            {
-                _24_Game instance = new _24_Game();
-
-                BaseLibrary.CommonTest(
-                    new[]
-                    {
-                        new[] { 1, 9, 1, 2 },// t
-                        new[] { 1, 5, 9, 1 },// f
-                        new[] { 9, 8, 6, 8 },// t
-                        new[] { 4, 1, 8, 7 },// true
-                        new[] { 1, 2, 1, 2 },// f
-                        new[] { 1, 3, 4, 6 },// t
-                    }
-                    , instance.Try2
-                    , generateArg: () => CollectionHelper.GetEnumerable(4, () => random.Next(9) + 1).ToArray()
-                );
-
-            }
 
             Console.WriteLine("Hello World!");
 

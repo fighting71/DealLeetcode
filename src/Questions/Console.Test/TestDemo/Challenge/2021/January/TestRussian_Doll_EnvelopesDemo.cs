@@ -21,8 +21,10 @@ namespace ConsoleTest.TestDemo.Challenge._2021.January
 
             if (runSimple)
             {
-                Console.WriteLine(instance.Try(JsonConvert.DeserializeObject<int[][]>(" [[5,4],[6,4],[6,7],[2,3]]")));
-                Console.WriteLine(instance.Try(JsonConvert.DeserializeObject<int[][]>(" [[5,4],[5,4],[6,7],[2,7]]")));
+                Console.WriteLine(instance.Try(JsonConvert.DeserializeObject<int[][]>("[[7,8],[12,16],[12,5],[1,8],[4,19],[3,15],[4,10],[9,16]] ")));// 3
+                //Console.WriteLine(instance.Try(JsonConvert.DeserializeObject<int[][]>(" [[5,4],[6,4],[6,7],[2,3]]")));
+                //Console.WriteLine(instance.Try(JsonConvert.DeserializeObject<int[][]>(" [[5,4],[5,4],[6,7],[2,7]]")));
+                return;
             }
             //else
             for (int k = 0; k < 10; k++)
