@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Command.Attr;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ namespace Questions.DailyChallenge._2021.April.Week1
     /// @source : https://leetcode.com/explore/featured/card/april-leetcoding-challenge-2021/593/week-1-april-1st-april-7th/3694/
     /// @des : 
     /// </summary>
+    [Optimize("slow")]
     public class Ones_and_Zeroes
     {
 
@@ -19,6 +21,59 @@ namespace Questions.DailyChallenge._2021.April.Week1
         // strs[i] consists only of digits '0' and '1'.
         // 1 <= m, n <= 100
 
+        // > 1000ms 
+        public int Try3(string[] strs, int m, int n)
+        {
+
+            int len = strs.Length;
+            int[][] arr = new int[len][];
+            for (int i = 0; i < len; i++)
+            {
+                var item = strs[i];
+                var subArr = new int[2];
+                foreach (var c in item)
+                {
+                    subArr[c - '0']++;
+                }
+                arr[i] = subArr;
+            }
+
+
+            ISet<int>[][] dp = new ISet<int>[m + 1][];
+            for (int i = 0; i < m + 1; i++)
+            {
+                dp[i] = new ISet<int>[n + 1];
+            }
+
+            ISet<int> emptySet = new HashSet<int>();
+
+            for (int i = 0; i < m + 1; i++)
+            {
+                for (int j = 0; j < n + 1; j++)
+                {
+                    ISet<int> max = emptySet;
+
+                    for (int k = 0; k < len; k++)
+                    {
+                        var item = arr[k];
+                        if (item[0] <= i && item[1] <= j)
+                        {
+                            var before = dp[i - item[0]][j - item[1]];
+                            if (before.Count + 1 > max.Count)
+                            {
+                                max = new HashSet<int>(before);
+                                max.Add(k);
+                            }
+                        }
+                    }
+
+                    dp[i][j] = max;
+                }
+            }
+
+            return dp[m][n].Count;
+        }
+        // bug : 一个str只能被计算一次...
         public int Try2(string[] strs, int m, int n)
         {
             var len = strs.Length;
@@ -46,7 +101,6 @@ namespace Questions.DailyChallenge._2021.April.Week1
             {
                 for (int j = 0; j < n + 1; j++)
                 {
-
                     int max = 0;
                     if (i > 0) max = dp[i - 1][j];
                     if (j > 0) max = Math.Max(max, dp[i][j - 1]);
@@ -55,14 +109,14 @@ namespace Questions.DailyChallenge._2021.April.Week1
                     {
                         if(item[0] <= i && item[1] <= j)
                         {
-
+                            max = Math.Max(max, dp[i - item[0]][j - item[1]] + 1);
                         }
                     }
-
+                    dp[i][j] = max;
                 }
             }
 
-            return res;
+            return dp[m][n];
 
         }
 
