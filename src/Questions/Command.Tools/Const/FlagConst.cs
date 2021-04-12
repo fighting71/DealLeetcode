@@ -55,5 +55,7 @@ namespace Command.Const
         public const string Special = nameof(Special);
         public const string BinarySearch = nameof(BinarySearch);
         public const string Design = nameof(Design);
+        public const string Tree = nameof(Tree);
+        public const string Recursion = nameof(Recursion);
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Command.Attr;
+using Command.Const;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +24,7 @@ namespace Questions.Hard.Deal3
 
     /// </summary>
     [Obsolete("bug|slow")]
+    [Favorite(FlagConst.DP)]
     public class Cherry_Pickup
     {
 
@@ -31,6 +34,86 @@ namespace Questions.Hard.Deal3
         //grid[i][j] is -1, 0, or 1.
         //grid[0][0] != -1
         //grid[n - 1][n - 1] != -1
+
+        #region other solution
+
+        // source:https://www.cnblogs.com/grandyang/p/8215787.html
+        // https://leetcode.com/problems/cherry-pickup/discuss/109903/step-by-step-guidance-of-the-on3-time-and-on2-space-solution
+        // 太强了...,能想出来也是神奇，理解都不好理解...
+        public int OtherSolution(int[][] grid)
+        {
+            int n = grid.Length, max = 2 * n - 1;
+            int[][] dp = new int[n][];
+            for (int i = 0; i < n; i++)
+            {
+                dp[i] = new int[n];
+                Array.Fill(dp[i], -1);
+            }
+
+            // dp[i][p] = 能获取的最大值
+            dp[0][0] = grid[0][0];
+
+            // 复用的关键: k递增
+            for (int k = 1; k < max; k++) // k即步数，从(0,0)到(n-1,n-1) 最多需要2 * n - 2 步
+            {
+                for (int i = n - 1; i >= 0; i--)
+                {
+                    for (int p = n - 1; p >= 0; p--)
+                    {
+                        // k = i + j = p + q
+                        // 合理==>每次移动都是 i++ 或者 j++  故步数= i+j
+                        int j = k - i, q = k - p;
+                        // 若index out or point = -1  即此点在此步数无法到达
+                        if (j < 0 || j >= n || q < 0 || q >= n || grid[i][j] < 0 || grid[p][q] < 0)
+                        {
+                            dp[i][p] = -1;
+                            continue;
+                        }
+                        /*
+                         * 
+                        (i, j) 即go所到达的终点
+                        (p, q) 即回来的起点
+                        Case 1: (0, 0) ==> (i-1, j) ==> (i, j); (p, q) ==> (p-1, q) ==> (0, 0)
+                        Case 2: (0, 0) ==> (i-1, j) ==> (i, j); (p, q) ==> (p, q-1) ==> (0, 0)
+                        Case 3: (0, 0) ==> (i, j-1) ==> (i, j); (p, q) ==> (p-1, q) ==> (0, 0)
+                        Case 4: (0, 0) ==> (i, j-1) ==> (i, j); (p, q) ==> (p, q-1) ==> (0, 0)
+
+                        Case 1 is equivalent to T(i-1, j, p-1, q) + grid[i][j] + grid[p][q];
+                        Case 2 is equivalent to T(i-1, j, p, q-1) + grid[i][j] + grid[p][q];
+                        Case 3 is equivalent to T(i, j-1, p-1, q) + grid[i][j] + grid[p][q];
+                        Case 4 is equivalent to T(i, j-1, p, q-1) + grid[i][j] + grid[p][q];
+
+                        T(i, j, p, q) = grid[i][j] + grid[p][q] + max{T(i-1, j, p-1, q), T(i-1, j, p, q-1), T(i, j-1, p-1, q), T(i, j-1, p, q-1)}
+
+                         * 
+                         */
+                        // i > 0 dp[i-1][p] ==> 由于i,p递减，故i-1 or p-1 获取的都是k-1 即上一步的值
+                        // dp[i][p] = i,j-1 p,q-1 =  T(i, j-1, p, q-1)
+
+                        // i - 1,j
+                        // dp[i - 1][p] = T(i-1, j, p, q-1)
+                        if (i > 0) dp[i][p] = Math.Max(dp[i][p], dp[i - 1][p]);
+
+                        // i,j-1 p -1
+                        // dp[i][p - 1] = T(i, j-1, p-1, q)
+                        if (p > 0) dp[i][p] = Math.Max(dp[i][p], dp[i][p - 1]);
+
+                        // i - 1,j p-1,q
+                        // dp[i - 1][p - 1] = T(i-1, j, p-1, q)
+                        if (i > 0 && p > 0) dp[i][p] = Math.Max(dp[i][p], dp[i - 1][p - 1]);
+
+                        // 若可移动， + grid[i][j] + grid[p][q](i != p[防止重复计算]), 由于步数原因，grid[i][j] 、 grid[p][q] 是上一步无法访问的点，故无需考虑去重
+                        //  grid[i][j] + grid[p][q]
+                        if (dp[i][p] >= 0) dp[i][p] += grid[i][j] + (i != p ? grid[p][q] : 0);
+                    }
+                }
+            }
+            return Math.Max(dp[n - 1][n - 1], 0);
+
+        }
+
+        #endregion
+
 
         // 明显的动态规划，不做浪费
         // 有坑 wc...
@@ -42,6 +125,7 @@ namespace Questions.Hard.Deal3
         }
 
         // slow ==> 如何快速合并数据
+        // 淘汰 ==> 即便快速合并，需要遍历的次数也非常大...
         public int Try5(int[][] grid)
         {
             /*
