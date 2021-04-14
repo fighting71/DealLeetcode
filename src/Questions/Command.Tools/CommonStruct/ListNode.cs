@@ -43,6 +43,22 @@ namespace Command.CommonStruct
             return root;
         }
 
+        public override string ToString()
+        {
+
+            var node = this;
+
+            StringBuilder builder = new StringBuilder();
+            builder.Append(val);
+
+            while ((node = node.next) != null)
+            {
+                builder.Append(",");
+                builder.Append(node.val);
+            }
+
+            return builder.ToString();
+        }
     }
 
     public class ListNode<T>

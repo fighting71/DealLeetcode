@@ -57,5 +57,6 @@ namespace Command.Const
         public const string Design = nameof(Design);
         public const string Tree = nameof(Tree);
         public const string Recursion = nameof(Recursion);
+        public const string ListNode = nameof(ListNode);
     }
 }

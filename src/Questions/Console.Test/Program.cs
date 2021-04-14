@@ -87,19 +87,21 @@ namespace ConsoleTest
 
             { if (runSimple) { } else { } }
 
-            {
-                Sliding_Puzzle instance = new Sliding_Puzzle();
+            #region Sliding_Puzzle
+            //{
+            //    Sliding_Puzzle instance = new Sliding_Puzzle();
 
-                BaseLibrary.CommonTest(new[] {
-                    "[[4,1,5],[3,2,0]]".ParseJson<int[][]>(),// -1
-                    "[[1,2,3],[4,0,5]]".ParseJson<int[][]>(),// 1
-                    "[[1,2,3],[5,4,0]]".ParseJson<int[][]>(),// -1
-                    "[[4,1,2],[5,0,3]]".ParseJson<int[][]>(),// 5
-                }
-                , instance.Try
-                );
+            //    BaseLibrary.CommonTest(new[] {
+            //        "[[4,1,5],[3,2,0]]".ParseJson<int[][]>(),// -1
+            //        "[[1,2,3],[4,0,5]]".ParseJson<int[][]>(),// 1
+            //        "[[1,2,3],[5,4,0]]".ParseJson<int[][]>(),// -1
+            //        "[[4,1,2],[5,0,3]]".ParseJson<int[][]>(),// 5
+            //    }
+            //    , instance.Try
+            //    );
 
-            }
+            //}
+            #endregion
 
             Console.WriteLine("Hello World!");
 

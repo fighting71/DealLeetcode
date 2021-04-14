@@ -33,6 +33,7 @@ namespace Questions.Hard.Deal3
          * 3 2 0
          */
 
+        // todo: debug
         public int Try(int[][] board)
         {
 
