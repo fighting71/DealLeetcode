@@ -56,6 +56,7 @@ using ConsoleTest.TestDemo.Challenge._2021.January;
 using Questions.Series.CountDistinctSubSequences;
 using Questions.DailyChallenge._2021.April.Week1;
 using Questions.DailyChallenge._2021.April.Week2;
+using Questions.DailyChallenge._2021.April.Week3;
 
 namespace ConsoleTest
 {
@@ -87,6 +88,41 @@ namespace ConsoleTest
 
             { if (runSimple) { } else { } }
 
+            Console.WriteLine("Hello World!");
+
+            Console.ReadKey(true);
+
+        }
+
+        private static void TestReaching_Points(Random random)
+        {
+            Reaching_Points instance = new Reaching_Points();
+            BaseLibrary.CommonTest(
+                new[] {
+                        (1, 3, 15, 4),// f
+                        (14,3,18,20),// f
+                        (1,1,5,3),// t
+                },
+                arg => instance.Try(arg.Item1, arg.Item2, arg.Item3, arg.Item4)
+                , generateArg: () =>
+                {
+                    int x = random.Next(20) + 1;
+                    int y = random.Next(20) + 1;
+                    int tX = random.Next(20) + x;
+                    int ty = random.Next(20) + y;
+                    return (x, y, tX, ty);
+                }
+                 , checkFunc: arg => instance.CacheSimple(arg.Item1, arg.Item2, arg.Item3, arg.Item4)
+                 , formatArg: arg => $"({arg.Item1}, {arg.Item2}, {arg.Item3}, {arg.Item4})"
+                 , codeTimeCount: 100
+                );
+        }
+
+        #region todo
+
+        private static void TestSliding_Puzzle(Random random)
+        {
+
             #region Sliding_Puzzle
             //{
             //    Sliding_Puzzle instance = new Sliding_Puzzle();
@@ -102,15 +138,7 @@ namespace ConsoleTest
 
             //}
             #endregion
-
-            Console.WriteLine("Hello World!");
-
-            Console.ReadKey(true);
-
         }
-
-        #region todo
-
         private static void TestCount_The_Repetitions(Random random)
         {
             Count_The_Repetitions instance = new Count_The_Repetitions();

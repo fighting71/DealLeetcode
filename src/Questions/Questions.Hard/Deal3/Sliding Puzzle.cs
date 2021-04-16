@@ -12,6 +12,7 @@ namespace Questions.Hard.Deal3
     /// @source : https://leetcode.com/problems/sliding-puzzle/
     /// @des : 
     /// </summary>
+    [Obsolete("pass.")]
     public class Sliding_Puzzle
     {
 
