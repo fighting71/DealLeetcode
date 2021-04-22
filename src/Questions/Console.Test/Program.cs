@@ -57,6 +57,7 @@ using Questions.Series.CountDistinctSubSequences;
 using Questions.DailyChallenge._2021.April.Week1;
 using Questions.DailyChallenge._2021.April.Week2;
 using Questions.DailyChallenge._2021.April.Week3;
+using Questions.DailyChallenge._2021.April.Week4;
 
 namespace ConsoleTest
 {
