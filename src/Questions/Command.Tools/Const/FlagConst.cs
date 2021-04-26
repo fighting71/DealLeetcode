@@ -58,5 +58,7 @@ namespace Command.Const
         public const string Tree = nameof(Tree);
         public const string Recursion = nameof(Recursion);
         public const string ListNode = nameof(ListNode);
+        public const string Matrix = nameof(Matrix);
+        public const string Rotate = nameof(Rotate);
     }
 }

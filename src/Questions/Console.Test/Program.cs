@@ -58,6 +58,7 @@ using Questions.DailyChallenge._2021.April.Week1;
 using Questions.DailyChallenge._2021.April.Week2;
 using Questions.DailyChallenge._2021.April.Week3;
 using Questions.DailyChallenge._2021.April.Week4;
+using ConsoleTest.TestDemo.Challenge._2021.April;
 
 namespace ConsoleTest
 {
@@ -88,6 +89,10 @@ namespace ConsoleTest
             runSimple = false;
 
             { if (runSimple) { } else { } }
+
+            //IWork work = new TestRotate_ImageDemo();
+
+            //work.Run();
 
             Console.WriteLine("Hello World!");
 
