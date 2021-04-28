@@ -100,6 +100,21 @@ namespace ConsoleTest
 
         }
 
+        private static void TestSmallest_Rotation_with_Highest_ScoreDemo()
+        {
+            Smallest_Rotation_with_Highest_Score instance = new Smallest_Rotation_with_Highest_Score();
+
+            BaseLibrary.CommonTest(new[] {
+                    JsonConvert.DeserializeObject<int[]>("[0, 0, 0, 0, 0]"),
+                    JsonConvert.DeserializeObject<int[]>("[2, 3, 1, 4, 0]"), // 3
+                    JsonConvert.DeserializeObject<int[]>(" [1, 3, 0, 2, 4]"), // 0
+                }
+            , instance.OtherSolution
+            //, instance.Simple
+            );
+
+        }
+
         private static void TestReaching_Points(Random random)
         {
             Reaching_Points instance = new Reaching_Points();
@@ -145,6 +160,7 @@ namespace ConsoleTest
             //}
             #endregion
         }
+
         private static void TestCount_The_Repetitions(Random random)
         {
             Count_The_Repetitions instance = new Count_The_Repetitions();
