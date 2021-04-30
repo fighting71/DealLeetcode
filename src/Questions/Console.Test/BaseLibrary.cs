@@ -22,14 +22,14 @@ namespace ConsoleTest
 
         public static Exception bugException = new Exception("bug");
 
-        public static void CommonTest<TArg, TRes>(TArg[] argArr, Func<TArg, TRes> func, Func<TArg> generateArg = null, int codeTimeCount = 10, bool showArg = true, Func<TRes, bool> isShowInfo = null, bool showRes = true, Func<TArg, string> formatArg = null, Func<TArg, TRes> checkFunc = null, bool throwDiff = true, Func<TRes, bool> skipFunc = null)
+        public static void CommonTest<TArg, TRes>(TArg[] argArr, Func<TArg, TRes> func, Func<TArg> generateArg = null, int codeTimeCount = 10, bool showArg = true, Func<TRes, bool> isShowInfo = null, bool showRes = true, Func<TArg, string> formatArg = null, Func<TArg, TRes> checkFunc = null, bool throwDiff = true, Func<TRes, bool> skipFunc = null, Func<TRes, TRes, bool> equalsFunc = null)
         {
             foreach (var arg in argArr)
             {
                 TRes real = checkFunc == null ? default : checkFunc(arg), res = func(arg);
                 if (checkFunc != null)
                 {
-                    if (!res.Equals(real))
+                    if (!(equalsFunc != null ? equalsFunc(real, res) : res.Equals(real)))
                     {
                         ShowTools.ShowMulti(new Dictionary<string, object>() {
                             {nameof(arg),arg },
@@ -91,12 +91,16 @@ namespace ConsoleTest
                 if (isShowInfo == null || isShowInfo(res))
                     ShowTools.ShowMulti(mul);
 
-                if (checkFunc != null && !res.Equals(real))
+                if (checkFunc != null)
                 {
-                    mul[nameof(real)] = real;
-                    ShowTools.ShowMulti(mul);
-                    if (throwDiff)
-                        throw bugException;
+
+                    if (!(equalsFunc != null ? equalsFunc(real, res) : res.Equals(real)))
+                    {
+                        mul[nameof(real)] = real;
+                        ShowTools.ShowMulti(mul);
+                        if (throwDiff)
+                            throw bugException;
+                    }
                 }
 
                 if (codeTimerResult.TimeElapsed > maxTimeElapsed)

@@ -25,7 +25,7 @@ namespace Questions.Hard.Deal3
         {
 
             /*
-             * 参考说明：
+             * 来自评论席的参考说明：
              * Very brilliant solution!
 很出色的解决方案!
 It takes me quite a while to understand.
