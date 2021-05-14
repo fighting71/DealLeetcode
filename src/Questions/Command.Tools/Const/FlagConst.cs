@@ -60,5 +60,6 @@ namespace Command.Const
         public const string ListNode = nameof(ListNode);
         public const string Matrix = nameof(Matrix);
         public const string Rotate = nameof(Rotate);
+        public const string Slow = nameof(Slow);
     }
 }

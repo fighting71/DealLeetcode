@@ -13,9 +13,9 @@ namespace Command.Attr
     public class OptimizeAttribute : Attribute
     {
 
-        public string Desc { get; }
+        public string[] Desc { get; }
 
-        public OptimizeAttribute(string desc)
+        public OptimizeAttribute(params string[] desc)
         {
             Desc = desc;
         }

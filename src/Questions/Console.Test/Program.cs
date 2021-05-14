@@ -60,6 +60,8 @@ using Questions.DailyChallenge._2021.April.Week3;
 using Questions.DailyChallenge._2021.April.Week4;
 using ConsoleTest.TestDemo.Challenge._2021.April;
 using Questions.DailyChallenge._2021.April.Week5;
+using Questions.DailyChallenge._2021.May.Week2;
+using Questions.DailyChallenge._2021.May.Week1;
 
 namespace ConsoleTest
 {
