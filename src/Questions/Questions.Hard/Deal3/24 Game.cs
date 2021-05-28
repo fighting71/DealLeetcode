@@ -12,9 +12,34 @@ namespace Questions.Hard.Deal3
     /// @des : 
     ///     你有4张卡片，每张卡片上都有从1到9的数字。您需要判断它们是否可以通过*、/、+、-、(，)操作来获得24的值。
     /// </summary>
-    [Obsolete(" 1, 9, 1, 2 返回true,就离谱...")]
+    [Obsolete(" 1, 9, 1, 2 返回true,就离谱... 看")]
     public class _24_Game
     {
+        public bool Try3(int[] nums)
+        {
+            int len = nums.Length;
+            bool[] visited = new bool[len];
+
+            return dfs(0);
+
+            bool dfs(double d)
+            {
+                for (int i = 0; i < len; i++)
+                {
+                    if (visited[i]) continue;
+                    visited[i] = true;
+                    var num = nums[i];
+                    if (dfs(d + num)) return true;
+                    if (dfs(d - num)) return true;
+                    if (dfs(d * num)) return true;
+                    if (dfs(d / num)) return true;
+
+                    visited[i] = false;
+                }
+                return d == 24;
+            }
+
+        }
 
         const int target = 24;
         const int len = 4;

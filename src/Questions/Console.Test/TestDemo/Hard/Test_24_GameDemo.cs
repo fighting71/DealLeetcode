@@ -29,7 +29,8 @@ namespace ConsoleTest.TestDemo.Hard
                         new[] { 1, 2, 1, 2 },// f
                         new[] { 1, 3, 4, 6 },// t
                 }
-                , instance.Try2
+                , instance.Try3
+                //, instance.Try2
                 , generateArg: () => CollectionHelper.GetEnumerable(4, () => random.Next(9) + 1).ToArray()
             );
 

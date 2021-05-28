@@ -62,5 +62,10 @@ namespace Command.Const
         public const string Rotate = nameof(Rotate);
         public const string Slow = nameof(Slow);
         public const string Hard = nameof(Hard);
+
+        /// <summary>
+        /// 解析表达式
+        /// </summary>
+        public const string AnalysisExpression = nameof(AnalysisExpression);
     }
 }

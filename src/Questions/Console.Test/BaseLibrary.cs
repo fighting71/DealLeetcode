@@ -20,6 +20,11 @@ namespace ConsoleTest
             CodeTimer.Initialize();
         }
 
+        internal static void CommonTest((object, int, int)[] ps, Func<object, int> p, Func<(int[][], int, int)> generateArg, bool showArg)
+        {
+            throw new NotImplementedException();
+        }
+
         public static Exception bugException = new Exception("bug");
 
         public static void CommonTest<TArg, TRes>(TArg[] argArr, Func<TArg, TRes> func, Func<TArg> generateArg = null, int codeTimeCount = 10, bool showArg = true, Func<TRes, bool> isShowInfo = null, bool showRes = true, Func<TArg, string> formatArg = null, Func<TArg, TRes> checkFunc = null, bool throwDiff = true, Func<TRes, bool> skipFunc = null, Func<TRes, TRes, bool> equalsFunc = null)
@@ -66,6 +71,7 @@ namespace ConsoleTest
 
                 if (skipFunc != null && skipFunc(res))
                 {
+                    Console.WriteLine("skip");
                     i--;
                     continue;
                 }
@@ -113,11 +119,14 @@ namespace ConsoleTest
 
             }
 
-
-            ShowTools.ShowMulti(new Dictionary<string, object> {
+            Dictionary<string, object> dictionary = new Dictionary<string, object> {
                 {"单次耗时最长",maxTimeElapsed },
-                {"参数", formatArg != null ? formatArg(maxArg)  as object: maxArg }
-            });
+            };
+            if (showArg)
+            {
+                dictionary["参数"] = formatArg != null ? formatArg(maxArg) as object : maxArg;
+            }
+            ShowTools.ShowMulti(dictionary);
 
 
         }

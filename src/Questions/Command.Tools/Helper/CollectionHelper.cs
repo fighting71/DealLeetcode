@@ -67,6 +67,17 @@ namespace Command.Helper
             return builder.ToString();
         }
 
+        public static string GetString(int len, int minChar = 'a', int randCount = 26)
+        {
+            var rand = new Random();
+            StringBuilder builder = new StringBuilder();
+            for (int j = 0; j < len; j++)
+            {
+                builder.Append((char)(minChar + rand.Next(randCount)));
+            }
+            return builder.ToString();
+        }
+
         public static string GetString(Func<int> getLenFunc, Func<char> getItemFunc)
         {
             return GetString(getLenFunc(), getItemFunc);
