@@ -20,6 +20,14 @@ namespace Questions.DailyChallenge._2021.May.Week4
         //1 <= words[i].length <= 1000
         //words[i] consists only of lowercase English letters.
 
+        public int Try(string[] words)
+        {
+
+        }
+
+        // Runtime: 124 ms
+        // Memory Usage: 29.1 MB
+        // Your runtime beats 68.18 %  ???
         public int Simple(string[] words)
         {
 
