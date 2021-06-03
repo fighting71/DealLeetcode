@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Command.Attr;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -13,17 +14,13 @@ namespace Questions.DailyChallenge._2021.May.Week4
     ///     其他要求：
     ///         这两个单词不能拥有相同的字母
     /// </summary>
+    [Optimize]
     public class Maximum_Product_of_Word_Lengths
     {
 
         // 2 <= words.length <= 1000
         //1 <= words[i].length <= 1000
         //words[i] consists only of lowercase English letters.
-
-        public int Try(string[] words)
-        {
-
-        }
 
         // Runtime: 124 ms
         // Memory Usage: 29.1 MB

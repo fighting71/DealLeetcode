@@ -77,7 +77,7 @@ namespace ConsoleTest
                 }
 
                 Dictionary<string, object> mul = new Dictionary<string, object>() {
-                            {nameof(codeTimerResult),codeTimerResult },
+                            //{nameof(codeTimerResult),codeTimerResult },
                         };
                 if (showArg)
                 {
@@ -87,6 +87,8 @@ namespace ConsoleTest
                         mul[nameof(arg)] = formatArg(arg);
                 }
                 if (showRes) mul[nameof(res)] = res;
+
+                mul[nameof(codeTimerResult)] = codeTimerResult;
 
                 if (checkFunc != null)
                 {
