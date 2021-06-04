@@ -30,7 +30,7 @@ namespace Questions.DailyChallenge._2021.June.Week1
 
         // Runtime: 356 ms
         // Memory Usage: 45.6 MB
-        // slow
+        // slow ？？？ 直接疑惑
         public int Simple(int h, int w, int[] horizontalCuts, int[] verticalCuts)
         {
             int[] sort = horizontalCuts.OrderBy(u => u).Distinct().ToArray();

@@ -62,6 +62,8 @@ namespace Command.Const
         public const string Rotate = nameof(Rotate);
         public const string Slow = nameof(Slow);
         public const string Hard = nameof(Hard);
+        public const string Middle = nameof(Middle);
+        public const string Easy = nameof(Easy);
 
         /// <summary>
         /// 解析表达式

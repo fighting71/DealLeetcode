@@ -23,6 +23,43 @@ namespace Questions.Hard.Deal3
     public class Count_Unique_Characters_of_All_Substrings_of_a_Given_String
     {
 
+        #region otherSolution
+        // source: https://leetcode.com/problems/count-unique-characters-of-all-substrings-of-a-given-string/discuss/128952/C%2B%2BJavaPython-One-pass-O(N)
+        public int otherSolution(String S)
+        {
+            /*
+             * 大概意思：不需要去考虑每个字段带来的可能组合而是要考虑每个字母带来的组合
+             * 
+             * 考虑字符串"XAXAXXAX"并专注于使第二"A"个字符成为唯一字符。
+             * 我们可以使用"XA(XAXX)AX"and between"()"是我们的子串。
+             * 即在第二个"A"来临的这一段，"A"会作为一个唯一字符 固定+1
+             * 
+             * 以此为例，计算其他字符为作为唯一字符的每一段，并进行求和
+             * 
+             * 666
+             * 
+             */
+            int[][] index = new int[26][];
+
+            for (int i = 0; i < index.Length; i++)
+            {
+                index[i] = new int[2] { -1, -1 };
+            }
+
+            //for (int i = 0; i < 26; ++i) Array.Fill(index[i], -1);
+            int res = 0, N = S.Length, mod = (int)Math.Pow(10, 9) + 7;
+            for (int i = 0; i < N; ++i)
+            {
+                int c = S[i] - 'A';
+                res = (res + (i - index[c][1]) * (index[c][1] - index[c][0]) % mod) % mod;
+                index[c] = new int[] { index[c][1], i };
+            }
+            for (int c = 0; c < 26; ++c)
+                res = (res + (N - index[c][1]) * (index[c][1] - index[c][0]) % mod) % mod;
+            return res;
+        }
+        #endregion
+
         /*
          * Constraints:
          * 0 <= s.length <= 10^4
