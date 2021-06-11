@@ -64,6 +64,7 @@ namespace Command.Const
         public const string Hard = nameof(Hard);
         public const string Middle = nameof(Middle);
         public const string Easy = nameof(Easy);
+        public const string LinkedList = nameof(LinkedList);
 
         /// <summary>
         /// 解析表达式

@@ -66,6 +66,7 @@ using Questions.DailyChallenge._2021.May.Week3;
 using Questions.DailyChallenge._2021.May.Week4;
 using Questions.DailyChallenge._2021.May.Week5;
 using Questions.DailyChallenge._2021.June.Week1;
+using Questions.DailyChallenge._2021.June.Week2;
 
 namespace ConsoleTest
 {
@@ -96,6 +97,51 @@ namespace ConsoleTest
             runSimple = false;
 
             { if (runSimple) { } else { } }
+
+            {
+                Sum_of_Distances_in_Tree instance = new Sum_of_Distances_in_Tree();
+
+                BaseLibrary.CommonTest(new[] {
+                    (6, JsonConvert.DeserializeObject<int[][]>("[[0,1],[0,2],[2,3],[2,4],[2,5]]")), //  [8,12,6,10,10,10]
+                    //(6, JsonConvert.DeserializeObject<int[][]>("[[0,1],[0,2],[2,3],[2,4],[2,5],[1,2]]")), //  [8,12,6,10,10,10]
+                }
+                , arg => instance.Try2(arg.Item1, arg.Item2)
+                //, arg => instance.Try(arg.Item1, arg.Item2)
+                //, arg => instance.Bfs(arg.Item1, arg.Item2)
+                //, arg => instance.Dfs(arg.Item1, arg.Item2)
+                , generateArg: () =>
+                {
+                    int n = 1000;
+
+                    List<int> remind = Enumerable.Range(2, n - 2).ToList();
+                    List<int> exists = new List<int>() { 0, 1 };
+
+                    List<int[]> edges = new List<int[]>(n);
+
+                    edges.Add(new[] { 1, 2 });
+
+                    while (remind.Count > 0)
+                    {
+                        var get = random.Next(remind.Count);
+
+                        var num = remind[get];
+                        remind.RemoveAt(get);
+
+                        edges.Add(new[] { num, exists[random.Next(exists.Count)] });
+
+                        exists.Add(num);
+
+                    }
+
+                    return (
+                        n,
+                        edges.ToArray()
+                    );
+                }
+                ,formatArg: arg => $"{arg.Item1}\n{JsonConvert.SerializeObject(arg.Item2)}"
+                );
+
+            }
 
             Console.WriteLine("Hello World!");
 
@@ -151,7 +197,6 @@ namespace ConsoleTest
             , instance.OtherSolution
             //, instance.Simple
             );
-
         }
 
         private static void TestReaching_Points(Random random)
