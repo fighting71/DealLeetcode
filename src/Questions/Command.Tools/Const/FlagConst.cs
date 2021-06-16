@@ -24,6 +24,9 @@ namespace Command.Const
         /// 深度优先搜索
         /// </summary>
         public const string DFS = nameof(DFS);
+        /// <summary>
+        /// 广度优先搜索
+        /// </summary>
         public const string BFS = nameof(BFS);
         /// <summary>
         /// 排序
@@ -53,18 +56,59 @@ namespace Command.Const
         /// ~远在天边近在眼前~
         /// </summary>
         public const string Special = nameof(Special);
+        /// <summary>
+        /// 二分
+        /// </summary>
         public const string BinarySearch = nameof(BinarySearch);
+        /// <summary>
+        /// Design
+        /// </summary>
         public const string Design = nameof(Design);
+
+        /// <summary>
+        /// tree
+        /// </summary>
         public const string Tree = nameof(Tree);
+        /// <summary>
+        /// 递归
+        /// </summary>
         public const string Recursion = nameof(Recursion);
+        /// <summary>
+        /// listnode
+        /// </summary>
         public const string ListNode = nameof(ListNode);
+        /// <summary>
+        /// 矩阵
+        /// </summary>
         public const string Matrix = nameof(Matrix);
+        /// <summary>
+        /// 旋转
+        /// </summary>
         public const string Rotate = nameof(Rotate);
+        /// <summary>
+        /// 执行缓慢
+        /// </summary>
         public const string Slow = nameof(Slow);
+        /// <summary>
+        /// hard
+        /// </summary>
         public const string Hard = nameof(Hard);
+        /// <summary>
+        /// Middle
+        /// </summary>
         public const string Middle = nameof(Middle);
+        /// <summary>
+        /// Easy
+        /// </summary>
         public const string Easy = nameof(Easy);
+        /// <summary>
+        /// LinkedList
+        /// </summary>
         public const string LinkedList = nameof(LinkedList);
+        /// <summary>
+        /// 组合
+        /// </summary>
+        public const string Combination = nameof(Combination);
 
         /// <summary>
         /// 解析表达式

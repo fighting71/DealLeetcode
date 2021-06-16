@@ -71,7 +71,6 @@ namespace ConsoleTest
 
                 if (skipFunc != null && skipFunc(res))
                 {
-                    Console.WriteLine("skip");
                     i--;
                     continue;
                 }
