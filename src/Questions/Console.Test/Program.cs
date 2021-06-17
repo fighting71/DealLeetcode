@@ -201,27 +201,6 @@ namespace ConsoleTest
             #endregion
         }
 
-        private static void TestCount_The_Repetitions(Random random)
-        {
-            Count_The_Repetitions instance = new Count_The_Repetitions();
-            BaseLibrary.CommonTest(new[] {
-                    ("bacaba",3,"abacab",1), // 2
-                    ("aaa",3,"aa",1), // 4
-                    ("acb",4,"ab",2),// 2
-                }, arg => instance.Simple(arg.Item1, arg.Item2, arg.Item3, arg.Item4)
-            , () =>
-            {
-                return (
-                    string.Concat(CollectionHelper.GetEnumerable(10, () => (char)(random.Next(10) + 'a'))),
-                    (random.Next(10) + 1) * 3,
-
-                    string.Concat(CollectionHelper.GetEnumerable(5, () => (char)(random.Next(10) + 'a'))),
-                    (random.Next(5) + 1) * 2
-                );
-            });
-
-        }
-
         #endregion
     }
 }

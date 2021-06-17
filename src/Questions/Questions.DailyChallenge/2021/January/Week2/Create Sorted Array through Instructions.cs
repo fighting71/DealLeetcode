@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Command.Attr;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,8 @@ namespace Questions.DailyChallenge._2021.January.Week2
     ///     返回将指令中的所有元素插入nums的总代价。因为答案可能很大，所以以109 + 7取模返回它
     /// 
     /// </summary>
-    [Obsolete("time limit")]
+    //[Obsolete("time limit")]
+    [Optimize("slow")]
     public class Create_Sorted_Array_through_Instructions
     {
 
@@ -114,10 +116,11 @@ namespace Questions.DailyChallenge._2021.January.Week2
                     }
                 }
 
-                if (min != emptyCache[i])
-                {
+                // checkRes
+                //if (min != emptyCache[i]) 
+                //{
 
-                }
+                //}
                 res = (res + min) % 1000_000_007;
                 
                 list.Insert(index, num);

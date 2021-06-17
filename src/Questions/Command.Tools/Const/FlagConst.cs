@@ -33,7 +33,7 @@ namespace Command.Const
         /// </summary>
         public const string Sort = nameof(Sort);
         /// <summary>
-        /// 复杂逻辑
+        /// 逻辑复杂
         /// </summary>
         public const string Complex = nameof(Complex);
         /// <summary>
@@ -114,5 +114,15 @@ namespace Command.Const
         /// 解析表达式
         /// </summary>
         public const string AnalysisExpression = nameof(AnalysisExpression);
+
+        #region Bible
+
+        /// <summary>
+        /// 圣经：人被逼急了什么都做得出来？算法题不行
+        /// </summary>
+        public const string NoThinking = nameof(NoThinking);
+
+        #endregion
+
     }
 }
