@@ -88,7 +88,7 @@ namespace Questions.Hard.Deal3
             return res;
         }
 
-        // bug ,使用二进制作为去重依据
+        // bug ,使用二进制作为去重依据==> 使用有误
         public int Try(int[][] graph)
         {
             int len = graph.Length;

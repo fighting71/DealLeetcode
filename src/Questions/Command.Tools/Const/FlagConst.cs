@@ -13,6 +13,10 @@ namespace Command.Const
     public static class FlagConst
     {
         /// <summary>
+        /// 面积求和
+        /// </summary>
+        public const string AreaSum = nameof(AreaSum);
+        /// <summary>
         /// 贪心算法
         /// </summary>
         public const string Greedy = nameof(Greedy);
