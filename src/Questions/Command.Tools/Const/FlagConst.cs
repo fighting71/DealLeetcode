@@ -70,6 +70,10 @@ namespace Command.Const
         /// </summary>
         public const string Tree = nameof(Tree);
         /// <summary>
+        /// 图
+        /// </summary>
+        public const string Graph = nameof(Graph);
+        /// <summary>
         /// 递归
         /// </summary>
         public const string Recursion = nameof(Recursion);
@@ -114,6 +118,18 @@ namespace Command.Const
         /// 解析表达式
         /// </summary>
         public const string AnalysisExpression = nameof(AnalysisExpression);
+
+        /// <summary>
+        /// 二次引用
+        /// 
+        /// 类似于多对多关系映射，简而言之就是恶心/错综复杂...
+        /// </summary>
+        public const string SecondReference = nameof(SecondReference);
+
+        /// <summary>
+        /// 反转
+        /// </summary>
+        public const string Reverse = nameof(Reverse);
 
         #region Bible
 

@@ -1,5 +1,6 @@
 ﻿using Command.Attr;
 using Command.Const;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,19 +12,32 @@ namespace Questions.Hard.Deal3
     /// @auth : monster
     /// @since : 4/29/2021 11:39:57 AM
     /// @source : https://leetcode.com/problems/bricks-falling-when-hit/
-    /// @des : 
+    /// @error des : 
     ///     《围棋》
     ///     给你一个棋盘，棋盘中包含 "0"和"1"
-    ///     初始棋盘（可以如此相像：给你的棋盘其实并不是完整的棋盘，而是棋盘的一个视图，在视图中你缺少了【第一行&最后一行&第一列&最后一列】，在此基础上进行下棋）：
+    ///     初始棋盘（可以如此相像：给你的棋盘其实并不是完整的棋盘，而是棋盘的一个视图，在视图中你缺少了【第一行】，在此基础上进行下棋）：  // no &最后一行&第一列&最后一列
     ///         第一行为1
     ///         第一列和最后一列和最后一行
     ///         
     ///     hits即为落子的坐标
     ///         每次落子将此位置替换为0，若能够围住1，则将围住的1替换为0且返回1的个数
     ///     (虽然描述完全不是这个，但跟这个的意思一模一样..)
+    ///     
+    /// @des : 
+    /// 
+    ///     给定一个m × n的二进制网格，其中每个1代表一个砖块，0代表一个空白空间。砖块是稳定的，如果:
+    ///     
+    ///     它直接连接到电网的顶部，或者
+    ///     
+    ///     在相邻的四个单元中至少有一个砖块是稳定的。
+    ///     你也得到了一个数组命中，这是一个我们想要应用的擦除序列。每次我们想要擦除砖块的位置命中[i] = (rowi, coli)。该位置上的砖块(如果它存在)将消失。一些其他的砖块可能不再稳定，因为这种擦除，将会掉下来。一旦砖块掉落，它就会立即从网格中消失(也就是说，它不会落在其他稳定的砖块上)。
+    ///     返回一个数组结果，其中每个结果[i] 是应用第i次擦除后将下降的砖块的数量。
+    /// 
     /// </summary>
-    [Obsolete("time limit,围棋")]
-    [Favorite(FlagConst.Special,"围棋")]
+    //[Obsolete("time limit,围棋")]
+    //[Favorite(FlagConst.Special, "围棋")]
+    // 非围棋
+    [Optimize(FlagConst.Slow)]
     public class Bricks_Falling_When_Hit
     {
 
@@ -38,15 +52,175 @@ namespace Questions.Hard.Deal3
         //0 <= xi <= m - 1
         //0 <= yi <= n - 1
         //All(xi, yi) are unique.
-        public int[] Try3(int[][] grid, int[][] hits)
+
+        // Runtime: 2936 ms, faster than 25.00% of C# online submissions for Bricks Falling When Hit.
+        // Memory Usage: 53.1 MB, less than 75.00% of C# online submissions for Bricks Falling When Hit.
+        public int[] Try4(int[][] grid, int[][] hits)
         {
 
             int[] res = new int[hits.Length];
             int m = grid.Length, n = grid[0].Length;
 
-            // todo: 围棋
+            bool[][] survival = new bool[m][];
+            for (int i = 0; i < m; i++)
+            {
+                survival[i] = new bool[n];
+            }
+
+            for (int i = 0; i < n; i++) 
+            {
+                HelpSurvival(0, i); // 存活过滤
+            }
+
+            Stack<(int, int)> removeStack = new Stack<(int, int)>();
+            for (int i = 0; i < hits.Length; i++)
+            {
+                var hit = hits[i];
+                int y = hit[0], x = hit[1];
+
+                if (!survival[y][x]) continue;
+
+                survival[y][x] = false;
+
+                res[i] = Common(y, x);
+
+            }
 
             return res;
+
+            int Common(int y, int x)
+            {
+                int currCount = 0;
+                removeStack.Clear();
+                if (!HelpRemove(y - 1, x)) currCount += removeStack.Count;
+                removeStack.Clear();
+                if (!HelpRemove(y + 1, x)) currCount += removeStack.Count;
+                removeStack.Clear();
+                if (!HelpRemove(y, x - 1)) currCount += removeStack.Count;
+                removeStack.Clear();
+                if (!HelpRemove(y, x + 1)) currCount += removeStack.Count;
+
+                return currCount;
+            }
+
+            bool HelpRemove(int y, int x)
+            {
+                if (y == -1 || y == m || x == -1 || x == n || !survival[y][x]) return false;
+                if (y == 0)
+                { // 满足存活，则撤回所有修改...
+                    while (removeStack.Count > 0)
+                    {
+                        (int, int) p = removeStack.Pop();
+                        survival[p.Item1][p.Item2] = true;
+                    }
+                    return true;
+                }
+
+                survival[y][x] = false;
+
+                // 备忘录
+                removeStack.Push((y, x));
+
+                var res =
+                HelpRemove(y - 1, x) ||
+                HelpRemove(y + 1, x) ||
+                HelpRemove(y, x - 1) ||
+                HelpRemove(y, x + 1);
+
+                if (res) survival[y][x] = true;
+
+                return res;
+
+            }
+
+            void HelpSurvival(int y,int x)
+            {
+                if (y == -1 || y == m || x == -1 || x == n || grid[y][x] == 0 || survival[y][x]) return;
+
+                survival[y][x] = true;
+
+                HelpSurvival(y + 1, x);
+                HelpSurvival(y - 1, x);
+                HelpSurvival(y, x + 1);
+                HelpSurvival(y, x - 1);
+            }
+
+        }
+        public int[] Try3(int[][] grid, int[][] hits)
+        {
+            int[] res = new int[hits.Length];
+            int m = grid.Length, n = grid[0].Length;
+
+            bool[][] visited = new bool[m][];
+            for (int i = 0; i < m; i++)
+            {
+                visited[i] = new bool[n];
+            }
+
+            int count;
+
+            for (int i = 0; i < hits.Length; i++)
+            {
+                var hit = hits[i];
+                int y = hit[0], x = hit[1];
+
+                if (grid[y][x] == 0) continue;
+                grid[y][x] = 0;
+
+                res[i] = Common(y, x);
+
+                if(res[i] > 0)
+                {
+
+                    foreach (var item in grid)
+                    {
+                        foreach (var sub in item)
+                        {
+                            Console.Write(sub == 1 ? '+' : '_');
+                        }
+                        Console.WriteLine();
+                    }
+                    Console.WriteLine("------------------------" + res[i]);
+                }
+            }
+
+            return res;
+
+            int Common(int y, int x)
+            {
+                int currCount = 0;
+                count = 0;
+                if (!Help(y - 1, x)) currCount += count;
+                count = 0;
+                if (!Help(y + 1, x)) currCount += count;
+                count = 0;
+                if (!Help(y, x - 1)) currCount += count;
+                count = 0;
+                if (!Help(y, x + 1)) currCount += count;
+
+                return currCount;
+            }
+
+            bool Help(int y, int x)
+            {
+                if (y == -1 || y == m || x == -1 || x == n || visited[y][x] || grid[y][x] == 0) return false;
+                if (y == 0) return true;
+
+                count++;
+
+                visited[y][x] = true;
+
+                var res =
+                Help(y - 1, x) ||
+                Help(y + 1, x) ||
+                Help(y, x - 1) ||
+                Help(y, x + 1);
+
+                if (res) visited[y][x] = false;
+
+                return res;
+
+            }
 
         }
 
@@ -111,7 +285,7 @@ namespace Questions.Hard.Deal3
                 }
             }
 
-            void SetZero(int i,int j)
+            void SetZero(int i, int j)
             {
                 if (i == -1 || i == m || j == -1 || j == n || grid[i][j] == 0) return;
                 grid[i][j] = 0;
@@ -192,7 +366,7 @@ namespace Questions.Hard.Deal3
                 var hit = hits[i];
                 int y = hit[0], x = hit[1];
                 var curr = dp[y][x];
-                if(curr.Count > 0)
+                if (curr.Count > 0)
                 {
                     curr.Count = 0;
                     HelpReduce(y + 1, x, TOP);
@@ -320,7 +494,7 @@ namespace Questions.Hard.Deal3
                 }
             }
 
-            void Help(int i,int j)
+            void Help(int i, int j)
             {
                 if (i == -1 || i == m || j == -1 || j == n || visited[i][j]) return;
                 count++;

@@ -20,6 +20,11 @@ namespace ConsoleTest
             CodeTimer.Initialize();
         }
 
+        internal static void CommonTest(object[] ps, Func<int[][], int> try3)
+        {
+            throw new NotImplementedException();
+        }
+
         internal static void CommonTest((object, int, int)[] ps, Func<object, int> p, Func<(int[][], int, int)> generateArg, bool showArg)
         {
             throw new NotImplementedException();

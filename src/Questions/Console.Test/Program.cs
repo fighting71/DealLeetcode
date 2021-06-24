@@ -68,10 +68,13 @@ using Questions.DailyChallenge._2021.May.Week5;
 using Questions.DailyChallenge._2021.June.Week1;
 using Questions.DailyChallenge._2021.June.Week2;
 using Questions.DailyChallenge._2021.June.Week3;
+using ConsoleTest.TestDemo.Hard.Two;
+using Questions.DailyChallenge._2021.June.Week4;
 
 namespace ConsoleTest
 {
 
+    [Obsolete]
     class Program
     {
 
@@ -97,7 +100,24 @@ namespace ConsoleTest
             bool runSimple = true;
             runSimple = false;
 
+            //Console.WriteLine(1<< 0);
+            //Console.WriteLine(1<< 1);
+            //Console.WriteLine(1<< 2);
+
             { if (runSimple) { } else { } }
+
+            {
+                Shortest_Path_Visiting_All_Nodes instance = new Shortest_Path_Visiting_All_Nodes();
+
+                BaseLibrary.CommonTest(new[] {
+                    JsonConvert.DeserializeObject<int[][]>("[[1],[0,2,4],[1,3,4],[2],[1,2]]"), // 4
+                    JsonConvert.DeserializeObject<int[][]>(" [[1,2,3],[0],[0],[0]]"), // 4
+                }
+                //, instance.Try
+                , instance.Try2
+                );
+
+            }
 
             Console.WriteLine("Hello World!");
 
@@ -105,102 +125,5 @@ namespace ConsoleTest
 
         }
 
-        private static void TestBricks_Falling_When_HitDemo(Random random)
-        {
-            Bricks_Falling_When_Hit instance = new Bricks_Falling_When_Hit();
-
-            BaseLibrary.CommonTest(new[] {
-                    ("[[1,1,1,1,1,0,0,1,0,1],[0,1,0,0,0,1,0,1,0,0],[1,1,0,1,1,1,1,0,0,1],[0,1,1,1,1,0,1,1,1,1],[1,0,0,1,1,1,1,1,0,0],[1,1,1,0,1,0,1,0,1,0],[1,1,1,0,1,0,1,0,1,1],[1,0,1,0,0,1,0,1,1,0],[1,1,0,0,0,1,1,0,0,1],[1,1,0,1,1,0,1,1,1,0]]".ParseJson<int[][]>(),
-                    "[[8,7],[2,3],[4,3],[6,5],[2,9],[8,2],[0,5],[6,0],[8,3],[1,1],[4,6],[6,7],[3,0],[9,2],[4,1],[7,2],[1,9],[5,6],[6,8]]".ParseJson<int[][]>()),// [0,0,0,0,0,0,0,0,0,22,0,0,0,0,0,0,0,0,0]
-                    ("[[1,0,0,0],[1,1,1,0]]".ParseJson<int[][]>(),"[[1,0]]".ParseJson<int[][]>()), // [2]
-                    ("[[0,1,0,0],[1,1,1,0]]".ParseJson<int[][]>(),"[[1,0]]".ParseJson<int[][]>()), // [0]
-                    ("[[1,0,0,0],[1,1,0,0]]".ParseJson<int[][]>(),"[[1,1],[1,0]]".ParseJson<int[][]>()),// [0,0]
-                },
-            //arg => instance.Try(arg.Item1, arg.Item2)
-            arg => instance.Try2(arg.Item1, arg.Item2)
-            //, checkFunc: arg => instance.Simple(arg.Item1, arg.Item2)
-            , equalsFunc: (real, res) => real.Select((v, i) => res[i] != v).Any()
-            , generateArg: () =>
-            {
-                int m = 200, n = 200, hitLen = 40_000;
-                //int m = 10, n = 10, hitLen = 20;
-                //int m = 20, n = 20,hitLen = 5;
-                //int[][] grid = CollectionHelper.GetEnumerable(m, () => CollectionHelper.GetEnumerable(n, () => random.Next(2)).ToArray()).ToArray();
-                int[][] grid = CollectionHelper.GetEnumerable(m, () => CollectionHelper.GetEnumerable(n, () => random.Next(9) > 3 ? 1 : 0).ToArray()).ToArray();
-
-                int[][] hits = CollectionHelper.GetEnumerable(hitLen, () => (random.Next(m), random.Next(n))).Distinct().Select(u => new[] { u.Item1, u.Item2 }).ToArray();
-
-                return (grid, hits);
-            }
-            ,
-            codeTimeCount: 2,
-            //showRes: false,
-            skipFunc: res => res.All(u => u == 0)
-            , formatArg: arg => $"{arg.Item1.SerieJson()}\n{arg.Item2.SerieJson()}"
-            );
-
-        }
-
-        private static void TestSmallest_Rotation_with_Highest_ScoreDemo()
-        {
-            Smallest_Rotation_with_Highest_Score instance = new Smallest_Rotation_with_Highest_Score();
-
-            BaseLibrary.CommonTest(new[] {
-                    JsonConvert.DeserializeObject<int[]>("[0, 0, 0, 0, 0]"),
-                    JsonConvert.DeserializeObject<int[]>("[2, 3, 1, 4, 0]"), // 3
-                    JsonConvert.DeserializeObject<int[]>(" [1, 3, 0, 2, 4]"), // 0
-                }
-            , instance.OtherSolution
-            //, instance.Simple
-            );
-        }
-
-        private static void TestReaching_Points(Random random)
-        {
-            Reaching_Points instance = new Reaching_Points();
-            BaseLibrary.CommonTest(
-                new[] {
-                        (1, 3, 15, 4),// f
-                        (14,3,18,20),// f
-                        (1,1,5,3),// t
-                },
-                arg => instance.Try(arg.Item1, arg.Item2, arg.Item3, arg.Item4)
-                , generateArg: () =>
-                {
-                    int x = random.Next(20) + 1;
-                    int y = random.Next(20) + 1;
-                    int tX = random.Next(20) + x;
-                    int ty = random.Next(20) + y;
-                    return (x, y, tX, ty);
-                }
-                 , checkFunc: arg => instance.CacheSimple(arg.Item1, arg.Item2, arg.Item3, arg.Item4)
-                 , formatArg: arg => $"({arg.Item1}, {arg.Item2}, {arg.Item3}, {arg.Item4})"
-                 , codeTimeCount: 100
-                );
-        }
-
-        #region todo
-
-        private static void TestSliding_Puzzle(Random random)
-        {
-
-            #region Sliding_Puzzle
-            //{
-            //    Sliding_Puzzle instance = new Sliding_Puzzle();
-
-            //    BaseLibrary.CommonTest(new[] {
-            //        "[[4,1,5],[3,2,0]]".ParseJson<int[][]>(),// -1
-            //        "[[1,2,3],[4,0,5]]".ParseJson<int[][]>(),// 1
-            //        "[[1,2,3],[5,4,0]]".ParseJson<int[][]>(),// -1
-            //        "[[4,1,2],[5,0,3]]".ParseJson<int[][]>(),// 5
-            //    }
-            //    , instance.Try
-            //    );
-
-            //}
-            #endregion
-        }
-
-        #endregion
     }
 }
