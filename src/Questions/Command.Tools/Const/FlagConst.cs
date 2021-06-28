@@ -94,6 +94,10 @@ namespace Command.Const
         /// </summary>
         public const string Rotate = nameof(Rotate);
         /// <summary>
+        /// TimeLimit
+        /// </summary>
+        public const string TimeLimit = nameof(TimeLimit);
+        /// <summary>
         /// 执行缓慢
         /// </summary>
         public const string Slow = nameof(Slow);
@@ -109,6 +113,10 @@ namespace Command.Const
         /// Easy
         /// </summary>
         public const string Easy = nameof(Easy);
+        /// <summary>
+        /// 祖玛
+        /// </summary>
+        public const string Zuma = nameof(Zuma);
         /// <summary>
         /// LinkedList
         /// </summary>

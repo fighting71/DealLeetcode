@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Command.Attr;
+using Command.Const;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,6 +12,7 @@ namespace Questions.DailyChallenge._2021.April.Week3
     /// @source : https://leetcode.com/explore/challenge/card/april-leetcoding-challenge-2021/595/week-3-april-15th-april-21st/3710/
     /// @des : 
     /// </summary>
+    [Favorite(FlagConst.Zuma)]
     public class Remove_All_Adjacent_Duplicates_in_String_II
     {
 
