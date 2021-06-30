@@ -1,4 +1,5 @@
 ﻿using Command.Const;
+using Command.CusStruct;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,7 @@ namespace Questions.Hard.Deal3
         #region other solution 
 
         // source : https://leetcode.com/problems/minimum-cost-to-hire-k-workers/discuss/141768/Detailed-explanation-O(NlogN)
+        // 大体思路见try3  此处用排序队列 替代了第二个排序
         public double mincostToHireWorkers(int[] q, int[] w, int K)
         {
             double[][] workers = new double[q.Length][];
@@ -45,13 +47,16 @@ namespace Questions.Hard.Deal3
             workers = workers.OrderBy(u => u[0]).ToArray();
 
             double res = Double.MaxValue, qsum = 0;
-            Queue<double> pq = new Queue<double>();
+
+            // PriorityQueue<Double> pq = new PriorityQueue<>(); java 中的排序队列，
+
+            PriorityQueue<double> pq = new PriorityQueue<double>();
             foreach (double[] worker in workers)
             {
                 qsum += worker[1];
-                pq.Enqueue(-worker[1]);
-                if (pq.Count() > K) qsum += pq.Dequeue();
-                if (pq.Count() == K) res = Math.Min(res, qsum * worker[0]);
+                pq.Add(-worker[1]);
+                if (pq.Size() > K) qsum += pq.PopLast();
+                if (pq.Size() == K) res = Math.Min(res, qsum * worker[0]);
             }
             return res;
         }

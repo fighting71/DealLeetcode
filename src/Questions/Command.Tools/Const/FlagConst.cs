@@ -17,6 +17,14 @@ namespace Command.Const
         /// </summary>
         public const string AreaSum = nameof(AreaSum);
         /// <summary>
+        /// 极限值
+        /// </summary>
+        public const string LimitValue = nameof(LimitValue);
+        /// <summary>
+        /// 滑动窗口
+        /// </summary>
+        public const string SlidingWindow = nameof(SlidingWindow);
+        /// <summary>
         /// 贪心算法
         /// </summary>
         public const string Greedy = nameof(Greedy);
