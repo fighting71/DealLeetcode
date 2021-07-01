@@ -17,6 +17,14 @@ namespace Command.Const
         /// </summary>
         public const string AreaSum = nameof(AreaSum);
         /// <summary>
+        /// 格雷码...
+        /// </summary>
+        public const string GrayCode = nameof(GrayCode);
+        /// <summary>
+        /// 理解有误
+        /// </summary>
+        public const string DontUnderstand = nameof(DontUnderstand);
+        /// <summary>
         /// 极限值
         /// </summary>
         public const string LimitValue = nameof(LimitValue);
