@@ -12,6 +12,8 @@ namespace Command.Const
     /// </summary>
     public static class FlagConst
     {
+        public const string OtherSolution = nameof(OtherSolution);
+
         /// <summary>
         /// 面积求和
         /// </summary>

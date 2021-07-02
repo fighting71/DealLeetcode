@@ -72,6 +72,7 @@ using ConsoleTest.TestDemo.Hard.Two;
 using Questions.DailyChallenge._2021.June.Week4;
 using Questions.DailyChallenge._2021.June.Week5;
 using Questions.DailyChallenge._2021.July.Week1;
+using System.Collections;
 
 namespace ConsoleTest
 {
@@ -96,22 +97,6 @@ namespace ConsoleTest
             CodeTimer codeTimer = new CodeTimer();
 
             codeTimer.Initialize();
-
-            Console.WriteLine(1 >> 0);
-            Console.WriteLine(1 >> 1);
-
-            {
-                Gray_Code instance = new Gray_Code();
-
-                for (int i = 1; i < 5; i++)
-                {
-                    IList<int> list = instance.Try(i);
-
-                    Console.WriteLine($"{i} : {JsonConvert.SerializeObject(list)}");
-
-                }
-
-            }
 
             Random random = new Random();
 

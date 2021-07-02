@@ -15,7 +15,7 @@ namespace Questions.Hard.Deal3
     ///     如果没有sum大于等于k的非空子数组，则返回-1。
     /// 
     /// </summary>
-    [Obsolete(FlagConst.DontUnderstand)]
+    [Obsolete(FlagConst.DontUnderstand + FlagConst.OtherSolution)]
     public class Shortest_Subarray_with_Sum_at_Least_K
     {
 
